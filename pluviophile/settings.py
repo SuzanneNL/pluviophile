@@ -45,6 +45,11 @@ INSTALLED_APPS = [
     'allauth.account',
     # Handles logging in via social media providers:
     'allauth.socialaccount',
+
+    # Other installed apps
+    'crispy_forms',
+
+    # Built apps
     'home',
 ]
 
@@ -59,6 +64,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pluviophile.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -75,6 +82,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
