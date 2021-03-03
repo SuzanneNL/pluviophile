@@ -12,7 +12,8 @@
         <div class="row">
             <div class="col">
                 {% for thread in object_list %}
-                    <p>{{ thread.title }} by {{ thread.creator }}</p>    
+                    <a href="{% url 'thread' thread.pk %} ">{{ thread.title }}</a>
+                    <p>by {{ thread.creator }}</p>     
                     <p>{{ thread.description }}</p>
                     <p>{{ thread.date_created }}</p>
                     <hr>    

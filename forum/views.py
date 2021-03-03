@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Thread
 
-
-# def forum(request):
-#     return render(request, 'forum/forum.html', {})
 
 class Forum(ListView):
     model = Thread
     template_name = "forum/forum.html"
+
+
+class Thread(DetailView):
+    model = Thread
+    template_name = "forum/thread.html"
