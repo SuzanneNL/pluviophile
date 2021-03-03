@@ -2,5 +2,23 @@
 {% load static %}
 
 {% block content %}
-    <h1>This will be the forum</h1>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Forum</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {% for thread in object_list %}
+                    <p>{{ thread.title }} by {{ thread.creator }}</p>    
+                    <p>{{ thread.description }}</p>
+                    <p>{{ thread.date_created }}</p>
+                    <hr>    
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+   
 {% endblock %}
