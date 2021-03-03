@@ -20,4 +20,8 @@ class ThreadView(DetailView):
 class StartThreadView(CreateView):
     model = Thread
     template_name = "forum/start_thread.html"
-    fields = "__all__"
+    fields = ['title', 'description']
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
