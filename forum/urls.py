@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from .views import Forum, Thread
+from .views import ForumView, ThreadView
 
 
 urlpatterns = [
-    path('', Forum.as_view(), name="forum"),
-    path('thread/<int:pk>', Thread.as_view(), name="thread"),
+    path('', ForumView.as_view(), name="forum"),
+    path('thread/<int:pk>', ThreadView.as_view(), name="thread"),
 ]
