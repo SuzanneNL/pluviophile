@@ -3,11 +3,11 @@ from django.views.generic import ListView, DetailView
 from .models import Thread
 
 
-class Forum(ListView):
+class ForumView(ListView):
     model = Thread
     template_name = "forum/forum.html"
 
 
-class Thread(DetailView):
+class ThreadView(DetailView):
     model = Thread
     template_name = "forum/thread.html"
