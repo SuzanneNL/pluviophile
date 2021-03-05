@@ -5,6 +5,7 @@ from .views import (
     ThreadView,
     StartThreadView,
     EditThreadView,
+    DeleteThreadView,
 )
 
 urlpatterns = [
@@ -12,4 +13,5 @@ urlpatterns = [
     path('thread/<int:pk>', ThreadView.as_view(), name="thread"),
     path('start_thread/', StartThreadView.as_view(), name="start_thread"),
     path('thread/edit/<int:pk>', EditThreadView.as_view(), name="edit_thread"),
+    path('thread/delete/<int:pk>', DeleteThreadView.as_view(), name="delete_thread"),
 ]

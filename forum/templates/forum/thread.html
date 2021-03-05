@@ -13,6 +13,7 @@
                 <p>{{ thread.description }}</p>
                 {% if request.user == thread.creator %}
                 <a href="{% url 'edit_thread' thread.pk %} " class="btn btn-dark">Edit thread</a>
+                <a href="{% url 'delete_thread' thread.pk %} " class="btn btn-danger">Delete thread</a>
                 {% endif %}
             </div>
         </div>

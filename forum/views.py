@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
     DetailView,
     CreateView,
     UpdateView,
+    DeleteView,
 )
 from .models import Thread
 
@@ -32,3 +34,9 @@ class EditThreadView(UpdateView):
     model = Thread
     template_name = "forum/edit_thread.html"
     fields = ['title', 'description']
+
+
+class DeleteThreadView(DeleteView):
+    model = Thread
+    template_name = "forum/delete_thread.html"
+    success_url = reverse_lazy('forum')
