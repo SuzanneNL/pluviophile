@@ -13,4 +13,4 @@ class Thread(models.Model):
         return self.title + ' by ' + str(self.creator)
 
     def get_absolute_url(self):
-        return reverse('thread', args=(str(self.id)))
+        return reverse('thread', kwargs={'pk': self.pk})
