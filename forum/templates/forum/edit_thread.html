@@ -2,31 +2,20 @@
 {% load static %}
 
 {% block content %}
-    {% if request.user == thread.creator %}
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>Edit thread</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <form method="POST">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <input type="submit" value="Save">
-                    </form>
-                </div>
-            </div>
-        </div>
-    {% else %}
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>You do not have permission to access this page</h1>
-                <a href="{% url 'forum' %} " class="btn btn-dark">Back to the forum</a>
+                <h1>Edit thread</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input type="submit" value="Save">
+                </form>
             </div>
         </div>
     </div>
-    {% endif %}
 {% endblock %}

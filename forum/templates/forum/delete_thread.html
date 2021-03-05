@@ -2,31 +2,20 @@
 {% load static %}
 
 {% block content %}
-    {% if request.user == thread.creator %}
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>Delete thread</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <form method="POST">
-                        {% csrf_token %}
-                        Are you sure you want to delete your thread "{{ thread.title }}"?
-                        <input type="submit" value="Save">
-                    </form>
-                </div>
-            </div>
-        </div>
-    {% else %}
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>You do not have permission to access this page</h1>
-                <a href="{% url 'forum' %} " class="btn btn-dark">Back to the forum</a>
+                <h1>Delete thread</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="POST">
+                    {% csrf_token %}
+                    Are you sure you want to delete {{ thread.title }}?
+                    <input type="submit" value="Save">
+                </form>
             </div>
         </div>
     </div>
-    {% endif %}
 {% endblock %}

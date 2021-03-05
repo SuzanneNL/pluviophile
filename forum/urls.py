@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path
+from . import views
 from .views import (
     ForumView,
     ThreadView,
@@ -14,4 +15,5 @@ urlpatterns = [
     path('start_thread/', StartThreadView.as_view(), name="start_thread"),
     path('thread/edit/<int:pk>', EditThreadView.as_view(), name="edit_thread"),
     path('thread/delete/<int:pk>', DeleteThreadView.as_view(), name="delete_thread"),
+    path('error', views.error, name='error')
 ]
