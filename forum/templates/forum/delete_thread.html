@@ -12,8 +12,10 @@
             <div class="col">
                 <form method="POST">
                     {% csrf_token %}
-                    Are you sure you want to delete {{ thread.title }}?
-                    <input type="submit" value="Save">
+                    Are you sure you want to delete your thread "{{ thread.title }}"?
+                    <br>
+                    <button class="btn btn-danger" type="submit">Yes, delete thread</button>
+                    <a class="btn btn-secondary" href="{% url 'thread' thread.pk %}">Cancel</a>
                 </form>
             </div>
         </div>

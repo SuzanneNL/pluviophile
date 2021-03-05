@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-    
     <div class="container">
         <div class="row">
             <div class="col">
@@ -12,11 +11,11 @@
                 <hr>  
                 <p>{{ thread.description }}</p>
                 {% if request.user == thread.creator %}
+                <a class="btn btn-secondary" href="{% url 'forum' %}">Back</a>
                 <a href="{% url 'edit_thread' thread.pk %} " class="btn btn-dark">Edit thread</a>
                 <a href="{% url 'delete_thread' thread.pk %} " class="btn btn-danger">Delete thread</a>
                 {% endif %}
             </div>
         </div>
     </div>
-   
 {% endblock %}
