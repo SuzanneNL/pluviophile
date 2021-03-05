@@ -3,6 +3,7 @@ from django.views.generic import (
     ListView,
     DetailView,
     CreateView,
+    UpdateView,
 )
 from .models import Thread
 
@@ -25,3 +26,9 @@ class StartThreadView(CreateView):
     def form_valid(self, form):
         form.instance.creator = self.request.user
         return super().form_valid(form)
+
+
+class EditThreadView(UpdateView):
+    model = Thread
+    template_name = "forum/edit_thread.html"
+    fields = ['title', 'description']

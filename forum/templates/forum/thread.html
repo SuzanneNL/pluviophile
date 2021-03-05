@@ -11,6 +11,9 @@
                 <p>on {{ thread.date_created }}</p>
                 <hr>  
                 <p>{{ thread.description }}</p>
+                {% if request.user == thread.creator %}
+                <a href="{% url 'edit_thread' thread.pk %} " class="btn btn-dark">Edit thread</a>
+                {% endif %}
             </div>
         </div>
     </div>
