@@ -7,7 +7,10 @@
             <div class="col">
                 <h1>Thread: {{ thread.title }}</h1>
                 <p>by {{ thread.creator }}</p>    
-                <p>on {{ thread.date_created }}</p>
+                <p>created on {{ thread.date_created }}</p>
+                {% if thread.date_created|date:"D, d M, Y, H:i s" != thread.date_edited|date:"D, d M, Y, H:i s" %}
+                    <p>edited on: {{ thread.date_edited }}</p>
+                {% endif %}
                 <hr>  
                 <p>{{ thread.description }}</p>
                 {% if request.user == thread.creator %}
