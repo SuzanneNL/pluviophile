@@ -15,3 +15,15 @@ class Thread(models.Model):
 
     def get_absolute_url(self):
         return reverse('thread', kwargs={'pk': self.pk})
+
+
+class Comment(models.Model):
+    thread = models.ForeignKey(Thread, related_name="comments",
+                               on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.TextField(max_length=2000)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_edited = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "On '%s' by %s" % (self.thread, self.creator)
