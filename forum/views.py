@@ -75,5 +75,21 @@ class AddCommentView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    template_name = "forum/edit_comment.html"
+    fields = ['post']
+    success_url = reverse_lazy('forum')  # This needs to become the thread page
+
+    def test_func(self):
+        comment = self.get_object()
+        if self.request.user == comment.creator:
+            return True
+        return False
+
+    def handle_no_permission(self):
+        return redirect('error')
+
+
 def error(request):
     return render(request, 'forum/error.html')

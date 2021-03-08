@@ -48,7 +48,7 @@
                         {% endif %} 
                         {% if request.user == comment.creator %}
                         <br>
-                        <a href="#" class="btn btn-dark btn-sm">Edit comment</a>
+                        <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-dark btn-sm">Edit comment</a>
                         <a href="#" class="btn btn-danger btn-sm">Delete comment</a>
                         {% endif %}
                         <hr> 

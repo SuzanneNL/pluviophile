@@ -7,7 +7,8 @@ from .views import (
     StartThreadView,
     EditThreadView,
     DeleteThreadView,
-    AddCommentView
+    AddCommentView,
+    EditCommentView,
 )
 
 urlpatterns = [
@@ -17,5 +18,6 @@ urlpatterns = [
     path('thread/edit/<int:pk>', EditThreadView.as_view(), name="edit_thread"),
     path('thread/delete/<int:pk>', DeleteThreadView.as_view(), name="delete_thread"),
     path('thread/<int:pk>/add_comment/', AddCommentView.as_view(), name="add_comment"),
+    path('edit_comment/<int:pk>', EditCommentView.as_view(), name="edit_comment"),
     path('error', views.error, name='error')
 ]
