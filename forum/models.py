@@ -27,3 +27,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return "On '%s' by %s" % (self.thread, self.creator)
+
+    def get_absolute_url(self):
+        return reverse('thread', kwargs={'pk': thread.pk})

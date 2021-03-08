@@ -8,7 +8,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from .models import Thread
+from .models import Thread, Comment
 
 
 class ForumView(LoginRequiredMixin, ListView):
@@ -59,6 +59,20 @@ class DeleteThreadView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def handle_no_permission(self):
         return redirect('error')
+
+
+class AddCommentView(LoginRequiredMixin, CreateView):
+    model = Comment
+    template_name = "forum/add_comment.html"
+    fields = ['post']
+
+    def get_success_url(self):
+        return reverse_lazy('thread', kwargs={'pk': self.kwargs['pk']})
+
+    def form_valid(self, form):
+        form.instance.thread_id = self.kwargs['pk']
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
 
 
 def error(request):
