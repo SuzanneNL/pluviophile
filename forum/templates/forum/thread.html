@@ -2,23 +2,60 @@
 {% load static %}
 
 {% block content %}
+    <!--Thread title and description-->
     <div class="container">
         <div class="row">
             <div class="col">
                 <h1>Thread: {{ thread.title }}</h1>
                 <p>by {{ thread.creator }}</p>    
-                <p>created on {{ thread.date_created }}</p>
+                <p>on {{ thread.date_created }}</p>
                 {% if thread.date_created|date:"D, d M, Y, H:i s" != thread.date_edited|date:"D, d M, Y, H:i s" %}
                     <p>edited on: {{ thread.date_edited }}</p>
                 {% endif %}
-                <hr>  
                 <p>{{ thread.description }}</p>
                 {% if request.user == thread.creator %}
                 <a class="btn btn-secondary" href="{% url 'forum' %}">Back</a>
                 <a href="{% url 'edit_thread' thread.pk %} " class="btn btn-dark">Edit thread</a>
                 <a href="{% url 'delete_thread' thread.pk %} " class="btn btn-danger">Delete thread</a>
                 {% endif %}
+                <hr>
             </div>
         </div>
     </div>
+    <!--End thread title and description-->
+    <!--Comment section-->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Comments</h3>
+                <a href="#" class="btn btn-success">Add comment</a>
+            </div>
+        </div>
+        <br>
+        <br>
+        {% if not thread.comments.all %}
+        <div class="row">
+                <p>No comments</p>
+        </div>
+        {% else %}
+            {% for comment in thread.comments.all %}
+                <div class="row">
+                    <div class="col">
+                        <p>{{ comment.post }}</p>
+                        <small>by {{ comment.creator }} on {{ comment.date_created }}</small>    
+                        {% if comment.date_created|date:"D, d M, Y, H:i s" != comment.date_edited|date:"D, d M, Y, H:i s" %}
+                            <small>(edited on: {{ comment.date_edited }})</small>
+                        {% endif %} 
+                        {% if request.user == comment.creator %}
+                        <br>
+                        <a href="#" class="btn btn-dark btn-sm">Edit comment</a>
+                        <a href="#" class="btn btn-danger btn-sm">Delete comment</a>
+                        {% endif %}
+                        <hr> 
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <!--End comment section-->
 {% endblock %}
