@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from .forms import ThreadForm, CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView,
@@ -23,8 +24,8 @@ class ThreadView(LoginRequiredMixin, DetailView):
 
 class StartThreadView(LoginRequiredMixin, CreateView):
     model = Thread
+    form_class = ThreadForm
     template_name = "forum/start_thread.html"
-    fields = ['title', 'description']
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
@@ -33,8 +34,8 @@ class StartThreadView(LoginRequiredMixin, CreateView):
 
 class EditThreadView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Thread
+    form_class = ThreadForm
     template_name = "forum/edit_thread.html"
-    fields = ['title', 'description']
 
     def test_func(self):
         thread = self.get_object()
@@ -64,7 +65,7 @@ class DeleteThreadView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class AddCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     template_name = "forum/add_comment.html"
-    fields = ['post']
+    form_class = CommentForm
 
     def get_success_url(self):
         return reverse_lazy('thread', kwargs={'pk': self.kwargs['pk']})
@@ -78,7 +79,7 @@ class AddCommentView(LoginRequiredMixin, CreateView):
 class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Comment
     template_name = "forum/edit_comment.html"
-    fields = ['post']
+    form_class = CommentForm
     success_url = reverse_lazy('forum')  # This needs to become the thread page
 
     def test_func(self):

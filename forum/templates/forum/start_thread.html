@@ -14,7 +14,7 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <input type="submit" value="Save">
+                    <button class="btn btn-dark" type="submit">Start thread</button>
                 </form>
             </div>
         </div>
