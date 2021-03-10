@@ -80,7 +80,9 @@ class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Comment
     template_name = "forum/edit_comment.html"
     form_class = CommentForm
-    success_url = reverse_lazy('forum')  # This needs to become the thread page
+
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse_lazy('forum'))
 
     def test_func(self):
         comment = self.get_object()
