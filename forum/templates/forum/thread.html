@@ -49,7 +49,7 @@
                         {% if request.user == comment.creator %}
                         <br>
                         <a href="{% url 'edit_comment' comment.pk %}?next={{ request.path }}" class="btn btn-dark btn-sm">Edit comment</a>
-                        <a href="#" class="btn btn-danger btn-sm">Delete comment</a>
+                        <a href="{% url 'delete_comment' comment.pk %}?next={{ request.path }}" class="btn btn-danger btn-sm">Delete comment</a>
                         {% endif %}
                         <hr> 
                     </div>

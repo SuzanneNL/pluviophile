@@ -94,5 +94,22 @@ class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return redirect('error')
 
 
+class DeleteCommentView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    template_name = "forum/delete_comment.html"
+
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse_lazy('forum'))
+
+    def test_func(self):
+        comment = self.get_object()
+        if self.request.user == comment.creator:
+            return True
+        return False
+
+    def handle_no_permission(self):
+        return redirect('error')
+
+
 def error(request):
     return render(request, 'forum/error.html')

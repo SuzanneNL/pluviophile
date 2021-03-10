@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Delete comment</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="POST">
+                    {% csrf_token %}
+                    Are you sure you want to delete your comment?
+                    <br>
+                    <button class="btn btn-danger" type="submit">Yes, delete comment</button>
+                    <a class="btn btn-secondary" href="{{ view.get_success_url }}">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

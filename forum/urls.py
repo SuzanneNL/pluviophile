@@ -9,6 +9,7 @@ from .views import (
     DeleteThreadView,
     AddCommentView,
     EditCommentView,
+    DeleteCommentView,
 )
 
 urlpatterns = [
@@ -19,5 +20,6 @@ urlpatterns = [
     path('thread/delete/<int:pk>', DeleteThreadView.as_view(), name="delete_thread"),
     path('thread/<int:pk>/add_comment/', AddCommentView.as_view(), name="add_comment"),
     path('edit_comment/<int:pk>', EditCommentView.as_view(), name="edit_comment"),
+    path('comment/delete/<int:pk>', DeleteCommentView.as_view(), name="delete_comment"),
     path('error', views.error, name='error')
 ]
