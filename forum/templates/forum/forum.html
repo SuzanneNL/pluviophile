@@ -5,25 +5,61 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Forum</h1>
+                <h1 class="d-flex justify-content-center">Forum</h1>
             </div>
         </div>
+        <hr>
+    </div>
+    <div class="container">
         <div class="row">
-            <div class="col">
-                <a href="{% url 'start_thread' %} " class="btn btn-dark">Add thread</a>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <p class="d-flex justify-content-center"><a class="btn btn-secondary" href="{% url 'start_thread' %} ">Start a new thread</a></p>
+            </div>
+            <div class="col-md-3">
+                <p class="d-flex justify-content-end">&lt;&lt;Pagination section&gt;&gt;</p> 
             </div>
         </div>
+        <br>
+         <div class="row thread-top">
+            <div class="col-sm-12 col-md-6">
+                <h4>Threads ({{ object_list.count }})</h4>
+            </div>
+            <div class="col-md-2">
+                <small>Comments</small>
+            </div>
+            <div class="col-md-4">
+                <small>Last comment</small>
+            </div>
+        </div>
+        {% for thread in object_list %}
+        <div class="row" id="thread">
+            <div class="col-sm-12 col-md-6">
+                <strong><a href="{% url 'thread' thread.pk %} ">{{ thread.title }}</a></strong>
+                <p>By {{ thread.creator }} on {{ thread.date_created }}</p>
+            </div>
+            <div class="col-md-2">
+                <p>{{ thread.comments.all.count }}</p>
+            </div>
+            <div class="col-md-4">
+                {% if thread.comments.all %}
+                    <p>By {{ thread.comments.last.creator }} ({{ thread.comments.last.date_created }})</p>
+                {% else %}
+                    <p>No comments yet</p>
+                {% endif %}  
+            </div>
+        </div>
+        {% endfor %}
+        <br>
         <div class="row">
-            <div class="col">
-                {% for thread in object_list %}
-                    <p><a href="{% url 'thread' thread.pk %} ">{{ thread.title }}</a></p>
-                    <p>Created by {{ thread.creator }} on {{ thread.date_created }}</p>
-                    <p>There are {{ thread.comments.all.count }} comments</p>
-                    {% if thread.comments.all %}
-                        <p>Last comment was written by: {{ thread.comments.last.creator }} on {{ thread.comments.last.date_created }}</p>
-                    {% endif %}
-                    <hr>    
-                {% endfor %}
+            <div class="col-md-3">
+                <p></p> 
+            </div>
+             <div class="col-md-6">
+                <p class="d-flex justify-content-center"><a class="btn btn-secondary" href="{% url 'start_thread' %} ">Start a new thread</a></p>
+            </div>
+            <div class="col-md-3">
+                <p class="d-flex justify-content-end">&lt;&lt;Pagination section&gt;&gt;</p> 
             </div>
         </div>
     </div>
