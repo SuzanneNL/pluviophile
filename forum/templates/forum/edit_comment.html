@@ -14,8 +14,9 @@
                     {% csrf_token %}
                     {{ form|crispy }}
                     <button class="btn btn-dark" type="submit">Edit comment</button>
+                    <a class="btn btn-secondary" href="{{ view.get_success_url }}">Cancel</a>
                 </form>
             </div>
         </div>
     </div>
-{% endblock %} 
+{% endblock %}
