@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-    
     <div class="container">
         <div class="row">
             <div class="col">
@@ -17,14 +16,15 @@
         <div class="row">
             <div class="col">
                 {% for thread in object_list %}
-                    <a href="{% url 'thread' thread.pk %} ">{{ thread.title }}</a>
-                    <p>by {{ thread.creator }}</p>     
-                    <p>{{ thread.description }}</p>
-                    <p>{{ thread.date_created }}</p>
+                    <p><a href="{% url 'thread' thread.pk %} ">{{ thread.title }}</a></p>
+                    <p>Created by {{ thread.creator }} on {{ thread.date_created }}</p>
+                    <p>There are {{ thread.comments.all.count }} comments</p>
+                    {% if thread.comments.all %}
+                        <p>Last comment was written by: {{ thread.comments.last.creator }} on {{ thread.comments.last.date_created }}</p>
+                    {% endif %}
                     <hr>    
                 {% endfor %}
             </div>
         </div>
     </div>
-   
 {% endblock %}
