@@ -5,10 +5,44 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Profile</h1>
-                <p>Username: {{ user.profile.user }}</p>
+                 {% if request.user == profile.user %}
+                <h1 class="d-flex justify-content-center">Your Profile</h1>
+                <br>
+                    <p class="d-flex justify-content-center"><a class="btn btn-secondary" href="#">Edit profile</a></p>
+                {% else %}
+                <h1 class="d-flex justify-content-center">{{ profile.user }}'s Profile</h1>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <p>Profile-pic</p>
+            </div>
+            <div class="col-md-9">
+                <p>Username: {{ profile.user }}</p>
+                {% if request.user == profile.user %}
+                <p>E-mail address: {{ user.email}} </p>
+                {% endif %}
                 <p>Member since: {{ profile.member_since }}</p>
-                <p>Biography: {{ profile.biography }}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">   
+            <div class="col">
+                <h4 class="d-flex justify-content-center">About me</h4>
+                {% if profile.biography %}
+                <p>{{ profile.biography }}</p>
+                {% else %}
+                    {% if request.user == profile.user %}
+                    <p class="d-flex justify-content-center">You haven't written a bio yet.</p>
+                    <a class="d-flex justify-content-center" href="#"> Edit your profile</a>
+                    {% else %}
+                    <p class="d-flex justify-content-center">{{ profile.user }} hasn't written a bio yet.</p>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
     </div>
