@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # Built apps
     'home',
     'forum',
+    'profiles',
 ]
 
 MIDDLEWARE = [
