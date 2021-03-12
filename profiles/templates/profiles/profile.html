@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Profile</h1>
+                <p>Username: {{ user.profile.user }}</p>
+                <p>Member since: {{ profile.member_since }}</p>
+                <p>Biography: {{ profile.biography }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
