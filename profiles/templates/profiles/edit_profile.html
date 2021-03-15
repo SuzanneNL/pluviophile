@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Edit thread</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-dark" type="submit">Edit Profile</button>
+                    <a class="btn btn-secondary" href="{% url 'profile' profile.pk %}">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

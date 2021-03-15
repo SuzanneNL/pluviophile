@@ -8,7 +8,7 @@
                  {% if request.user == profile.user %}
                 <h1 class="d-flex justify-content-center">Your Profile</h1>
                 <br>
-                    <p class="d-flex justify-content-center"><a class="btn btn-secondary" href="#">Edit profile</a></p>
+                    <p class="d-flex justify-content-center"><a class="btn btn-secondary" href="{% url 'edit_profile' profile.pk %}">Edit profile</a></p>
                 {% else %}
                 <h1 class="d-flex justify-content-center">{{ profile.user }}'s Profile</h1>
                 {% endif %}
@@ -38,7 +38,7 @@
                 {% else %}
                     {% if request.user == profile.user %}
                     <p class="d-flex justify-content-center">You haven't written a bio yet.</p>
-                    <a class="d-flex justify-content-center" href="#"> Edit your profile</a>
+                    <a class="d-flex justify-content-center" href="{% url 'edit_profile' profile.pk %}"> Edit your profile</a>
                     {% else %}
                     <p class="d-flex justify-content-center">{{ profile.user }} hasn't written a bio yet.</p>
                     {% endif %}
