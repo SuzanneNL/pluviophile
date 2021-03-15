@@ -8,6 +8,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     biography = models.CharField(max_length=2000)
     member_since = models.DateTimeField(auto_now_add=True)
+    avatar = models.ImageField(default='default-avatar.jpg',
+                               upload_to='avatars')
 
     def __str__(self):
         return "%s's profile" % (self.user)
