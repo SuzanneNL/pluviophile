@@ -15,5 +15,20 @@ body {
     margin: 5px;
 }
 
+.start-thread {
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 20px;
+    background-color: lightgrey;
+    margin-bottom: 20px;
+}
+
+#comment {
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
 /* ------------------------------------------------------ END FORUM PAGE*/
 /* ---------------------------------------------------------------- END APP FORUM*/

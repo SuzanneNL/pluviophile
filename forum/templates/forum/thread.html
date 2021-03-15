@@ -4,21 +4,31 @@
 {% block content %}
     <!--Thread title and description-->
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Thread: {{ thread.title }}</h1>
-                <p>by {{ thread.creator }}</p>    
-                <p>on {{ thread.date_created }}</p>
+        <div class="col">
+            <p class="d-flex justify-content-end">{{ thread.comments.count }} comments   &lt;&lt;Pagination section&gt;&gt;</p>
+        </div>
+    
+        <div class="row start-thread">
+            <div class="col-md-10">
+                <h3>{{ thread.title }}</h3>
+                <small>by <strong>{{ thread.creator }}</strong> posted on {{ thread.date_created }}
                 {% if thread.date_created|date:"D, d M, Y, H:i s" != thread.date_edited|date:"D, d M, Y, H:i s" %}
-                    <p>edited on: {{ thread.date_edited }}</p>
+                    (Edited on: {{ thread.date_edited }})
                 {% endif %}
+                </small>
+                <br>
+                <br>
                 <p>{{ thread.description }}</p>
                 {% if request.user == thread.creator %}
                 <a class="btn btn-secondary" href="{% url 'forum' %}">Back</a>
                 <a href="{% url 'edit_thread' thread.pk %} " class="btn btn-dark">Edit thread</a>
                 <a href="{% url 'delete_thread' thread.pk %} " class="btn btn-danger">Delete thread</a>
                 {% endif %}
-                <hr>
+            </div>
+            <div class="col md-2">  
+                <small><strong>{{ thread.creator }}</strong></small><br>
+                <img class="rounded-circle mr-3" height=50 width=50 src="{{ thread.creator.profile.avatar.url }}" alt="User avatar"><br>
+                <small>Joined: {{ thread.creator.profile.member_since.date }}</small>
             </div>
         </div>
     </div>
@@ -27,11 +37,9 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h3>Comments</h3>
                 <a href="{% url 'add_comment' thread.pk %}?next={{ request.path }}" class="btn btn-success">Add comment</a>
             </div>
         </div>
-        <br>
         <br>
         {% if not thread.comments.all %}
         <div class="row">
@@ -39,23 +47,36 @@
         </div>
         {% else %}
             {% for comment in thread.comments.all %}
-                <div class="row">
-                    <div class="col">
-                        <p>{{ comment.post }}</p>
-                        <small>by {{ comment.creator }} on {{ comment.date_created }}</small>    
+                <div class="row" id="comment">
+                    <div class="col-md-10">
+                        <small>Comment by <strong>{{ comment.creator }}</strong> posted on {{ comment.date_created }}                           
                         {% if comment.date_created|date:"D, d M, Y, H:i s" != comment.date_edited|date:"D, d M, Y, H:i s" %}
-                            <small>(edited on: {{ comment.date_edited }})</small>
-                        {% endif %} 
+                            (edited on: {{ comment.date_edited }})
+                        {% endif %}
+                        </small>
+                        <br>
+                        <br> 
+                        <p>{{ comment.post }}</p>
                         {% if request.user == comment.creator %}
                         <br>
                         <a href="{% url 'edit_comment' comment.pk %}?next={{ request.path }}" class="btn btn-dark btn-sm">Edit comment</a>
                         <a href="{% url 'delete_comment' comment.pk %}?next={{ request.path }}" class="btn btn-danger btn-sm">Delete comment</a>
                         {% endif %}
-                        <hr> 
+                    </div>
+                    <div class="col md-2">  
+                        <small><strong>{{ comment.creator }}</strong></small><br>
+                        <img class="rounded-circle mr-3" height=50 width=50 src="{{ comment.creator.profile.avatar.url }}" alt="User avatar"><br>
+                        <small>Joined: {{ comment.creator.profile.member_since.date }}</small>
                     </div>
                 </div>
             {% endfor %}
         {% endif %}
+        <div class="row">
+            <div class="col">
+                <p class="d-flex justify-content-end">{{ thread.comments.count }} comments   &lt;&lt;Pagination section&gt;&gt;</p>
+            </div>
+        </div>
     </div>
+    
     <!--End comment section-->
 {% endblock %}
