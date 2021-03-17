@@ -3,11 +3,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, UpdateView
 from .forms import ProfileForm
 from .models import Profile
+from forum.models import Thread, Comment
 
 
 class ProfileView(LoginRequiredMixin, DetailView):
     model = Profile
     template_name = "profiles/profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = self.get_object()
+        context['threads_by_user'] = Thread.objects.filter(creator=profile.user)
+        context['comments_by_user'] = Comment.objects.filter(creator=profile.user)
+        return context
 
 
 class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
