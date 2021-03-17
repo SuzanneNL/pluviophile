@@ -2,5 +2,22 @@
 {% load static %}
 
 {% block content %}
-    <h1>This is where all blog posts will be displayed</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Blog Posts</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {% for blogpost in object_list %}
+                    <p>{{ blogpost.title }} by {{ blogpost.author }}</p>
+                    <p>(Uploaded by: {{ blogpost.uploaded_by }})</p>    
+                    <p>{{ blogpost.date_created }}</p>
+                    <p>{{ blogpost.body }}</p>
+                    <hr>    
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}  

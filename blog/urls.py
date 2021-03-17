@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from .views import BlogPostsList
 
 
 urlpatterns = [
-    path('', views.blog_posts_list, name="blog_posts")
-] 
+    path('', BlogPostsList.as_view(), name="blog_posts")
+]
