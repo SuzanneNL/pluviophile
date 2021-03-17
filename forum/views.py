@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 from .forms import ThreadForm, CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
@@ -20,6 +21,13 @@ class ForumView(LoginRequiredMixin, ListView):
 class ThreadView(LoginRequiredMixin, DetailView):
     model = Thread
     template_name = "forum/thread.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_thread = self.get_object()
+        all_threads = Thread
+        context['threads_by_thread_creator'] = all_threads.objects.filter(creator=current_thread.creator)
+        return context
 
 
 class StartThreadView(LoginRequiredMixin, CreateView):

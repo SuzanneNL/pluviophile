@@ -29,6 +29,7 @@
                 <small><strong>{{ thread.creator }}</strong></small><br>
                 <img class="rounded-circle mr-3" height=50 width=50 src="{{ thread.creator.profile.avatar.url }}" alt="User avatar"><br>
                 <small>Joined: {{ thread.creator.profile.member_since.date }}</small>
+                <small>Threads: {{ threads_by_thread_creator.count }}</small>
             </div>
         </div>
     </div>
