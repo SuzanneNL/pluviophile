@@ -26,7 +26,11 @@ class ThreadView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         current_thread = self.get_object()
         all_threads = Thread
-        context['threads_by_thread_creator'] = all_threads.objects.filter(creator=current_thread.creator)
+        all_comments = Comment
+        context['threads_by_thread_creator'] = all_threads.objects.filter(
+                                               creator=current_thread.creator)
+        context['comments_by_thread_creator'] = all_comments.objects.filter(
+                                                creator=current_thread.creator)
         return context
 
 
