@@ -10,6 +10,7 @@ class BlogPost(models.Model):
     body = models.TextField()
     header_image = models.ImageField(null=True, blank=True, upload_to='blog_images')
     date_created = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(User, related_name='blog_posts')
 
     def __str__(self):
         return self.title + ' by ' + str(self.uploaded_by)

@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView,
@@ -50,6 +52,12 @@ class DeleteBlogPostView(AdminRequiredMixin, DeleteView):
     model = BlogPost
     template_name = "blog/delete_blog_post.html"
     success_url = reverse_lazy('blog')
+
+
+def LikeView(request, pk):
+    blogpost = get_object_or_404(BlogPost, id=request.POST.get('blogpost_id'))
+    blogpost.likes.add(request.user)
+    return HttpResponseRedirect(reverse('blog_post', args=[str(pk)]))
 
 
 def error(request):

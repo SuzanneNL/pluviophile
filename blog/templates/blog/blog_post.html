@@ -10,13 +10,23 @@
                 <br>
                 <br>
                 {% if blogpost.header_image %}
-                    <img height=360 width=360 src="{{ blogpost.header_image.url }}" alt="Blog image">
+                <img height=360 width=360 src="{{ blogpost.header_image.url }}" alt="Blog image">
                 {% endif %}
                 <p>{{ blogpost.body }}</p>
                 {% if request.user.is_superuser %}
                 <a href="{% url 'edit_blog_post' blogpost.pk %}" class="btn btn-dark">Edit blog post</a>
                 <a href="{% url 'delete_blog_post' blogpost.pk %}" class="btn btn-danger">Delete blog post</a>
                 {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <br>
+                <p>{{ blogpost.likes.count}} likes</p>
+                <form action="{% url 'like_blog_post' blogpost.pk %}" method="POST">
+                    {% csrf_token%}
+                    <button type="submit" name="blogpost_id" value="{{ blogpost.id }}" class="btn btn-info">Like</button>
+                </form>
             </div>
         </div>
     </div>
