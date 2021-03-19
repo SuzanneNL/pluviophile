@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import BlogPost
 from .forms import BlogPostForm
 
@@ -31,6 +31,12 @@ class AddBlogPostView(AdminRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.uploaded_by = self.request.user
         return super().form_valid(form)
+
+
+class EditBlogPostView(AdminRequiredMixin, UpdateView):
+    model = BlogPost
+    form_class = BlogPostForm
+    template_name = "blog/edit_blog_post.html"
 
 
 def error(request):
