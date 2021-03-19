@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class BlogPost(models.Model):
@@ -11,3 +12,6 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title + ' by ' + str(self.uploaded_by)
+
+    def get_absolute_url(self):
+        return reverse('blog_post', args=(str(self.id)))

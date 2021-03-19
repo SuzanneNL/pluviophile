@@ -10,9 +10,14 @@
         </div>
         <div class="row">
             <div class="col">
+                 <a href="{% url 'add_blog_post' %} " class="btn btn-dark">Add Blog Post</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
                 {% for blogpost in object_list %}
                     <a href="{% url 'blog_post' blogpost.pk %}"><p>{{ blogpost.title }} by {{ blogpost.author }}</p></a>
-                    <p>(Uploaded by: {{ blogpost.uploaded_by }})</p>    
+                    <p>({{ blogpost.uploaded_by }})</p>    
                     <p>{{ blogpost.date_created }}</p>
                     <p>{{ blogpost.body }}</p>
                     <hr>    
