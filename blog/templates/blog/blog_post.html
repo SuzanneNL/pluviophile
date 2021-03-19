@@ -10,7 +10,7 @@
                 <br>
                 <br>
                 <p>{{ blogpost.body }}</p>
-                {% if request.user == blogpost.uploaded_by %}
+                {% if request.user.is_superuser %}
                 <a href="#" class="btn btn-dark">Edit blog post</a>
                 <a href="#" class="btn btn-danger">Delete blog post</a>
                 {% endif %}
