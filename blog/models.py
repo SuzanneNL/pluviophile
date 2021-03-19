@@ -8,6 +8,7 @@ class BlogPost(models.Model):
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
     author = models.CharField(max_length=90, default="Author unknown")
     body = models.TextField()
+    header_image = models.ImageField(null=True, blank=True, upload_to='blog_images')
     date_created = models.DateTimeField(auto_now=True)
 
     def __str__(self):

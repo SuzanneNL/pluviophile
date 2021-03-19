@@ -9,6 +9,7 @@
                 <small>by <strong>{{ blogpost.author }}</strong> posted on {{ blogpost.date_created }}</small>
                 <br>
                 <br>
+                <img height=360 width=360 src="{{ blogpost.header_image.url }}" alt="Blog image">
                 <p>{{ blogpost.body }}</p>
                 {% if request.user.is_superuser %}
                 <a href="{% url 'edit_blog_post' blogpost.pk %}" class="btn btn-dark">Edit blog post</a>
