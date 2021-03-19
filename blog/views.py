@@ -1,6 +1,13 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 from .models import BlogPost
 from .forms import BlogPostForm
 
@@ -37,6 +44,12 @@ class EditBlogPostView(AdminRequiredMixin, UpdateView):
     model = BlogPost
     form_class = BlogPostForm
     template_name = "blog/edit_blog_post.html"
+
+
+class DeleteBlogPostView(AdminRequiredMixin, DeleteView):
+    model = BlogPost
+    template_name = "blog/delete_blog_post.html"
+    success_url = reverse_lazy('blog_posts')
 
 
 def error(request):

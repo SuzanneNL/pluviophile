@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Delete blog post</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="POST">
+                    {% csrf_token %}
+                    Are you sure you want to delete blogpost "{{ blogpost.title }} by {{ blogpost.author }}"?
+                    <br>
+                    <button class="btn btn-danger" type="submit">Yes, delete blog post</button>
+                    <a class="btn btn-secondary" href="{% url 'blog_post' blogpost.pk %}">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
