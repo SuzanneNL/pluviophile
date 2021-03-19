@@ -13,7 +13,7 @@ from .views import (
 
 
 urlpatterns = [
-    path('', BlogPostsListView.as_view(), name="blog_posts"),
+    path('', BlogPostsListView.as_view(), name="blog"),
     path('blogpost/<int:pk>', BlogPostView.as_view(), name="blog_post"),
     path('add_blogpost/', AddBlogPostView.as_view(), name="add_blog_post"),
     path('blogpost/edit/<int:pk>', EditBlogPostView.as_view(), name="edit_blog_post"),

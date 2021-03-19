@@ -48,7 +48,7 @@
                         <a class="nav-link" href="{% url 'forum' %}">Forum</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog_posts' %}">Blog</a>
+                        <a class="nav-link" href="{% url 'blog' %}">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'profile' user.profile.pk %}">Profile</a>
@@ -58,7 +58,7 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog_posts' %}">Blog</a>
+                        <a class="nav-link" href="{% url 'blog' %}">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_login' %}">Log In</a>

@@ -49,7 +49,7 @@ class EditBlogPostView(AdminRequiredMixin, UpdateView):
 class DeleteBlogPostView(AdminRequiredMixin, DeleteView):
     model = BlogPost
     template_name = "blog/delete_blog_post.html"
-    success_url = reverse_lazy('blog_posts')
+    success_url = reverse_lazy('blog')
 
 
 def error(request):
