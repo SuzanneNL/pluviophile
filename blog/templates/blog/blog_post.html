@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>{{ blogpost.title }}</h3>
+                <small>by <strong>{{ blogpost.author }}</strong> posted on {{ blogpost.date_created }}</small>
+                <br>
+                <br>
+                <p>{{ blogpost.body }}</p>
+                {% if request.user == blogpost.uploaded_by %}
+                <a href="#" class="btn btn-dark">Edit blog post</a>
+                <a href="#" class="btn btn-danger">Delete blog post</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
