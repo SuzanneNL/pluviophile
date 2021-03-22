@@ -20,13 +20,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <br>
-                <p>{{ blogpost.likes.count}} likes</p>
+            <div class="col-sm-2">
                 <form action="{% url 'like_blog_post' blogpost.pk %}" method="POST">
                     {% csrf_token%}
-                    <button type="submit" name="blogpost_id" value="{{ blogpost.id }}" class="btn btn-info">Like</button>
+                    <button type="submit" name="blogpost_id" class="btn btn-info" value="{{ blogpost.id }}">{% if request.user in blogpost.likes.all %}Unlike{% else%}Like{% endif %}</button>
                 </form>
+            </div>
+            <div class="col-sm-10">
+                <p>{{ blogpost.likes.count}} likes</p>
             </div>
         </div>
     </div>

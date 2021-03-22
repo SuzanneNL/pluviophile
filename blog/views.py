@@ -56,7 +56,14 @@ class DeleteBlogPostView(AdminRequiredMixin, DeleteView):
 
 def LikeView(request, pk):
     blogpost = get_object_or_404(BlogPost, id=request.POST.get('blogpost_id'))
-    blogpost.likes.add(request.user)
+    liked = False
+    if blogpost.likes.filter(id=request.user.id).exists():
+        blogpost.likes.remove(request.user)
+        liked = False
+    else:
+        blogpost.likes.add(request.user)
+        liked = True
+
     return HttpResponseRedirect(reverse('blog_post', args=[str(pk)]))
 
 
