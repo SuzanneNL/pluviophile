@@ -28,6 +28,14 @@
             </div>
             <div class="col-sm-10">
                 <p>{{ blogpost.likes.count}} likes</p>
+                {% if blogpost.likes.all %}
+                <p>Liked by</p>
+                <ul>
+                    {% for user in blogpost.likes.all %}
+                    <li>{{ user.username }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
             </div>
         </div>
     </div>
