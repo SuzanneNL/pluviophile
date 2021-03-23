@@ -32,3 +32,46 @@ body {
 
 /* ------------------------------------------------------ END FORUM PAGE*/
 /* ---------------------------------------------------------------- END APP FORUM*/
+
+/* ---------------------------------------------------------------- APP BLOG*/
+/* ------------------------------------------------------ BLOG PAGE */
+
+.blog-img, .blog-img-description {
+    width: 640px;
+}
+
+/* ------------------------------------------------------ END BLOG PAGE */
+/* ------------------------------------------------------ MEDIA QUERIES */
+@media screen and (max-width: 540px) {
+    .blog-img {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .blog-img {
+        width: 345px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .blog-img {
+        width: 330px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .blog-img {
+        width: 290px;
+    }
+}
+
+@media screen and (max-width: 295px) {
+    .blog-img {
+        width: 260px;
+    }
+}
+
+/* ------------------------------------------------------ END MEDIA QUERIES */
+/* ---------------------------------------------------------------- END APP BLOG*/
+
