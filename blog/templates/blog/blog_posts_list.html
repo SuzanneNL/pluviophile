@@ -5,7 +5,7 @@
     <div class="container col col-sm-12 col-lg-8 mx-auto">
         <div class="row">
             <div class="col d-flex justify-content-center">
-                <h1>Blog</h1>
+                <h1 class="brand"><i class="fa fa-umbrella" aria-hidden="true"></i> Pluviophile Blog</h1>
                 <br>
                 <br>
                 <br>
@@ -37,5 +37,22 @@
         </div>
         <br>
         {% endfor %}
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                {% if is_paginated %}
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                        <a class="btn btn-paginate" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                    {% endif %}
+                    <a class="btn btn-paginate-current" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-paginate" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
+                        <a class="btn btn-paginate" href="?page={{ page_obj.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
     </div>
 {% endblock %}  

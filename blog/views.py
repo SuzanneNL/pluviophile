@@ -17,6 +17,7 @@ from .forms import BlogPostForm
 class BlogPostsListView(ListView):
     model = BlogPost
     template_name = "blog/blog_posts_list.html"
+    paginate_by = 4
 
 
 class BlogPostView(DetailView):

@@ -95,6 +95,39 @@ ul li {
     background-color: #0c3953;
     color: #fff;
 }
+
+.btn-paginate {
+    background-color: #fff;
+    border: solid 1px #094C72;
+    width: 45px;
+}
+
+.btn-paginate:hover {
+    background-color: #094C72;
+    border: solid 1px #094C72;
+}
+
+.btn-paginate i {
+    color: #094C72;
+}
+
+.btn-paginate i:hover {
+    color: #fff;
+}
+
+.btn-paginate-current {
+    background-color: #094C72;
+    border: solid 1px #094C72;
+    color: #fff;
+    width: 45px;
+}
+
+.btn-paginate-current:hover {
+    background-color: #0c3953;
+    border: solid 1px #0c3953;
+    color: #fff;
+}   
+
 /* ------------------------------------------------------ END BLOG POSTS LIST PAGE */
 /* ------------------------------------------------------ BLOG POST PAGE */
 
