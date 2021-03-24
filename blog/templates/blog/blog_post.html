@@ -5,56 +5,34 @@
     <div class="container">
         <div class="row">
             <div class="col col-sm-12 col-lg-8 mx-auto">
-                <h3 class="d-flex justify-content-center">{{ blogpost.title }}</h3>
-                <h6 class="d-flex justify-content-center">by {{ blogpost.author }}</h6>
-                <p class="d-flex justify-content-center"> posted on {{ blogpost.date_created }}</p>
-                {% if blogpost.image_1 %}
-                <div class="col d-flex justify-content-center">
-                    <img class="blog-img" src="{{ blogpost.image_1.url }}" alt="Blog image">
-                </div>
+                <h3>{{ blogpost.title }}</h3>
+                <p class="text-muted">by {{ blogpost.author }} on {{ blogpost.date_created }}</p>
+                <img class="blog-img" src="{{ blogpost.image_1.url }}" alt="Blog image">
                 {% if blogpost.image_1_description %}
-                <div class="col d-flex justify-content-center">
-                    <br>
+                <br>
                     <em>{{ blogpost.image_1_description }}</em>
-                </div>
                 {% endif %}
-                {% endif %}
-                <br>
-                <p>{{ blogpost.body_part_1 }}</p>
-                <br>
+                <p class="blog-post-section">{{ blogpost.body_part_1 }}</p>
                 {% if blogpost.image_2 %}
-                <div class="col d-flex justify-content-center">
                     <img class="blog-img" src="{{ blogpost.image_2.url }}" alt="Blog image">
-                </div>
-                 {% if blogpost.image_2_description %}
-                <div class="col d-flex justify-content-center">
+                    {% if blogpost.image_2_description %}
                     <br>
-                    <em>{{ blogpost.image_2_description }}</em>
-                </div>
-                {% endif %}
+                        <em>{{ blogpost.image_2_description }}</em>
+                    {% endif %}
                 {% endif %}
                 {% if blogpost.body_part_2 %}
-                <br>
-                <p>{{ blogpost.body_part_2 }}</p>
-                <br>
+                <p class="blog-post-section">{{ blogpost.body_part_2 }}</p>
                 {% endif %}
                 {% if blogpost.image_3 %}
-                <div class="col d-flex justify-content-center">
                     <img class="blog-img" src="{{ blogpost.image_3.url }}" alt="Blog image">
-                </div>
-                {% if blogpost.image_3_description %}
-                <div class="col d-flex justify-content-center">
+                    {% if blogpost.image_3_description %}
                     <br>
-                    <em>{{ blogpost.image_3_description }}</em>
-                </div>
-                {% endif %}
+                        <em>{{ blogpost.image_3_description }}</em>
+                    {% endif %}
                 {% endif %}
                 {% if blogpost.body_part_3 %}
-                <br>
-                <p>{{ blogpost.body_part_3 }}</p>
-                <br>
+                    <p class="blog-post-section">{{ blogpost.body_part_3 }}</p>
                 {% endif %}
-                <br>
                 {% if request.user.is_superuser %}
                 <a href="{% url 'edit_blog_post' blogpost.pk %}" class="btn btn-dark">Edit blog post</a>
                 <a href="{% url 'delete_blog_post' blogpost.pk %}" class="btn btn-danger">Delete blog post</a>

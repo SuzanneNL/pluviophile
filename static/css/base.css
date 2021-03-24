@@ -45,7 +45,8 @@ ul li {
     list-style-type: none;
 }
 
-.brand {
+.brand,
+.blog-post-title {
     font-weight: 400;
 }
 
@@ -131,8 +132,14 @@ ul li {
 /* ------------------------------------------------------ END BLOG POSTS LIST PAGE */
 /* ------------------------------------------------------ BLOG POST PAGE */
 
-.blog-img, .blog-img-description {
-    width: 640px;
+.blog-post-section {
+    margin: 20px 0 20px;
+}
+
+.blog-img {
+    max-width: 100%;
+    max-height: 800px;
+    height: auto;
 }
 
 /* ------------------------------------------------------ END BLOG POST PAGE */
