@@ -5,14 +5,16 @@
     <div class="container col col-sm-12 col-lg-8 mx-auto">
         <div class="row">
             <div class="col d-flex justify-content-center">
-                <h1>Blog Posts</h1>
+                <h1>Blog</h1>
+                <br>
+                <br>
                 <br>
             </div>
         </div>
         {% if request.user.is_superuser %}
         <div class="row">
             <div class="col d-flex justify-content-center">
-                <a href="{% url 'add_blog_post' %} " class="btn btn-dark">Add Blog Post</a>
+                <a href="{% url 'add_blog_post' %} " class="btn btn-blue">Add Blog Post</a>
             </div>
         </div>
         <br>
@@ -27,7 +29,7 @@
                         <h5 class="card-title">{{ blogpost.title }} </h5>
                         <p class="card-text">{{ blogpost.body_part_1|truncatewords:30 }}</p>
                         <div class="d-flex justify-content-end">
-                            <a href="{% url 'blog_post' blogpost.pk %}" class="btn btn-primary">Read blog post</a>
+                            <a href="{% url 'blog_post' blogpost.pk %}" class="btn btn-blue">Read blog post</a>
                         </div>
                     </div>
                 </div> 
