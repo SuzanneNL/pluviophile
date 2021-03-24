@@ -16,6 +16,7 @@ from .models import Thread, Comment
 class ForumView(LoginRequiredMixin, ListView):
     model = Thread
     template_name = "forum/forum.html"
+    paginate_by = 5
 
 
 class ThreadView(LoginRequiredMixin, DetailView):

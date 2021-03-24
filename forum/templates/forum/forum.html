@@ -16,12 +16,24 @@
             <div class="col-md-6">
                 <p class="d-flex justify-content-center"><a class="btn btn-secondary" href="{% url 'start_thread' %} ">Start a new thread</a></p>
             </div>
-            <div class="col-md-3">
-                <p class="d-flex justify-content-end">&lt;&lt;Pagination section&gt;&gt;</p> 
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                {% if is_paginated %}
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                        <a class="btn btn-paginate" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                    {% endif %}
+                    <a class="btn btn-paginate-current" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-paginate" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
+                        <a class="btn btn-paginate" href="?page={{ page_obj.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
         <br>
-         <div class="row thread-top">
+        <div class="row thread-top">
             <div class="col-sm-12 col-md-6">
                 <h4>Threads ({{ object_list.count }})</h4>
             </div>
@@ -58,8 +70,20 @@
              <div class="col-md-6">
                 <p class="d-flex justify-content-center"><a class="btn btn-secondary" href="{% url 'start_thread' %} ">Start a new thread</a></p>
             </div>
-            <div class="col-md-3">
-                <p class="d-flex justify-content-end">&lt;&lt;Pagination section&gt;&gt;</p> 
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                {% if is_paginated %}
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                        <a class="btn btn-paginate" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                    {% endif %}
+                    <a class="btn btn-paginate-current" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-paginate" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
+                        <a class="btn btn-paginate" href="?page={{ page_obj.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
     </div>
