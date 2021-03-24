@@ -10,7 +10,7 @@ class BlogPost(models.Model):
     body_part_1 = models.TextField()
     body_part_2 = models.TextField(blank=True, default='')
     body_part_3 = models.TextField(blank=True, default='')
-    image_1 = models.ImageField(blank=True, upload_to='blog_images')
+    image_1 = models.ImageField(upload_to='blog_images')
     image_1_description = models.CharField(max_length=90, blank=True, default='')
     image_2 = models.ImageField(blank=True, upload_to='blog_images')
     image_2_description = models.CharField(max_length=90, blank=True, default='')
