@@ -45,7 +45,9 @@
             <div class="col col-sm-12 col-lg-8 mx-auto">
                 <form action="{% url 'like_blog_post' blogpost.pk %}" method="POST" class="d-inline-block">
                     {% csrf_token%}
-                    <button type="submit" name="blogpost_id" class="btn btn-info" value="{{ blogpost.id }}">{% if request.user in blogpost.likes.all %}Unlike{% else%}Like{% endif %}</button>
+                    <button class="like-unlike d-inline-block" type="submit" name="blogpost_id" value="{{ blogpost.id }}">
+                        {% if request.user in blogpost.likes.all %}<i class="fa fa-heart like" aria-hidden="true"></i>{% else%}<i class="fa fa-heart-o unlike" aria-hidden="true"></i>{% endif %}
+                    </button>
                 </form>
                 {% if blogpost.likes.count == 1 %}
                 <span class="d-inline-block">This article has {{ blogpost.likes.count}} like</span>
@@ -55,16 +57,35 @@
             </div>
         </div>
         {% if blogpost.likes.all %}
-        <div class="row">
+        <div class="row"id="likes-section" >
             <div class="col col-sm-12 col-lg-8 mx-auto"> 
-                <p>Liked by</p>
-                <ul>
+                <button class="btn btn-sm btn-blue" id="show-likes">Show likes</button>
+                <ul id="list-of-likes">
                     {% for user in blogpost.likes.all %}
-                    <li>{{ user.username }}</li>
+                    <li><small>{{ user.username }}</small></li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
         {% endif %}
     </div>
+{% endblock %}
+
+
+{% block postloadjs %}
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#show-likes").click(function(){
+        $("#list-of-likes").slideToggle(200);
+        ChangeButtonText();
+    });
+});
+
+function ChangeButtonText() {
+if ($("#show-likes").html() === "Show likes") {
+    $("#show-likes").html("Hide likes")}
+else {
+    $("#show-likes").html("Show likes")}
+}
+</script>
 {% endblock %}
