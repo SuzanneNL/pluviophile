@@ -2,29 +2,38 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
+    <div class="container col col-sm-12 col-lg-8 mx-auto">
         <div class="row">
-            <div class="col">
+            <div class="col d-flex justify-content-center">
                 <h1>Blog Posts</h1>
+                <br>
             </div>
         </div>
         {% if request.user.is_superuser %}
         <div class="row">
-            <div class="col">
-                 <a href="{% url 'add_blog_post' %} " class="btn btn-dark">Add Blog Post</a>
+            <div class="col d-flex justify-content-center">
+                <a href="{% url 'add_blog_post' %} " class="btn btn-dark">Add Blog Post</a>
             </div>
         </div>
+        <br>
         {% endif %}
+        {% for blogpost in object_list %}
         <div class="row">
-            <div class="col">
-                {% for blogpost in object_list %}
-                    <a href="{% url 'blog_post' blogpost.pk %}"><p>{{ blogpost.title }} by {{ blogpost.author }}</p></a>
-                    <p>({{ blogpost.uploaded_by }})</p>    
-                    <p>{{ blogpost.date_created }}</p>
-                    <p>{{ blogpost.body }}</p>
-                    <hr>    
-                {% endfor %}
+            <div class="col d-flex justify-content-center">
+                <div class="card" style="width: 36rem;">
+                    <a href="{% url 'blog_post' blogpost.pk %}"><img class="card-img-top" src="{{ blogpost.image_1.url }}" alt="Go to blog post {{ blogpost.title }}"></a>
+                    <div class="card-body">
+                        <p class="text-muted">By {{ blogpost.author }} on {{ blogpost.date_created }}</p>
+                        <h5 class="card-title">{{ blogpost.title }} </h5>
+                        <p class="card-text">{{ blogpost.body_part_1|truncatewords:30 }}</p>
+                        <div class="d-flex justify-content-end">
+                            <a href="{% url 'blog_post' blogpost.pk %}" class="btn btn-primary">Read blog post</a>
+                        </div>
+                    </div>
+                </div> 
             </div>
         </div>
+        <br>
+        {% endfor %}
     </div>
 {% endblock %}  
