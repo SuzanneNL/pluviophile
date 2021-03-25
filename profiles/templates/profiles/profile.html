@@ -29,12 +29,58 @@
                 <p>Member since: {{ profile.member_since.date }}</p>
                 <p>Threads: {{ threads_by_user.count }}</p>
                 <p>Comments: {{ comments_by_user.count }}</p>
+                {% if profile.user.is_superuser %}
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <p>Monsoon member (Admin)</p>
+                {% else %}
+                    {% if threads_by_user.count|add:comments_by_user.count < 5 %}
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint grey-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint grey-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint grey-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint grey-drop" aria-hidden="true"></i>
+                    <p>Drizzle member</p>
+                    {% elif threads_by_user.count|add:comments_by_user.count < 10 %}
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint grey-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint grey-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint grey-drop" aria-hidden="true"></i>
+                    <p>Shower member</p>
+                    {% elif threads_by_user.count|add:comments_by_user.count < 20 %}
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint grey-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint grey-drop" aria-hidden="true"></i>
+                    <p>Cloud burst member</p>
+                    {% elif threads_by_user.count|add:comments_by_user.count < 25 %}
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint grey-drop" aria-hidden="true"></i>
+                    <p>Drencher member</p>
+                    {% else %}
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <i class="fa fa-tint blue-drop" aria-hidden="true"></i>
+                    <p>Downpour member</p>
+                    {% endif %}
+                {% endif %}
+                <p> (Threads+comments ={{ threads_by_user.count|add:comments_by_user.count }}) </p>
             </div>
         </div>
         <hr>
         <div class="row">   
             <div class="col">
-                <h4 class="d-flex justify-content-center">About me</h4>
+                <h4 class="d-flex justify-content-center">Biography</h4>
                 {% if profile.biography %}
                 <p>{{ profile.biography }}</p>
                 {% else %}
