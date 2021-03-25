@@ -27,6 +27,7 @@
                 <p>E-mail address: {{ user.email}} </p>
                 {% endif %}
                 <p>Member since: {{ profile.member_since.date }}</p>
+                <p>Last login: {{ profile.user.last_login.date }} </p>
                 <p>Threads: {{ threads_by_user.count }}</p>
                 <p>Comments: {{ comments_by_user.count }}</p>
                 {% if profile.user.is_superuser %}
