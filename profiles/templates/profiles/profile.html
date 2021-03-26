@@ -22,10 +22,11 @@
                 <img class="rounded-circle mr-3" height=180 width=180 src="{{ profile.avatar.url }}" alt="User avatar">
             </div>
             <div class="col-md-9">
-                <p>Username: {{ profile.user }}</p>
-                {% if request.user == profile.user %}
-                <p>E-mail address: {{ user.email}} </p>
-                {% endif %}
+                <p>Username: {{ profile.user }}
+                {% if profile.country.flag %}
+                    <img src="{{ profile.country.flag }}" alt="Flag">
+                </p>
+                <p>From: {{ profile.country.name }}{% endif %}</p>
                 <p>Member since: {{ profile.member_since.date }}</p>
                 <p>Last login: {{ profile.user.last_login.date }} </p>
                 <p>Threads: {{ threads_by_user.count }}</p>
@@ -76,6 +77,10 @@
                     {% endif %}
                 {% endif %}
                 <p> (Threads+comments ={{ threads_by_user.count|add:comments_by_user.count }}) </p>
+                 {% if request.user == profile.user %}
+                <h6>Your account information:</h6>
+                <p>E-mail address: {{ user.email}} </p>
+                {% endif %}
             </div>
         </div>
         <hr>

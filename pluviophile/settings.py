@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     # Other installed apps
     'crispy_forms',
+    'django_countries',
 
     # Built apps
     'home',
