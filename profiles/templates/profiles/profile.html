@@ -27,6 +27,9 @@
                     <img src="{{ profile.country.flag }}" alt="Flag">
                 </p>
                 <p>From: {{ profile.country.name }}{% endif %}</p>
+                {% if profile.date_of_birth %}
+                <p>Date of birth: {{ profile.date_of_birth }}</p>
+                {% endif %}
                 <p>Member since: {{ profile.member_since.date }}</p>
                 <p>Last login: {{ profile.user.last_login.date }} </p>
                 <p>Threads: {{ threads_by_user.count }}</p>

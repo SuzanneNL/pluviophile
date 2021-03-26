@@ -10,6 +10,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     biography = models.CharField(max_length=2000)
     country = CountryField(blank=True, null=True, blank_label='(Select your country)')
+    date_of_birth = models.DateField(blank=True, null=True)
     member_since = models.DateTimeField(auto_now_add=True)
     avatar = models.ImageField(default='default-avatar.jpg',
                                upload_to='avatars')
