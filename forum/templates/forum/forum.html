@@ -32,10 +32,15 @@
                 {% endif %}
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <p class="d-flex justify-content-end">{{ threads_count }} threads - Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+            </div>
+        </div>
         <br>
         <div class="row thread-top">
             <div class="col-sm-12 col-md-6">
-                <h4>Threads ({{ object_list.count }})</h4>
+                <h4>Threads ({{ threads_count }})</h4>
             </div>
             <div class="col-md-2">
                 <small>Comments</small>
@@ -69,6 +74,11 @@
             </div>
              <div class="col-md-6">
                 <p class="d-flex justify-content-center"><a class="btn btn-secondary" href="{% url 'start_thread' %} ">Start a new thread</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="d-flex justify-content-end">{{ threads_count }} threads - Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
             </div>
         </div>
         <div class="row">

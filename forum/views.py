@@ -18,6 +18,11 @@ class ForumView(LoginRequiredMixin, ListView):
     template_name = "forum/forum.html"
     paginate_by = 5
 
+    def get_context_data(self, **kwargs):
+        context = super(ForumView, self).get_context_data(**kwargs)
+        context['threads_count'] = Thread.objects.count()
+        return context
+
 
 class ThreadView(LoginRequiredMixin, DetailView):
     model = Thread
