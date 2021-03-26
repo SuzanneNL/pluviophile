@@ -18,7 +18,7 @@ class BlogPostsListView(ListView):
     model = BlogPost
     template_name = "blog/blog_posts_list.html"
     paginate_by = 4
-    ordering = ['date_created']
+    ordering = ['-date_created']
 
 
 class BlogPostView(DetailView):
