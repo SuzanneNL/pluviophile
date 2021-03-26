@@ -2,12 +2,32 @@
 {% load static %}
 
 {% block content %}
-    <!--Thread title and description-->
+    <!--Pagination-->
     <div class="container">
-        <div class="col">
-            <p class="d-flex justify-content-end">{{ thread.comments.count }} comments   &lt;&lt;Pagination section&gt;&gt;</p>
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                {% if comments.has_previous %}
+                    <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                    <a class="btn btn-paginate" href="?page={{ comments.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                {% endif %}
+                {% if comments.has_previous or comments.has_next %}
+                <a class="btn btn-paginate-current" href="?page={{ comments.number }}">{{ comments.number }}</a>
+                {% endif %}
+                {% if comments.has_next %}
+                    <a class="btn btn-paginate" href="?page={{ comments.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
+                    <a class="btn btn-paginate" href="?page={{ comments.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                {% endif %}
+            </div>
         </div>
-    
+        <div class="row">
+            <div class="col">
+                <p class="d-flex justify-content-end">{{ comments_number }} comments - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
+            </div>
+        </div>
+    </div>
+    <!--End pagination-->
+    <div class="container">
+        <!--Thread title and description-->
         <div class="row start-thread">
             <div class="col-md-10">
                 <h3>{{ thread.title }}</h3>
@@ -43,12 +63,12 @@
             </div>
         </div>
         <br>
-        {% if not thread.comments.all %}
+        {% if not comments %}
         <div class="row">
             <p>There are no comments</p>
         </div>
         {% else %}
-            {% for comment in thread.comments.all %}
+            {% for comment in comments %}
                 <div class="row" id="comment">
                     <div class="col-md-10">
                         <small>Comment by <strong>{{ comment.creator }}</strong> posted on {{ comment.date_created }}                           
@@ -73,12 +93,32 @@
                 </div>
             {% endfor %}
         {% endif %}
+        <!--End comment section-->
+    </div>
+    <div class="container">
         <div class="row">
             <div class="col">
-                <p class="d-flex justify-content-end">{{ thread.comments.count }} comments   &lt;&lt;Pagination section&gt;&gt;</p>
+                <p class="d-flex justify-content-end">{{ comments_number }} comments - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                {% if comments.has_previous %}
+                    <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                    <a class="btn btn-paginate" href="?page={{ comments.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                {% endif %}
+                {% if comments.has_previous or comments.has_next %}
+                <a class="btn btn-paginate-current" href="?page={{ comments.number }}">{{ comments.number }}</a>
+                {% endif %}
+                {% if comments.has_next %}
+                    <a class="btn btn-paginate" href="?page={{ comments.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
+                    <a class="btn btn-paginate" href="?page={{ comments.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                {% endif %}
             </div>
         </div>
     </div>
     
-    <!--End comment section-->
+
+   
+
 {% endblock %}

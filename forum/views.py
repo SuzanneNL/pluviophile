@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.shortcuts import get_object_or_404
+from django.core.paginator import Paginator
 from .forms import ThreadForm, CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
@@ -24,14 +24,11 @@ class ThreadView(LoginRequiredMixin, DetailView):
     template_name = "forum/thread.html"
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        current_thread = self.get_object()
-        all_threads = Thread
-        all_comments = Comment
-        context['threads_by_thread_creator'] = all_threads.objects.filter(
-                                               creator=current_thread.creator)
-        context['comments_by_thread_creator'] = all_comments.objects.filter(
-                                                creator=current_thread.creator)
+        context = super(ThreadView, self).get_context_data(**kwargs)
+        page = self.request.GET.get('page')
+        comments = Paginator(self.object.comments.all(), 5)
+        context['comments'] = comments.get_page(page)
+        context['comments_number'] = self.object.comments.count()
         return context
 
 
