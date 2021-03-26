@@ -108,12 +108,12 @@ body {
     border: solid 1px #094C72;
 }
 
-.btn-paginate i {
-    color: #094C72;
+.btn-paginate:hover i {
+    color: white;
 }
 
-.btn-paginate i:hover {
-    color: #fff;
+.btn-paginate i {
+    color: #094C72;
 }
 
 .btn-paginate-current {
@@ -231,4 +231,3 @@ body {
 
 /* ------------------------------------------------------ END PROFILE PAGE*/
 /* ---------------------------------------------------------------------------- END APP PROFILE*/
-
