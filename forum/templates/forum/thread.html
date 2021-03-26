@@ -21,7 +21,8 @@
         </div>
         <div class="row">
             <div class="col">
-                <p class="d-flex justify-content-end">{{ comments_count }} comments - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
+                <p class="d-flex justify-content-end">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
+                 - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
             </div>
         </div>
     </div>
@@ -99,7 +100,8 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <p class="d-flex justify-content-end">{{ comments_count }} comments - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
+                <p class="d-flex justify-content-end">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
+                 - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
             </div>
         </div>
         <div class="row">
