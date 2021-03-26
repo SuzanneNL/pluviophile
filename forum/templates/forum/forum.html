@@ -56,15 +56,15 @@
         {% for thread in object_list %}
         <div class="row" id="thread">
             <div class="col-sm-12 col-md-6">
-                <strong><a href="{% url 'thread' thread.pk %} ">{{ thread.title }}</a></strong>
-                <p>By <a href="{% url 'profile' thread.creator.pk %} ">{{ thread.creator }}</a> on {{ thread.date_created }}</p>
+                <strong><a class="go-to-thread" href="{% url 'thread' thread.pk %} ">{{ thread.title }}</a></strong>
+                <p>By <a class="go-to-profile" href="{% url 'profile' thread.creator.pk %} ">{{ thread.creator }}</a> on {{ thread.date_created }}</p>
             </div>
             <div class="col-md-2">
                 <p>{{ thread.comments.all.count }}</p>
             </div>
             <div class="col-md-4">
                 {% if thread.comments.all %}
-                    <p>By <a href="{% url 'profile' thread.comments.last.creator.pk %} ">{{ thread.comments.last.creator }}</a> ({{ thread.comments.last.date_created }})</p>
+                    <p>By <a class="go-to-profile" href="{% url 'profile' thread.comments.last.creator.pk %} ">{{ thread.comments.last.creator }}</a> ({{ thread.comments.last.date_created }})</p>
                 {% else %}
                     <p>No comments yet</p>
                 {% endif %}  

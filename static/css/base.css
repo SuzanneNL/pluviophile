@@ -61,24 +61,32 @@ body {
 }
 
 #thread {
-    border: 1px solid grey;
+    border: 1px solid #E0E1DD;
     border-radius: 5px;
     margin: 5px;
 }
 
+#thread:hover {
+    border: 1px solid #094C72;
+}
+
 .start-thread {
-    border: 1px solid grey;
+    border: 1px solid #E0E1DD;
     border-radius: 3px;
     padding: 20px;
-    background-color: lightgrey;
+    background-color: #f2f2f2;;
     margin-bottom: 20px;
 }
 
 #comment {
-    border: 1px solid grey;
+    border: 1px solid #E0E1DD;
     border-radius: 3px;
     padding: 20px;
     margin-bottom: 20px;
+}
+
+.go-to-profile, .go-to-thread {
+    color: #094C72;
 }
 
 /* ------------------------------------------------------ END FORUM PAGE*/
@@ -231,3 +239,4 @@ body {
 
 /* ------------------------------------------------------ END PROFILE PAGE*/
 /* ---------------------------------------------------------------------------- END APP PROFILE*/
+
