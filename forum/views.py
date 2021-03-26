@@ -17,6 +17,7 @@ class ForumView(LoginRequiredMixin, ListView):
     model = Thread
     template_name = "forum/forum.html"
     paginate_by = 5
+    ordering = ['-date_created']
 
     def get_context_data(self, **kwargs):
         context = super(ForumView, self).get_context_data(**kwargs)
@@ -27,6 +28,7 @@ class ForumView(LoginRequiredMixin, ListView):
 class ThreadView(LoginRequiredMixin, DetailView):
     model = Thread
     template_name = "forum/thread.html"
+    ordering = ['date_created']
 
     def get_context_data(self, **kwargs):
         context = super(ThreadView, self).get_context_data(**kwargs)
