@@ -49,7 +49,7 @@
             <div class="col md-2">  
                 <small><strong><a class="go-to-profile" href="{% url 'profile' thread.creator.pk %} ">{{ thread.creator }}</a></strong></small>
                 {% if thread.creator.profile.country.flag %}
-                    <img src="{{ thread.creator.profile.country.flag }}" alt="Flag">
+                    <img class="threadpage-flag" src="{{ thread.creator.profile.country.flag }}" alt="Flag">
                 {% endif %}
                 <br>
                 <img class="rounded-circle mr-3" height=50 width=50 src="{{ thread.creator.profile.avatar.url }}" alt="User avatar"><br>
@@ -93,7 +93,7 @@
                     <div class="col md-2">  
                         <small><strong><a class="go-to-profile" href="{% url 'profile' comment.creator.pk %} ">{{ comment.creator }}</a></strong></small>
                         {% if comment.creator.profile.country.flag %}
-                        <img src="{{ comment.creator.profile.country.flag }}" alt="Flag">
+                        <img class="threadpage-flag" src="{{ comment.creator.profile.country.flag }}" alt="Flag">
                         {% endif %}
                         <br>
                         <img class="rounded-circle mr-3" height=50 width=50 src="{{ comment.creator.profile.avatar.url }}" alt="User avatar"><br>
