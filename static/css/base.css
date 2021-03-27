@@ -225,16 +225,45 @@ body {
 /* ------------------------------------------------------ PROFILE PAGE*/
 
 .gold-drop {
-    color: #f9F295;
+    color: #e6ae35;
     font-size: 1.5rem;
+    padding-right: 2px;
 }
 
 .blue-drop {
     color: #094C72;
+    font-size: 1.5rem;
+    padding-right: 2px;
 }
 
 .grey-drop {
     color: #D4D4D4;
+    font-size: 1.5rem;
+    padding-right: 2px;
+}
+
+#member-info li {
+    list-style-type: none;
+}
+
+#avatar {
+    padding: 10px 0 10px;
+}
+
+#member-left-col {
+    background-color: #f2f2f2;
+}
+
+.profile-container {
+    border: 1px solid #E0E1DD;
+}
+
+.paddingtop-10 {
+    padding-top: 10px;
+}
+
+.margintop-10 {
+    margin-top: 10px;
 }
 
 /* ------------------------------------------------------ END PROFILE PAGE*/
