@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from sortable_listview import SortableListView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from .forms import ThreadForm, CommentForm
@@ -13,11 +14,16 @@ from django.views.generic import (
 from .models import Thread, Comment
 
 
-class ForumView(LoginRequiredMixin, ListView):
+class ForumView(LoginRequiredMixin, SortableListView):
     model = Thread
     template_name = "forum/forum.html"
     paginate_by = 5
-    ordering = ['-date_created']
+    allowed_sort_fields = {'date_created': {'default_direction': '-',
+                                            'verbose_name': 'Date'},
+                           'title': {'default_direction': '',
+                                     'verbose_name': 'Title'}
+                           }
+    default_sort_field = 'date_created'
 
     def get_context_data(self, **kwargs):
         context = super(ForumView, self).get_context_data(**kwargs)

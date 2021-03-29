@@ -1,0 +1,11 @@
+{% if is_paginated %}
+    {% if page_obj.has_previous %}
+    <a class="btn btn-paginate" href="?page=1&amp;{{ current_sort_query }}&amp;{{ current_querystring }}"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+    <a class="btn btn-paginate" href="?page={{ page_obj.previous_page_number }}&amp;{{ current_sort_query }}&amp;{{ current_querystring }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+    {% endif %}
+    <a class="btn btn-paginate-current" btn-paginate-current href="#">{{ page_obj.number }}</a>
+    {% if page_obj.has_next %}
+    <a class="btn btn-paginate" href="?page={{ page_obj.next_page_number }}&amp;{{ current_sort_query }}&amp;{{ current_querystring }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
+    <a class="btn btn-paginate" href="?page={{ page_obj.paginator.num_pages }}&amp;{{ current_sort_query }}&amp;{{ current_querystring }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+    {% endif %}
+{% endif %}
