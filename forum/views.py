@@ -38,13 +38,10 @@ class ThreadView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ThreadView, self).get_context_data(**kwargs)
-        current_thread = self.get_object()
         page = self.request.GET.get('page')
         comments = Paginator(self.object.comments.all(), 5)
-        context['threads_by_thread_creator'] = Thread.objects.filter(
-                                               creator=current_thread.creator)
-        context['comments_by_thread_creator'] = Comment.objects.filter(
-                                                creator=current_thread.creator)
+        context['all_threads_on_forum'] = Thread.objects.all()
+        context['all_comments_on_forum'] = Comment.objects.all()
         context['comments'] = comments.get_page(page)
         context['comments_count'] = self.object.comments.count()
         return context

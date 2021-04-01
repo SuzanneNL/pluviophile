@@ -32,7 +32,6 @@
         <div class="row start-thread">
             <div class="col-md-10">
                 <h3>{{ thread.title }}</h3>
-                
                 <small>by <strong><a class="go-to-profile" href="{% url 'profile' thread.creator.pk %} ">{{ thread.creator }}</a></strong> posted on {{ thread.date_created }}
                 {% if thread.date_created|date:"D, d M, Y, H:i s" != thread.date_edited|date:"D, d M, Y, H:i s" %}
                     (Edited on: {{ thread.date_edited }})
@@ -54,8 +53,31 @@
                 <br>
                 <img class="rounded-circle mr-3" height=50 width=50 src="{{ thread.creator.profile.avatar.url }}" alt="User avatar"><br>
                 <small>Joined: {{ thread.creator.profile.member_since.date }}</small>
-                <small>Threads: {{ threads_by_thread_creator.count }}</small><br>
-                <small>Comments: {{ comments_by_thread_creator.count }}</small>
+                {% if thread.creator.profile.user.is_superuser %}
+                    <div class="d-flex justify-content-start">
+                        <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                        <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                        <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                        <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                        <i class="fa fa-tint gold-drop" aria-hidden="true"></i><br>
+                    </div>
+                    {% else %}
+                    <div class="elements">
+                        <div class="hide">
+                            {% for obj in all_threads_on_forum %}
+                            {% if obj.creator == thread.creator %}
+                                <span class="count-this">{{ obj.creator }}</span>
+                            {% endif %}
+                            {% endfor %}
+                            {% for obj in all_comments_on_forum %}
+                            {% if obj.creator == thread.creator %}
+                                <span class="count-this">{{ obj.creator }}</span>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="count"></div>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -98,6 +120,31 @@
                         <br>
                         <img class="rounded-circle mr-3" height=50 width=50 src="{{ comment.creator.profile.avatar.url }}" alt="User avatar"><br>
                         <small>Joined: {{ comment.creator.profile.member_since.date }}</small>
+                        {% if comment.creator.profile.user.is_superuser %}
+                        <div class="d-flex justify-content-start">
+                            <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                            <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                            <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                            <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                            <i class="fa fa-tint gold-drop" aria-hidden="true"></i><br>
+                        </div>
+                        {% else %}
+                        <div class="elements">
+                            <div class="hide">
+                                {% for obj in all_threads_on_forum %}
+                                {% if obj.creator == comment.creator %}
+                                    <span class="count-this">{{ obj.creator }}</span>
+                                {% endif %}
+                                {% endfor %}
+                                {% for obj in all_comments_on_forum %}
+                                {% if obj.creator == comment.creator %}
+                                    <span class="count-this">{{ obj.creator }}</span>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="count"></div>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
@@ -134,4 +181,54 @@
         </div>
     </div>
     <!--End pagination-->
+{% endblock %}
+
+{% block postloadjs %}
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".elements").each(function(ind, val){
+        var nTotalComment = $(val).find(".count-this").length;
+        if (nTotalComment < 5) {
+            $(val).find(".count").html(
+             "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>")
+        }
+        else if (nTotalComment < 10) {
+            $(val).find(".count").html(
+             "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>")
+        }
+        else if (nTotalComment < 20) {
+            $(val).find(".count").html(
+             "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>")
+        }
+        else if (nTotalComment < 25) {
+            $(val).find(".count").html(
+             "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>")
+        }
+        else {
+            $(val).find(".count").html(
+            "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
+            + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>")
+        }
+    });
+});
+</script>
 {% endblock %}
