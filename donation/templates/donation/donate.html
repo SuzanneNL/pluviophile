@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Why you should donate</h1>
+                <p>Explains why you should donation</p>
+                <a class="btn btn-blue" href="{% url 'charge' %}">Make donation</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
