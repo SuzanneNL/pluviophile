@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static '/css/back-to-top.css' %}">
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <div class="row">
@@ -57,7 +61,7 @@
             </div>
         </div>
         {% if blogpost.likes.all %}
-        <div class="row"id="likes-section" >
+        <div class="row" id="likes-section" >
             <div class="col col-sm-12 col-lg-8 mx-auto"> 
                 <button class="btn btn-sm btn-blue" id="show-likes">Show likes</button>
                 <ul id="list-of-likes">
@@ -69,6 +73,9 @@
         </div>
         {% endif %}
     </div>
+    <!--Back to top button-->
+    <button title="Back to top" onclick="topFunction()" id="backtotop"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
+    <!--End back to top button-->
 {% endblock %}
 
 
@@ -88,4 +95,7 @@ else {
     $("#show-likes").html("Show likes")}
 }
 </script>
+
+<script src="{% static '/js/back-to-top.js' %}"></script>
+
 {% endblock %}

@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static '/css/back-to-top.css' %}">
+{% endblock %}
+
 {% block content %}
     <!--Pagination-->
     <div class="container">
@@ -181,14 +185,17 @@
         </div>
     </div>
     <!--End pagination-->
+    <!--Back to top button-->
+    <button title="Back to top" onclick="topFunction()" id="backtotop"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
+    <!--End back to top button-->
 {% endblock %}
 
 {% block postloadjs %}
 <script type="text/javascript">
 $(document).ready(function(){
     $(".elements").each(function(ind, val){
-        var nTotalComment = $(val).find(".count-this").length;
-        if (nTotalComment < 5) {
+        var nTotalPost = $(val).find(".count-this").length;
+        if (nTotalPost < 5) {
             $(val).find(".count").html(
              "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
             + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>"
@@ -196,7 +203,7 @@ $(document).ready(function(){
             + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>"
             + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>")
         }
-        else if (nTotalComment < 10) {
+        else if (nTotalPost < 10) {
             $(val).find(".count").html(
              "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
             + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
@@ -204,7 +211,7 @@ $(document).ready(function(){
             + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>"
             + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>")
         }
-        else if (nTotalComment < 20) {
+        else if (nTotalPost < 20) {
             $(val).find(".count").html(
              "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
             + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
@@ -212,7 +219,7 @@ $(document).ready(function(){
             + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>"
             + "<i class='fa fa-tint grey-drop' aria-hidden='true'></i>")
         }
-        else if (nTotalComment < 25) {
+        else if (nTotalPost < 25) {
             $(val).find(".count").html(
              "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
             + "<i class='fa fa-tint blue-drop' aria-hidden='true'></i>"
@@ -230,5 +237,8 @@ $(document).ready(function(){
         }
     });
 });
+
+
 </script>
+<script src="{% static '/js/back-to-top.js' %}"></script>
 {% endblock %}
