@@ -5,9 +5,19 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Here comes donation form</h1>
-                <form><input type="text"><input type="submit" value="Submit">
+                <h1>Donation form</h1>
+                <form action="{% url 'charge' %}" method="POST" id="donation-form">
+                    {% csrf_token %}
+                    {{ donation_form|crispy }}
+                    <a class="btn btn-secondary" href="{% url 'donate' %}">Cancel</a>
+                    <button class="btn btn-dark" id="submit-button" type="submit">Donate</button>
                 </form>
+            </div>
+            <div class="col">
+                <!--Stripe card element-->
+                <div id="card-element"></div>
+                <!--Display form errors-->
+                <div id="card-errors" role="alert"></div>
             </div>
         </div>
     </div>
