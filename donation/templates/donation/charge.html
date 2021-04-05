@@ -9,20 +9,14 @@
     <div class="container">
         <div class="row">
             <div class="col s12 col-md-6 offset-md3 mx-auto">
-                <h1>Donation form</h1>
+                <h1>Donate € 5,-</h1>
                 <div class="card">
                     <div class="card-body">
                         <form action="{% url 'charge' %}" method="POST" id="donation-form">
                             {% csrf_token %}
-                            <fieldset>
-                                <div id="div_id_amount" class="form-group">
-                                    <label for="id_amount" class="requiredField">Full name<span class="asteriskField">*</span> </label>
-                                    <div class="">
-                                        <input type="text" name="fullname" autofocus class="stripe-style-input form-control" required id="id_name" />
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset>{{ donation_form.amount|as_crispy_field }}</fieldset>
+                            <fieldset>{{ donation_form.donor|as_crispy_field }}</fieldset>
+                            <fieldset>{{ donation_form.donor_full_name|as_crispy_field }}</fieldset>
+                            <fieldset>{{ donation_form.email|as_crispy_field }}</fieldset>
                             <fieldset>
                                 <label class="requiredField">Card Details<span class="asteriskField">*</span></label>
                                 <!-- A Stripe card element will go here -->

@@ -5,7 +5,7 @@ from .models import Donation
 class DonationForm(forms.ModelForm):
     class Meta:
         model = Donation
-        fields = ('amount',)
+        fields = ('donor_full_name', 'donor', 'email')
 
     def __init__(self, *args, **kwargs):
         """
@@ -14,6 +14,7 @@ class DonationForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
 
-        self.fields['amount'].widget.attrs['autofocus'] = True
+        self.fields['donor_full_name'].widget.attrs['autofocus'] = True
+        self.fields['donor_full_name'].label = "Full name"
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'

@@ -6,6 +6,7 @@
         <div class="row">
             <div class="col">
                 <h1>Thank you for your donation</h1>
+                <p>Your donation information is below. A confirmation email will be sent to <strong>{{ donation.email }}</strong>.</p>
                 <p>Donation details come here:</p>
                 <table style="width: 100%">
                     <tr>
@@ -14,9 +15,9 @@
                         <th>Donation number</th>
                     </tr>
                     <tr>
-                        <td>01-01-2021</td>
+                        <td>{{ donation.date }}</td>
                         <td>€ 05,00</td>
-                        <td>12345678</td>
+                        <td>{{ donation.donation_number }}</td>
                     </tr>
                 </table>
             </div>

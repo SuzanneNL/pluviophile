@@ -5,8 +5,9 @@ from django.contrib.auth.models import User
 
 class Donation(models.Model):
     donation_number = models.CharField(max_length=32, null=False, editable=False)
-    donor = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default='Former user')
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    donor = models.ForeignKey(User, on_delete=models.CASCADE)
+    donor_full_name = models.CharField(max_length=50, null=False, blank=False)
+    email = models.EmailField(max_length=254, null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
 
     def _generate_donation_number(self):
@@ -25,4 +26,4 @@ class Donation(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return "%s (€ %s on %s)" % (self.donation_number, self.amount, self.date)
+        return "%s (on %s)" % (self.donation_number, self.date)

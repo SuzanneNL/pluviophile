@@ -3,9 +3,9 @@ from .models import Donation
 
 
 class DonationAdmin(admin.ModelAdmin):
-    readonly_fields = ('donation_number', 'date', 'amount', 'donor')
+    readonly_fields = ('donation_number', 'date', 'donor', 'donor_full_name')
 
-    fields = ('donation_number', 'amount', 'donor', 'date')
+    fields = ('donation_number', 'date', 'donor', 'donor_full_name')
 
     ordering = ('-date',)
 
