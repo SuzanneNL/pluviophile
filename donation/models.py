@@ -26,4 +26,4 @@ class Donation(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return "%s (on %s)" % (self.donation_number, self.date)
+        return "%s (by %s on %s)" % (self.donation_number, self.donor, self.date)
