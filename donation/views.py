@@ -43,8 +43,8 @@ def charge(request):
     template = 'donation/charge.html'
     context = {
         'donation_form': donation_form,
-        'stripe_public_key': 'stripe_public_key',
-        'client_secret': 'intent.client_secret',
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
     }
 
     return render(request, template, context)
