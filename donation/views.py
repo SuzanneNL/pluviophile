@@ -22,7 +22,10 @@ def charge(request):
         }
         donation_form = DonationForm(form_data)
         if donation_form.is_valid():
-            donation = donation_form.save()
+            donation = donation_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            donation.stripe_pid = pid
+            donation.save()
             return redirect(reverse('donation_success', args=[donation.donation_number]))
         else:
             messages.error(request, 'There was an error with your form. \

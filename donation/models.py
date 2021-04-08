@@ -9,6 +9,7 @@ class Donation(models.Model):
     donor_full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def _generate_donation_number(self):
         """
