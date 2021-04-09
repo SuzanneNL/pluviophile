@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import DonationForm
 from .models import Donation
@@ -6,13 +7,17 @@ from django.conf import settings
 import stripe
 
 
+@login_required
 def donate(request):
     return render(request, 'donation/donate.html')
 
 
+@login_required
 def charge(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
+
+    print(f"CHARGE USER: {request.user}")
 
     if request.method == 'POST':
         form_data = {
@@ -53,6 +58,7 @@ def charge(request):
     return render(request, template, context)
 
 
+@login_required
 def donation_success(request, donation_number):
     donation = get_object_or_404(Donation, donation_number=donation_number)
     messages.success(request, f'donation successfully processed! \

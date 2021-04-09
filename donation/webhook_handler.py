@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from donation.models import Donation
+from django.contrib.auth.models import User
 
 import time
 
@@ -9,6 +10,7 @@ class StripeWH_Handler:
 
     def __init__(self, request):
         self.request = request
+        print(f"WH USER: {self.request.user}")
 
     def handle_event(self, event):
         """
@@ -24,27 +26,30 @@ class StripeWH_Handler:
         """
         intent = event.data.object
         pid = intent.id
-        amount = 500
-        
         billing_details = intent.charges.data[0].billing_details
 
         # Clean data in the shipping details
         for field, value in billing_details.address.items():
             if value == "":
                 billing_details.address[field] = None
-        
+
+        user_email = intent.charges.data[0].billing_details.email
+        if self.request.user != 'AnonymousUser':
+            user = User.objects.get(email=user_email)
+
         donation_exists = False
         attempt = 1
         while attempt <= 5:
             try:
                 donation = Donation.objects.get(
+                    donor=user,
                     donor_full_name__iexact=billing_details.name,
                     email__iexact=billing_details.email,
                     stripe_pid=pid,
                 )
                 donation_exists = True
                 break
-                
+
             except Donation.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
@@ -56,11 +61,11 @@ class StripeWH_Handler:
             donation = None
             try:
                 donation = Donation.objects.create(
-                    donor = request.user,
-                    donor_full_name=billing_details.name,
-                    email=billing_details.email,
-                    stripe_pid=pid,
-                )
+                        donor=user,
+                        donor_full_name=billing_details.name,
+                        email=billing_details.email,
+                        stripe_pid=pid,
+                    )
             except Exception as e:
                 if donation:
                     donation.delete()
