@@ -10,7 +10,6 @@ class StripeWH_Handler:
 
     def __init__(self, request):
         self.request = request
-        print(f"WH USER: {self.request.user}")
 
     def handle_event(self, event):
         """

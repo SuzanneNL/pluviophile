@@ -17,8 +17,6 @@ def charge(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
-    print(f"CHARGE USER: {request.user}")
-
     if request.method == 'POST':
         form_data = {
             'donor': request.user,
