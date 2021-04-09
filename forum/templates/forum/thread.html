@@ -88,15 +88,19 @@
     <!--End thread title and description-->
     <!--Comment section-->
     <div class="container">
+        {% if comments %}
         <div class="row">
             <div class="col">
                 <a href="{% url 'add_comment' thread.pk %}?next={{ request.path }}" class="btn btn-blue">Drop a comment</a>
             </div>
         </div>
+        {% endif %}
         <br>
         {% if not comments %}
         <div class="row">
-            <p>There are no comments</p>
+            <div class="col">
+                <p>There are no comments yet</p>
+            </div>
         </div>
         {% else %}
             {% for comment in comments %}
