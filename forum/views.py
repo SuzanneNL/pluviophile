@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from sortable_listview import SortableListView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from .forms import ThreadForm, CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
-    ListView,
     DetailView,
     CreateView,
     UpdateView,
@@ -47,9 +48,10 @@ class ThreadView(LoginRequiredMixin, DetailView):
         return context
 
 
-class StartThreadView(LoginRequiredMixin, CreateView):
+class StartThreadView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Thread
     form_class = ThreadForm
+    success_message = "Thread '%(title)s' was created successfully"
     template_name = "forum/start_thread.html"
 
     def form_valid(self, form):
@@ -57,9 +59,10 @@ class StartThreadView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class EditThreadView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class EditThreadView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = Thread
     form_class = ThreadForm
+    success_message = "Thread '%(title)s' was updated successfully"
     template_name = "forum/edit_thread.html"
 
     def test_func(self):
@@ -72,9 +75,10 @@ class EditThreadView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return redirect('error')
 
 
-class DeleteThreadView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class DeleteThreadView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = Thread
     template_name = "forum/delete_thread.html"
+    success_message = "Your thread was deleted successfully"
     success_url = reverse_lazy('forum')
 
     def test_func(self):
@@ -86,10 +90,15 @@ class DeleteThreadView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def handle_no_permission(self):
         return redirect('error')
 
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(DeleteThreadView, self).delete(request, *args, **kwargs)
 
-class AddCommentView(LoginRequiredMixin, CreateView):
+
+class AddCommentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Comment
     template_name = "forum/add_comment.html"
+    success_message = "Your comment was added successfully"
     form_class = CommentForm
 
     def get_success_url(self):
@@ -101,9 +110,10 @@ class AddCommentView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = Comment
     template_name = "forum/edit_comment.html"
+    success_message = "Your comment was updated successfully"
     form_class = CommentForm
 
     def get_success_url(self):
@@ -119,8 +129,9 @@ class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return redirect('error')
 
 
-class DeleteCommentView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class DeleteCommentView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = Comment
+    success_message = "Your comment was deleted successfully"
     template_name = "forum/delete_comment.html"
 
     def get_success_url(self):
@@ -134,6 +145,10 @@ class DeleteCommentView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def handle_no_permission(self):
         return redirect('error')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(DeleteCommentView, self).delete(request, *args, **kwargs)
 
 
 def error(request):

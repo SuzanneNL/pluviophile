@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, UpdateView
+from django.contrib.messages.views import SuccessMessageMixin
 from .forms import ProfileForm
 from .models import Profile
 from forum.models import Thread, Comment
@@ -20,9 +21,10 @@ class ProfileView(LoginRequiredMixin, DetailView):
         return context
 
 
-class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = Profile
     form_class = ProfileForm
+    success_message = "Your profile was updated successfully"
     template_name = "profiles/edit_profile.html"
 
     def test_func(self):
