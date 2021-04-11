@@ -99,33 +99,7 @@
                         <td>Born: </td>
                         <td>{% if profile.date_of_birth %}{{ profile.date_of_birth }}{% else %}Unknown{% endif %}</td> 
                     </tr>
-                    {% if request.user == profile.user %}
-                    <tr>
-                        <td>E-mail address: </td>
-                        <td>{{ profile.user.email}} (private)</td> 
-                    </tr>
-                    {% endif %}
                 </table>
-                {% if request.user == profile.user %}
-                    {% if donations_by_user %}
-                        <br>
-                        <h4>Donation details </h4>
-                        <table style="width: 100%">
-                            <tr>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Donation number</th>
-                            </tr>
-                            {% for donation in donations_by_user %}
-                            <tr>
-                                <td>{{ donation.date }}</td>
-                                <td>€ 05,00</td>
-                                <td>{{ donation.donation_number }}</td>
-                            </tr>
-                            {% endfor %}
-                        </table>
-                    {% endif %}
-                {% endif %}
                 <h4 class="paddingtop-10">Biography</h4>
                 {% if profile.biography %}
                 <p>{{ profile.biography }}</p>
