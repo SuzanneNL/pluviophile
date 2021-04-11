@@ -3,33 +3,41 @@
 
 {% block content %}
     <div class="container">
-        {% if request.user == donation.donor %}
         <div class="row">
-            <div class="col">
-                <h1>Thank you for your donation</h1>
-                <p>Your donation information is below. A confirmation email will be sent to <strong>{{ donation.email }}</strong>.</p>
-                <p>Donation details come here:</p>
-                <table style="width: 100%">
-                    <tr>
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Donation number</th>
-                    </tr>
-                    <tr>
-                        <td>{{ donation.date }}</td>
-                        <td>€ 05,00</td>
-                        <td>{{ donation.donation_number }}</td>
-                    </tr>
-                </table>
+            <div class="col s12 col-md-8 offset-md2 mx-auto">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h1>Thank you for your donation <i class="fa fa-heart thanks" aria-hidden="true"></i></h1>
+                        <p>We appreciate the support!</p>
+                        <p>Your donation information is below. A confirmation email will be sent to <strong>{{ donation.email }}</strong>.</p>
+                        <h4>Donation details</h4>
+                        <hr>
+                        <table id="donation-details-lg" style="width: 100%">
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Donation number</th>
+                            </tr>
+                            <tr>
+                                <td>{{ donation.date }}</td>
+                                <td>€ 05,00</td>
+                                <td>{{ donation.donation_number }}</td>
+                            </tr>
+                        </table>
+                        <div id="donation-details-sm">
+                            <span><strong>Date:</strong></span><br>
+                            <span><em>{{ donation.date }}</em></span><br>
+                            <br>
+                            <span><strong>Amount:</strong></span><br>
+                            <span><em>€ 5,00</em></span><br>
+                            <br>
+                            <span><strong>Donation number:</strong></span><br>
+                            <span><em>{{ donation.donation_number }}</em></span><br>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
             </div>
         </div>
-        {% else %}
-        <div class="row">
-            <div class="col">
-                <h1>You do not have permission to access this page</h1>
-                <a href="{% url 'home' %} " class="btn btn-dark">Back to home</a>
-            </div>
-        </div>
-        {% endif %}
     </div>
 {% endblock %}

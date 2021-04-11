@@ -60,7 +60,7 @@ def charge(request):
 def donation_success(request, donation_number):
     donation = get_object_or_404(Donation, donation_number=donation_number)
     if request.user == donation.donor:
-        messages.success(request, 'donation successfully processed!')
+        messages.success(request, 'Your donation was successfully processed!')
         template = 'donation/donation_success.html'
         context = {
             'donation': donation,
