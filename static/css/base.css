@@ -147,6 +147,10 @@ body {
 /* ---------------------------------------------------------------------------- APP BLOG*/
 /* ------------------------------------------------------ BLOG POSTS LIST PAGE */
 
+.page-title {
+    padding-bottom: 2rem;
+}
+
 .btn-blue {
     background-color: #094C72;
     color: #fff;
@@ -242,6 +246,12 @@ body {
 /* ------------------------------------------------------ END BLOG POST PAGE */
 /* ------------------------------------------------------ MEDIA QUERIES */
 
+@media screen and (max-width: 991px) {
+    .page-title {
+        font-size: 2rem;
+    }
+}
+
 @media screen and (max-width: 540px) {
     .blog-img {
         width: 500px;
@@ -264,6 +274,11 @@ body {
     .blog-img {
         width: 290px;
     }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+    
 }
 
 @media screen and (max-width: 295px) {

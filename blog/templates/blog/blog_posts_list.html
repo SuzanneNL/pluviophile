@@ -6,18 +6,15 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container col col-sm-12 col-lg-8 mx-auto">
+    <div class="container">
         <div class="row">
-            <div class="col d-flex justify-content-center">
-                <h1 class="brand"><i class="fa fa-umbrella" aria-hidden="true"></i> Pluviophile Blog</h1>
-                <br>
-                <br>
-                <br>
+            <div class="col s12 col-md-6 offset-md3 mx-auto d-flex justify-content-center">
+                <h1 class="brand page-title"><i class="fa fa-umbrella" aria-hidden="true"></i> Pluviophile Blog</h1>
             </div>
         </div>
         {% if request.user.is_superuser %}
         <div class="row">
-            <div class="col d-flex justify-content-center">
+            <div class="col s12 col-md-6 offset-md3 mx-auto d-flex justify-content-center">
                 <a href="{% url 'add_blog_post' %} " class="btn btn-blue">Add Blog Post</a>
             </div>
         </div>
@@ -25,7 +22,7 @@
         {% endif %}
         <!--Sorting-->
         <div class="row">
-            <div class="col d-flex justify-content-center">
+            <div class="col s12 col-md-6 offset-md3 mx-auto d-flex justify-content-center">
                 {% include 'sortable_listview/sorting.html' %}
             </div>
         </div>
