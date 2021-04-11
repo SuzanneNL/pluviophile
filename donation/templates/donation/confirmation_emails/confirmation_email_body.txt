@@ -1,0 +1,14 @@
+Hello {{ donation.donor_full_name }}!
+
+This is a confirmation of your donation - thank you so much for donating to Pluviophile! We really appreciate it!
+The details of your donation are below: 
+
+Date: {{ donation.date }}
+Amount: € 5,00
+Donation number: {{ donation.donation_number }}
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Sincerely,
+
+The Pluviophile Team

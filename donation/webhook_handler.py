@@ -1,4 +1,8 @@
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
+
 from donation.models import Donation
 from django.contrib.auth.models import User
 
@@ -10,6 +14,23 @@ class StripeWH_Handler:
 
     def __init__(self, request):
         self.request = request
+
+    def _send_confirmation_email(self, donation):
+        """Send the user a confirmation email"""
+        donor_email = donation.email
+        subject = render_to_string(
+            'donation/confirmation_emails/confirmation_email_subject.txt',
+            {'donation': donation})
+        body = render_to_string(
+            'donation/confirmation_emails/confirmation_email_body.txt',
+            {'donation': donation, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [donor_email]
+        )
 
     def handle_event(self, event):
         """
@@ -53,6 +74,7 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         if donation_exists:
+            self._send_confirmation_email(donation)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified donation already in database',
                 status=200)
@@ -71,6 +93,7 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
+        self._send_confirmation_email(donation)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created donation in webhook',
             status=200)

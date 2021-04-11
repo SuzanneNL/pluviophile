@@ -59,9 +59,7 @@ def charge(request):
 @login_required
 def donation_success(request, donation_number):
     donation = get_object_or_404(Donation, donation_number=donation_number)
-    messages.success(request, f'donation successfully processed! \
-        Your donation number is {donation_number}. A confirmation \
-        email will be sent to {donation.email}.')
+    messages.success(request, 'donation successfully processed!')
 
     template = 'donation/donation_success.html'
     context = {
