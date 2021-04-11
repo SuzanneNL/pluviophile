@@ -7,7 +7,8 @@ from .views import ProfileView, EditProfileView
 urlpatterns = [
     path('profile/<int:pk>', ProfileView.as_view(), name="profile"),
     path('profile/edit/<int:pk>', EditProfileView.as_view(), name="edit_profile"),
-    path('error', views.error, name='error')
+    path('account', views.account, name='account'),
+    path('error', views.error, name='error'),
 ]
 
 if settings.DEBUG:

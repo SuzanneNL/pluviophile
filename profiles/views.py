@@ -1,4 +1,5 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -35,6 +36,15 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
 
     def handle_no_permission(self):
         return redirect('error')
+
+
+@login_required
+def account(request):
+    template = 'profiles/account.html'
+    context = {
+        'donations_by_user': Donation.objects.filter(donor=request.user)
+    }
+    return render(request, template, context)
 
 
 def error(request):

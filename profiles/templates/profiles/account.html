@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="d-flex justify-content-center">Your Account{% if request.user.is_superuser %} (admin){% endif %}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container margintop-10">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <h4>Account details </h4>
+                <table style="width:100%">
+                    <tr>
+                        <td><strong>Username:</strong></td>
+                        <td>{{ request.user.username }}</td> 
+                    </tr>
+                    <tr>
+                        <td><strong>E-mail address:</strong></td>
+                        <td>{{ request.user.email}} <a href="{% url 'account_change_password' %}">(change password)</a></td> 
+                    </tr>
+                </table>
+                <br>
+                {% if donations_by_user %}
+                    <h4>Donation details </h4>
+                    <table style="width: 100%">
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Credit card name</th>
+                            <th>Confirmation mail sent to:</th>
+                            <th>Donation number</th>
+                        </tr>
+                        {% for donation in donations_by_user %}
+                        <tr>
+                            <td>{{ donation.date }}</td>
+                            <td>€ 05,00</td>
+                            <td>{{ donation.donor_full_name }}</td>
+                            <td>{{ donation.email }}</td>
+                            <td>{{ donation.donation_number }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
