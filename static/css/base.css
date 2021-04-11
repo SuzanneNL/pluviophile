@@ -6,7 +6,8 @@ body {
     background-color: #fafafa;
 }
 
-.textinput {
+.textinput,
+.textarea {
     color: #000;
     border: 1px solid #000;
 }
@@ -244,6 +245,13 @@ body {
 }
 
 /* ------------------------------------------------------ END BLOG POST PAGE */
+/* ------------------------------------------------------ ADD BLOG POST PAGE */
+
+.instructions {
+    display: none;
+}
+
+/* ------------------------------------------------------ END ADD BLOG POST PAGE */
 /* ------------------------------------------------------ MEDIA QUERIES */
 
 @media screen and (max-width: 991px) {
