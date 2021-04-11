@@ -59,11 +59,17 @@ def charge(request):
 @login_required
 def donation_success(request, donation_number):
     donation = get_object_or_404(Donation, donation_number=donation_number)
-    messages.success(request, 'donation successfully processed!')
+    if request.user == donation.donor:
+        messages.success(request, 'donation successfully processed!')
+        template = 'donation/donation_success.html'
+        context = {
+            'donation': donation,
+        }
 
-    template = 'donation/donation_success.html'
-    context = {
-        'donation': donation,
-    }
+        return render(request, template, context)
+    else:
+        return redirect('error')
 
-    return render(request, template, context)
+
+def error(request):
+    return render(request, 'donation/error.html')
