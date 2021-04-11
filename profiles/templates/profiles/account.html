@@ -20,17 +20,17 @@
                     </tr>
                     <tr>
                         <td><strong>E-mail address:</strong></td>
-                        <td>{{ request.user.email}} <a href="{% url 'account_change_password' %}">(change password)</a></td> 
+                        <td>{{ request.user.email}} <a href="{% url 'account_change_password' %}">(update password)</a></td> 
                     </tr>
                 </table>
                 <br>
                 {% if donations_by_user %}
                     <h4>Donation details </h4>
-                    <table style="width: 100%">
+                    <table id="donation-details-account-lg" style="width: 100%">
                         <tr>
                             <th>Date</th>
                             <th>Amount</th>
-                            <th>Credit card name</th>
+                            <th>Credit card holder</th>
                             <th>Confirmation mail sent to:</th>
                             <th>Donation number</th>
                         </tr>
@@ -44,6 +44,25 @@
                         </tr>
                         {% endfor %}
                     </table>
+                    <div id="donation-details-account-sm">
+                        {% for donation in donations_by_user %}
+                        <span><strong>Date:</strong></span><br>
+                        <span><em>{{ donation.date }}</em></span><br>
+
+                        <span><strong>Amount:</strong></span><br>
+                        <span><em>€ 5,00</em></span><br>
+                        
+                        <span><strong>Credit card holder:</strong></span><br>
+                        <span><em>{{ donation.donor_full_name }}</em></span><br>
+                        
+                        <span><strong>Confirmation mail sent to:</strong></span><br>
+                        <span><em>{{ donation.email }}</em></span><br>
+                        
+                        <span><strong>Donation number:</strong></span><br>
+                        <span><em>{{ donation.donation_number }}</em></span><br>
+                        <hr>
+                        {% endfor %}
+                    </div>
                 {% endif %}
             </div>
         </div>
