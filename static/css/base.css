@@ -186,6 +186,7 @@ body {
 /* ------------------------------------------------------ BLOG POSTS LIST PAGE */
 
 .page-title {
+    margin-top: 20px;
     padding-bottom: 2rem;
 }
 

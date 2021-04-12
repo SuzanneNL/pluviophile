@@ -6,10 +6,10 @@
         <div class="row">
             <div class="col">
                  {% if request.user == profile.user %}
-                <h1 class="d-flex justify-content-center">Your Profile{% if profile.user.is_superuser %} (admin){% endif %}</h1>
+                <h1 class="d-flex justify-content-center page-title">Your Profile{% if profile.user.is_superuser %} (admin){% endif %}</h1>
                 <p class="d-flex justify-content-center"><a class="btn btn-blue" href="{% url 'edit_profile' profile.pk %}">Edit profile</a></p>
                 {% else %}
-                <h1 class="d-flex justify-content-center text-capitalize">{{ profile.user }}'s Profile{% if profile.user.is_superuser %} (admin){% endif %}</h1>
+                <h1 class="d-flex justify-content-center text-capitalize page-title">{{ profile.user }}'s Profile{% if profile.user.is_superuser %} (admin){% endif %}</h1>
                 {% endif %}
             </div>
         </div>

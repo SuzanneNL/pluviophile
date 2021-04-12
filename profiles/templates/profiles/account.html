@@ -4,8 +4,8 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col">
-                <h1 class="d-flex justify-content-center">Your Account{% if request.user.is_superuser %} (admin){% endif %}</h1>
+            <div class="col col-md-6 offset-md3 mx-auto d-flex justify-content-center">
+                <h1 class="brand page-title">Your Account{% if request.user.is_superuser %} (admin){% endif %}</h1>
             </div>
         </div>
     </div>
