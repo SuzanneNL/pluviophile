@@ -1,3 +1,21 @@
 body {
     background-color: black;    
 }
+
+.btn-close {
+    text-decoration: none; 
+    border: 1px solid #fff;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 1.5rem;
+    background-color: #094C72;
+    color: #fff;
+    position: absolute; 
+    top: 5%; 
+    right: 5%;
+}
+
+.btn-close:hover {
+    background-color: #0c3953;
+    color: #fff;
+}
