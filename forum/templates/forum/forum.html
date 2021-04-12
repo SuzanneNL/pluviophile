@@ -49,7 +49,7 @@
                 <p>By <a class="go-to-profile" href="{% url 'profile' thread.creator.pk %} ">{{ thread.creator }}</a> on {{ thread.date_created }}</p>
             </div>
             <div class="col-md-2">
-                <p>{{ thread.comments.all.count }} <i class="fa fa-comment-o" aria-hidden="true"></i></p>
+                <p>{{ thread.comments.all.count }} <span class="forum-small-show"><i class="fa fa-comment-o" aria-hidden="true"></i></span></p>
             </div>
             <div class="col-md-4">
                 {% if thread.comments.all %}
