@@ -134,11 +134,15 @@ body {
 /* ------------------------------------------------------ END FORUM PAGE*/
 /* ------------------------------------------------------ THREAD PAGE*/
 
-#comment {
+.comment {
     border: 1px solid #E0E1DD;
     border-radius: 3px;
     padding: 20px;
     margin-bottom: 20px;
+}
+
+.mobile-comment {
+    margin: 5px;
 }
 
 .hide {
@@ -163,6 +167,10 @@ body {
 
     .forum-small-show {
         display: inline-block;
+    }
+
+    .start-thread {
+        padding: 0px;
     }
 }
 
@@ -415,7 +423,6 @@ body {
         display: block;
     }
 }  
-
     
 /* ------------------------------------------------------ END MEDIA QUERIES */
 /* ---------------------------------------------------------------------------- END APP DONATION*/
