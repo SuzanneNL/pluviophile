@@ -1,14 +1,33 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static '/css/donation.css' %}">
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col">
-                <h1>Why you should donate</h1>
-                <p>Explains why you should donation</p>
-                <a class="btn btn-blue" href="{% url 'charge' %}">Make donation</a>
+            <div class="col s12 col-md-6 offset-md3 mx-auto text-center">
+                <h1 class="brand page-title"><i class="fa fa-umbrella" aria-hidden="true"></i> Donate to Pluviophile</h1>
+            </div>
+        </div>       
+        <!--Hier kun je tekst doen-->
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <div class="card" style="width: 36rem;">
+                    <div class="card-body">
+                        <p class="card-text">Joining and being a part of this Pluviophile community is free for all our users, and it will stay free for as long as we exist.<br><br>
+                        <span class="d-flex justify-content-center"><i class="fa fa-users" aria-hidden="true"></i></span><br>
+                        The website was created and is moderated by volunteers. We do however have to cover monthly server costs.<br><br>
+                        If you enjoy being a part of this community, then we offer you and other users the possibility to support Pluviophole by way of donating. We ask for a small donation of € 5,00 (creditcard only, hopefully PayPal in the future).<br><br>
+                        Many thanks! - the Pluviophile team </p>
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-blue" href="{% url 'charge' %}">Make donation</a>
+                        </div>
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock %}  

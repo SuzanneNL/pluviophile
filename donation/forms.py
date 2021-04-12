@@ -19,6 +19,6 @@ class DonationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields['donor_full_name'].widget.attrs['autofocus'] = True
-        self.fields['donor_full_name'].label = "Full name"
+        self.fields['donor_full_name'].label = "Cardholder Name"
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
