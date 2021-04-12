@@ -1,13 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Raleway:wght@300&display=swap');
+
 body {
     padding-top: 70px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: #fafafa;
+    font-family: 'Lato', sans-serif;
 }
 
 .textinput,
-.textarea {
+.textarea,
+.datepicker,
+.lazyselect {
     color: #000;
     border: 1px solid #000;
 }
