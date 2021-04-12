@@ -123,23 +123,8 @@ body {
     margin-bottom: 20px;
 }
 
-#comment {
-    border: 1px solid #E0E1DD;
-    border-radius: 3px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
 .go-to-profile, .go-to-thread {
     color: #094C72;
-}
-
-.threadpage-flag {
-    padding-bottom: 3px;
-}
-
-.hide {
-    display: none;
 }
 
 .forum-small-show {
@@ -147,6 +132,28 @@ body {
 }
 
 /* ------------------------------------------------------ END FORUM PAGE*/
+/* ------------------------------------------------------ THREAD PAGE*/
+
+#comment {
+    border: 1px solid #E0E1DD;
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.hide {
+    display: none;
+}
+
+.threadpage-flag {
+    padding-bottom: 3px;
+}
+
+.avatar-forum {
+    margin: 3px;
+}
+
+/* ------------------------------------------------------ END THREAD PAGE*/
 /* ------------------------------------------------------ MEDIA QUERIES*/
 
 @media screen and (max-width: 768px) {
