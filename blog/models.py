@@ -18,6 +18,7 @@ class BlogPost(models.Model):
     image_3_description = models.CharField(max_length=90, blank=True, default='')
     date_created = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='blog_posts')
+    bookmarks = models.ManyToManyField(User, related_name='blog_posts_bookmarks')
 
     def __str__(self):
         return self.title + ' by ' + str(self.uploaded_by)

@@ -23,7 +23,10 @@ class BlogPostsListView(SortableListView):
     paginate_by = 4
     allowed_sort_fields = {'date_created': {'default_direction': '-',
                                             'verbose_name': 'Date'},
-                        }
+                           'likes': {'default_direction': '',
+                                     'verbose_name': 'Popularity'},
+
+                           }
     default_sort_field = 'date_created'
 
 
@@ -80,6 +83,21 @@ def LikeView(request, pk):
         blogpost.likes.add(request.user)
         messages.success(request, 'You liked this blog post')
         liked = True
+
+    return HttpResponseRedirect(reverse('blog_post', args=[str(pk)]))
+
+
+def BookmarkView(request, pk):
+    blogpost = get_object_or_404(BlogPost, id=request.POST.get('blogpost_id'))
+    bookmarked = False
+    if blogpost.bookmarks.filter(id=request.user.id).exists():
+        blogpost.bookmarks.remove(request.user)
+        messages.success(request, 'You removed this bookmark')
+        bookmarked = False
+    else:
+        blogpost.bookmarks.add(request.user)
+        messages.success(request, 'You bookmarked this blog post')
+        bookmarked = True
 
     return HttpResponseRedirect(reverse('blog_post', args=[str(pk)]))
 

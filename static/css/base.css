@@ -282,6 +282,29 @@ body {
     margin-bottom: 40px;
 }
 
+.bookmark-unbookmark {
+	background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+    cursor: pointer;
+    outline: none;
+}
+
+.bookmark-unbookmark:focus {
+    outline: none;
+}
+
+.fa-bookmark {
+    font-size: 20px;
+    color: #094C72;
+}
+
+.fa-bookmark-o {
+    font-size: 20px;
+    color:  #094C72;
+}
+
 /* ------------------------------------------------------ END BLOG POST PAGE */
 /* ------------------------------------------------------ ADD BLOG POST PAGE */
 

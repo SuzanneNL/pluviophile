@@ -47,9 +47,15 @@
         </div>
         <div class="row">
             <div class="col col-sm-12 col-lg-8 mx-auto">
+                <form action="{% url 'bookmark_blog_post' blogpost.pk %}" method="POST" class="d-inline-block">
+                    {% csrf_token%}
+                    <button class="bookmark-unbookmark d-inline-block" type="submit" name="blogpost_id" value="{{ blogpost.id }}">
+                        {% if request.user in blogpost.bookmarks.all %}<i class="fa fa-bookmark" aria-hidden="true"></i>{% else%}<i class="fa fa-bookmark-o" aria-hidden="true"></i>{% endif %}
+                    </button>
+                </form>
                 <form action="{% url 'like_blog_post' blogpost.pk %}" method="POST" class="d-inline-block">
                     {% csrf_token%}
-                    <button class="like-unlike d-inline-block" type="submit" name="blogpost_id" value="{{ blogpost.id }}">
+                    <button class="bookmark-unbookmark d-inline-block" type="submit" name="blogpost_id" value="{{ blogpost.id }}">
                         {% if request.user in blogpost.likes.all %}<i class="fa fa-heart like" aria-hidden="true"></i>{% else%}<i class="fa fa-heart-o unlike" aria-hidden="true"></i>{% endif %}
                     </button>
                 </form>

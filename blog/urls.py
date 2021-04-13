@@ -19,6 +19,7 @@ urlpatterns = [
     path('blogpost/edit/<int:pk>', EditBlogPostView.as_view(), name="edit_blog_post"),
     path('blogpost/delete/<int:pk>', DeleteBlogPostView.as_view(), name="delete_blog_post"),
     path('like/<int:pk>', views.LikeView, name="like_blog_post"),
+    path('bookmark/<int:pk>', views.BookmarkView, name="bookmark_blog_post"),
     path('error', views.error, name='error')
 ]
 
