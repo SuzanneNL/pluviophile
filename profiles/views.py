@@ -6,6 +6,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from .forms import ProfileForm
 from .models import Profile
 from forum.models import Thread, Comment
+from blog.models import BlogPost
 from donation.models import Donation
 
 
@@ -42,7 +43,8 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
 def account(request):
     template = 'profiles/account.html'
     context = {
-        'donations_by_user': Donation.objects.filter(donor=request.user)
+        'donations_by_user': Donation.objects.filter(donor=request.user),
+        'blogposts': BlogPost.objects.all()
     }
     return render(request, template, context)
 
