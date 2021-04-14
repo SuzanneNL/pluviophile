@@ -1,3 +1,4 @@
+from uuid import uuid4
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -21,7 +22,11 @@ class Profile(models.Model):
         return "%s's profile" % (self.user)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.user)
+        if self.slug is None:
+            self.slug = slugify(self.user)
+            if Profile.objects.filter(slug=self.slug).exists():
+                uniqueid = str(uuid4()).split('-')[0]
+                self.slug = slugify('{}{}'.format(self.user, uniqueid))
         super(Profile, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
