@@ -30,7 +30,7 @@ class Profile(models.Model):
         super(Profile, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('profile', kwargs={'pk': self.pk})
+        return reverse('profile', kwargs={'slug': self.slug})
 
 
 @receiver(post_save, sender=User)

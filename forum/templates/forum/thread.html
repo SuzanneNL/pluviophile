@@ -36,7 +36,7 @@
         <div class="row start-thread">
             <div class="col-sm-10">
                 <h3>{{ thread.title }}</h3>
-                <small>by <strong><a class="go-to-profile" href="{% url 'profile' thread.creator.pk %} ">{{ thread.creator }}</a></strong> posted on {{ thread.date_created }}
+                <small>by <strong><a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} ">{{ thread.creator }}</a></strong> posted on {{ thread.date_created }}
                 {% if thread.date_created|date:"D, d M, Y, H:i s" != thread.date_edited|date:"D, d M, Y, H:i s" %}
                     (Edited on: {{ thread.date_edited }})
                 {% endif %}
@@ -50,7 +50,7 @@
                 {% endif %}
             </div>
             <div class="col-sm-2 text-center">  
-                <small><strong><a class="go-to-profile" href="{% url 'profile' thread.creator.pk %} ">{{ thread.creator }}</a></strong></small>
+                <small><strong><a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} ">{{ thread.creator }}</a></strong></small>
                 {% if thread.creator.profile.country.flag %}
                     <img class="threadpage-flag" src="{{ thread.creator.profile.country.flag }}" alt="Flag">
                 {% endif %}
@@ -94,7 +94,7 @@
                 <div class="card start-thread" style="width: 36rem;">
                     <div class="card-body">
                         <img class="rounded-circle" height=18 width=18 src="{{ thread.creator.profile.avatar.url }}" alt="User avatar">
-                        <span class="text-capitalize"> <a class="go-to-profile" href="{% url 'profile' thread.creator.pk %} "><strong>{{ thread.creator }}</strong></a>
+                        <span class="text-capitalize"> <a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} "><strong>{{ thread.creator }}</strong></a>
                             {% if thread.creator.profile.country.flag %}
                                 <img class="threadpage-flag" src="{{ thread.creator.profile.country.flag }}" alt="Flag">
                             {% endif %}</span>
@@ -135,7 +135,7 @@
             {% for comment in comments %}
                 <div class="row comment">
                     <div class="col-sm-10">
-                        <small>Comment by <strong><a class="go-to-profile" href="{% url 'profile' comment.creator.pk %} ">{{ comment.creator }}</a></strong> posted on {{ comment.date_created }}                           
+                        <small>Comment by <strong><a class="go-to-profile" href="{% url 'profile' comment.creator.profile.slug %} ">{{ comment.creator }}</a></strong> posted on {{ comment.date_created }}                           
                         {% if comment.date_created|date:"D, d M, Y, H:i s" != comment.date_edited|date:"D, d M, Y, H:i s" %}
                             (edited on: {{ comment.date_edited }})
                         {% endif %}
@@ -150,7 +150,7 @@
                         {% endif %}
                     </div>
                     <div class="col-sm-2 text-center">  
-                        <small><strong><a class="go-to-profile" href="{% url 'profile' comment.creator.pk %} ">{{ comment.creator }}</a></strong></small>
+                        <small><strong><a class="go-to-profile" href="{% url 'profile' comment.creator.profile.slug %} ">{{ comment.creator }}</a></strong></small>
                         {% if comment.creator.profile.country.flag %}
                         <img class="threadpage-flag" src="{{ comment.creator.profile.country.flag }}" alt="Flag">
                         {% endif %}
@@ -196,7 +196,7 @@
                     <div class="card" style="width: 36rem;">
                         <div class="card-body">
                             <img class="rounded-circle" height=18 width=18 src="{{ comment.creator.profile.avatar.url }}" alt="User avatar">
-                            <span class="text-capitalize"> <a class="go-to-profile" href="{% url 'profile' comment.creator.pk %} "><strong>{{ comment.creator }}</strong></a>
+                            <span class="text-capitalize"> <a class="go-to-profile" href="{% url 'profile' comment.creator.profile.slug %} "><strong>{{ comment.creator }}</strong></a>
                                 {% if comment.creator.profile.country.flag %}
                                     <img class="threadpage-flag" src="{{ comment.creator.profile.country.flag }}" alt="Flag">
                                 {% endif %}</span>

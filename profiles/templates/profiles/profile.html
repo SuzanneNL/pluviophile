@@ -7,7 +7,7 @@
             <div class="col">
                  {% if request.user == profile.user %}
                 <h1 class="d-flex justify-content-center page-title">Your Profile{% if profile.user.is_superuser %} (admin){% endif %}</h1>
-                <p class="d-flex justify-content-center"><a class="btn btn-blue" href="{% url 'edit_profile' profile.pk %}">Edit profile</a></p>
+                <p class="d-flex justify-content-center"><a class="btn btn-blue" href="{% url 'edit_profile' profile.slug %}">Edit profile</a></p>
                 {% else %}
                 <h1 class="d-flex justify-content-center text-capitalize page-title">{{ profile.user }}'s Profile{% if profile.user.is_superuser %} (admin){% endif %}</h1>
                 {% endif %}
@@ -105,7 +105,7 @@
                 <p>{{ profile.biography }}</p>
                 {% else %}
                     {% if request.user == profile.user %}
-                    <p>You haven't written a bio yet. <a href="{% url 'edit_profile' profile.pk %}"> Edit your profile</a></p>
+                    <p>You haven't written a bio yet. <a href="{% url 'edit_profile' profile.slug %}"> Edit your profile</a></p>
                     {% else %}
                     <p>{{ profile.user }} hasn't written a bio yet.</p>
                     {% endif %}

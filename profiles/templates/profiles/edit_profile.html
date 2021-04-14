@@ -14,7 +14,7 @@
                     {% csrf_token %}
                     {{ form|crispy }}
                     <button class="btn btn-dark" type="submit">Edit Profile</button>
-                    <a class="btn btn-secondary" href="{% url 'profile' profile.pk %}">Cancel</a>
+                    <a class="btn btn-secondary" href="{% url 'profile' profile.slug %}">Cancel</a>
                 </form>
             </div>
         </div>
