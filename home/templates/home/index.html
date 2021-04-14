@@ -1,6 +1,50 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block content %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static '/css/home.css' %}">
+{% endblock %}
 
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col col-md-6 col-lg-4 d-flex align-self-stretch">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Pluviophile</h2>
+                    <p>noun, plural: 'pluviophiles'</p>
+                    <h4>One who loves rain.</h4>
+                    <p>Do you enjoy the sound of the rain drops against your window? Do you love the sight of dark rainy clouds? Do you prefer rainy days over sunny ones? Then perhaps you are a pluviophile.</p>
+                    <p>You are not alone! Which is why we've created this website. Here you can talk to fellow pluviophiles and exchange ideas. Or you can read blog posts from our pluviophile authors.<br>What are you waiting for?</p>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-blue" href="{% url 'account_signup' %}">Join Now!</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-md-6 col-lg-4 d-flex align-self-stretch">
+            <div class="card">
+                <a href="{% url 'blog_post' blogpost.pk %}"><img class="card-img-top" src="{{ blogpost.image_1.url }}" alt="Go to blog post {{ blogpost.title }}"></a>
+                <div class="card-body">
+                    <small class="text-muted">By {{ blogpost.author }} on {{ blogpost.date_created }}</small>
+                    <h5 class="card-title">{{ blogpost.title }} </h5>
+                    <p class="card-text">{{ blogpost.body_part_1|truncatewords:30|safe }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'blog_post' blogpost.pk %}" class="btn btn-blue read">Read the latest blog post</a>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-6 col-lg-4 d-flex align-self-stretch">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Weather forecast</h1>
+                    <h5>This shows when it rains</h5>
+                    <p>If I have time for this...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
