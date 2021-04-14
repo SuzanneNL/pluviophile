@@ -25,12 +25,13 @@
                 </table>
                 <br>
                 <h4><i class="fa fa-bookmark" aria-hidden="true"></i> Your bookmarks</h4>
+                <p id="no-bookmarks" class="hide">You haven't bookmarked any blog posts yet.</p>
                 <ul>
                 {% for blogpost in blogposts %}
                     {% if blogpost.bookmarks.all %}
                         {% for user in blogpost.bookmarks.all %}
                             {% if user == request.user %}
-                                <li><a href="{% url 'blog_post' blogpost.pk %}">{{ blogpost.title }}</a></li>
+                                <li class="bookmark"><a href="{% url 'blog_post' blogpost.pk %}">{{ blogpost.title }}</a></li>
                             {% endif %}
                         {% endfor %}
                     {% endif %}
@@ -79,4 +80,18 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+let bookmarkscount = document.getElementsByClassName("bookmark").length
+if(bookmarkscount == 0) {
+    showNoBookmarksMessage();
+}
+
+function showNoBookmarksMessage() {
+	document.querySelector('#no-bookmarks').classList.remove('hide');
+}
+</script>
 {% endblock %}
