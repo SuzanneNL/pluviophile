@@ -10,7 +10,7 @@ from django_countries.fields import CountryField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    biography = models.CharField(max_length=2000)
+    biography = models.CharField(max_length=2000, blank=True, null=True)
     country = CountryField(blank=True, null=True, blank_label='(Select your country)')
     date_of_birth = models.DateField(blank=True, null=True)
     member_since = models.DateTimeField(auto_now_add=True)
