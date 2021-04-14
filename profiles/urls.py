@@ -5,7 +5,7 @@ from . import views
 from .views import ProfileView, EditProfileView
 
 urlpatterns = [
-    path('profile/<int:pk>', ProfileView.as_view(), name="profile"),
+    path('profile/<slug>', ProfileView.as_view(), name="profile"),
     path('profile/edit/<int:pk>', EditProfileView.as_view(), name="edit_profile"),
     path('account', views.account, name='account'),
     path('error', views.error, name='error'),
