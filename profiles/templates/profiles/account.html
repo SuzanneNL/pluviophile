@@ -5,14 +5,14 @@
     <div class="container">
         <div class="row">
             <div class="col col-md-6 offset-md3 mx-auto d-flex justify-content-center">
-                <h1 class="brand page-title">Your Account{% if request.user.is_superuser %} (admin){% endif %}</h1>
+                <h1 class="brand page-title"><i class="fa fa-lock" aria-hidden="true"></i> Your Account{% if request.user.is_superuser %} (admin){% endif %}</h1>
             </div>
         </div>
     </div>
     <div class="container margintop-10">
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <h4>Account details </h4>
+                <h4><i class="fa fa-user" aria-hidden="true"></i> Account details</h4>
                 <table style="width:100%">
                     <tr>
                         <td><strong>Username:</strong></td>
@@ -24,7 +24,7 @@
                     </tr>
                 </table>
                 <br>
-                <h4>Your bookmarks</h4>
+                <h4><i class="fa fa-bookmark" aria-hidden="true"></i> Your bookmarks</h4>
                 <ul>
                 {% for blogpost in blogposts %}
                     {% if blogpost.bookmarks.all %}
@@ -37,7 +37,7 @@
                 {% endfor %}
                 </ul>
                 {% if donations_by_user %}
-                    <h4>Donation details </h4>
+                    <h4><i class="fa fa-eur" aria-hidden="true"></i> Donation details </h4>
                     <table id="donation-details-account-lg" style="width: 100%">
                         <tr>
                             <th>Date</th>
