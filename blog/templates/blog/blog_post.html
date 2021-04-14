@@ -16,7 +16,7 @@
                 <br>
                     <em>{{ blogpost.image_1_description }}</em>
                 {% endif %}
-                <p class="blog-post-section">{{ blogpost.body_part_1 }}</p>
+                <p class="blog-post-section">{{ blogpost.body_part_1|safe }}</p>
                 {% if blogpost.image_2 %}
                     <img class="blog-img" src="{{ blogpost.image_2.url }}" alt="Blog image">
                     {% if blogpost.image_2_description %}
@@ -25,7 +25,7 @@
                     {% endif %}
                 {% endif %}
                 {% if blogpost.body_part_2 %}
-                <p class="blog-post-section">{{ blogpost.body_part_2 }}</p>
+                <p class="blog-post-section">{{ blogpost.body_part_2|safe }}</p>
                 {% endif %}
                 {% if blogpost.image_3 %}
                     <img class="blog-img" src="{{ blogpost.image_3.url }}" alt="Blog image">
@@ -35,7 +35,7 @@
                     {% endif %}
                 {% endif %}
                 {% if blogpost.body_part_3 %}
-                    <p class="blog-post-section">{{ blogpost.body_part_3 }}</p>
+                    <p class="blog-post-section">{{ blogpost.body_part_3|safe }}</p>
                 {% endif %}
                 {% if request.user.is_superuser %}
                 <a href="{% url 'edit_blog_post' blogpost.pk %}" class="btn btn-dark">Edit blog post</a>
