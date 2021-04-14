@@ -20,23 +20,24 @@
                     </tr>
                     <tr>
                         <td><strong>E-mail address:</strong></td>
-                        <td>{{ request.user.email}} <a href="{% url 'account_change_password' %}">(update password)</a></td> 
+                        <td>{{ request.user.email}} <a class="blue-text" href="{% url 'account_change_password' %}">(update password)</a></td> 
                     </tr>
                 </table>
                 <br>
                 <h4><i class="fa fa-bookmark" aria-hidden="true"></i> Your bookmarks</h4>
                 <p id="no-bookmarks" class="hide">You haven't bookmarked any blog posts yet.</p>
-                <ul>
+                <ul id="bookmarks-list">
                 {% for blogpost in blogposts %}
                     {% if blogpost.bookmarks.all %}
                         {% for user in blogpost.bookmarks.all %}
                             {% if user == request.user %}
-                                <li class="bookmark"><a href="{% url 'blog_post' blogpost.pk %}">{{ blogpost.title }}</a></li>
+                                <li class="bookmark"><a href="{% url 'blog_post' blogpost.pk %}"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ blogpost.title }}</a></li>
                             {% endif %}
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
                 </ul>
+                <br>
                 {% if donations_by_user %}
                     <h4><i class="fa fa-eur" aria-hidden="true"></i> Donation details </h4>
                     <table id="donation-details-account-lg" style="width: 100%">

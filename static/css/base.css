@@ -418,6 +418,16 @@ body {
     color: #094C72;
 }
 
+#bookmarks-list {
+    list-style: none;
+    padding: 0;
+}
+
+.bookmark a,
+.blue-text {
+    color: #094C72;
+}
+
 /* ------------------------------------------------------ END ACCOUNT PAGE*/
 
 /* ------------------------------------------------------ END PROFILE PAGE*/
