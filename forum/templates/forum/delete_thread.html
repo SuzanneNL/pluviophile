@@ -2,22 +2,23 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Delete thread</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <form method="POST">
-                    {% csrf_token %}
-                    Are you sure you want to delete your thread "{{ thread.title }}"?
-                    <br>
-                    <button class="btn btn-danger" type="submit">Yes, delete thread</button>
-                    <a class="btn btn-secondary" href="{% url 'thread' thread.pk %}">Cancel</a>
-                </form>
+<div class="container margintop-10">
+    <div class="row">
+        <div class="col-12 col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1><i class="fa fa-exclamation" aria-hidden="true"></i> Delete thread</h1>
+                    <p>Are you sure you want to delete your thread "{{ thread.title }}"</p> 
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="margintop-10">
+                            <a class="btn btn-secondary" href="{% url 'thread' thread.pk %}">Cancel</a>
+                            <button class="btn btn-danger" type="submit">Yes, delete thread</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

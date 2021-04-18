@@ -2,22 +2,25 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Delete blog post</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <form method="POST">
-                    {% csrf_token %}
-                    Are you sure you want to delete blogpost "{{ blogpost.title }} by {{ blogpost.author }}"?
-                    <br>
-                    <button class="btn btn-danger" type="submit">Yes, delete blog post</button>
-                    <a class="btn btn-secondary" href="{% url 'blog_post' blogpost.pk %}">Cancel</a>
-                </form>
+<div class="container margintop-10">
+    <div class="row">
+        <div class="col-12 col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1><i class="fa fa-exclamation" aria-hidden="true"></i> Delete blog post</h1>
+                    <p>Are you sure you want to delete blogpost "{{ blogpost.title }}" by {{ blogpost.author }}?</p>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="margintop-10">
+                            <a class="btn btn-secondary" href="{% url 'blog_post' blogpost.pk %}">Cancel</a>
+                            <button class="btn btn-danger" type="submit">Yes, delete blog post</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
+
+
