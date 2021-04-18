@@ -33,6 +33,8 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
         profile = self.get_object()
         if self.request.user == profile.user:
             return True
+        elif self.request.user.is_superuser:
+            return True
         return False
 
     def handle_no_permission(self):
