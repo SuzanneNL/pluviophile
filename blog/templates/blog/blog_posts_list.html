@@ -20,8 +20,13 @@
         </div>
         <br>
         {% endif %}
-        <!--Sorting-->
         <div class="row">
+            <div class="col d-flex justify-content-end">
+                {% include 'sortable_listview/pagination.html' %}
+            </div>
+        </div>
+        <!--Sorting-->
+        <div class="row margintop-10">
             <div class="col col-md-6 offset-md3 mx-auto d-flex justify-content-center">
                 {% include 'sortable_listview/sorting.html' %}
             </div>
@@ -48,7 +53,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col d-flex justify-content-center">
+            <div class="col d-flex justify-content-end">
                 {% include 'sortable_listview/pagination.html' %}
             </div>
         </div>
