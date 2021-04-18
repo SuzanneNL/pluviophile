@@ -38,7 +38,7 @@
                     <p class="blog-post-section">{{ blogpost.body_part_3|safe }}</p>
                 {% endif %}
                 {% if request.user.is_superuser %}
-                <a href="{% url 'edit_blog_post' blogpost.pk %}" class="btn btn-dark">Edit blog post</a>
+                <a href="{% url 'edit_blog_post' blogpost.pk %}" class="btn btn-secondary">Edit blog post</a>
                 <a href="{% url 'delete_blog_post' blogpost.pk %}" class="btn btn-danger">Delete blog post</a>
                 {% endif %}
                 <hr>

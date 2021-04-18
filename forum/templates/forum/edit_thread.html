@@ -13,8 +13,8 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button class="btn btn-dark" type="submit">Edit thread</button>
                     <a class="btn btn-secondary" href="{% url 'thread' thread.pk %}">Cancel</a>
+                    <button class="btn btn-blue" type="submit">Edit thread</button>
                 </form>
             </div>
         </div>
