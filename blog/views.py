@@ -17,7 +17,7 @@ from .models import BlogPost
 from .forms import BlogPostForm
 
 
-class BlogPostsListView(SortableListView):
+class BlogPostsListView(LoginRequiredMixin, SortableListView):
     model = BlogPost
     template_name = "blog/blog_posts_list.html"
     paginate_by = 4
@@ -29,7 +29,7 @@ class BlogPostsListView(SortableListView):
     default_sort_field = 'date_created'
 
 
-class BlogPostView(DetailView):
+class BlogPostView(LoginRequiredMixin, DetailView):
     model = BlogPost
     template_name = "blog/blog_post.html"
 
