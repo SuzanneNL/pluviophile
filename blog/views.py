@@ -23,9 +23,8 @@ class BlogPostsListView(SortableListView):
     paginate_by = 4
     allowed_sort_fields = {'date_created': {'default_direction': '-',
                                             'verbose_name': 'Date'},
-                           'likes': {'default_direction': '',
-                                     'verbose_name': 'Popularity'},
-
+                           'title': {'default_direction': '',
+                                     'verbose_name': 'Title'}
                            }
     default_sort_field = 'date_created'
 
