@@ -22,7 +22,7 @@ class ForumView(LoginRequiredMixin, SortableListView):
     allowed_sort_fields = {'date_created': {'default_direction': '-',
                                             'verbose_name': 'Date'},
                            'title': {'default_direction': '',
-                                     'verbose_name': 'Title'}
+                                     'verbose_name': 'Title'},
                            }
     default_sort_field = 'date_created'
 
@@ -69,6 +69,8 @@ class EditThreadView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
         thread = self.get_object()
         if self.request.user == thread.creator:
             return True
+        elif self.request.user.is_superuser:
+            return True
         return False
 
     def handle_no_permission(self):
@@ -84,6 +86,8 @@ class DeleteThreadView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMi
     def test_func(self):
         thread = self.get_object()
         if self.request.user == thread.creator:
+            return True
+        elif self.request.user.is_superuser:
             return True
         return False
 
@@ -123,6 +127,8 @@ class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
         comment = self.get_object()
         if self.request.user == comment.creator:
             return True
+        elif self.request.user.is_superuser:
+            return True
         return False
 
     def handle_no_permission(self):
@@ -140,6 +146,8 @@ class DeleteCommentView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageM
     def test_func(self):
         comment = self.get_object()
         if self.request.user == comment.creator:
+            return True
+        elif self.request.user.is_superuser:
             return True
         return False
 
