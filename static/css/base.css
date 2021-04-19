@@ -113,6 +113,17 @@ body {
     text-align: center;
 }
 
+.fa-question-circle {
+    font-size: 160px;
+    color: #094C72;
+    margin-top: 30px;
+}
+
+#show-icon img {
+    width: 65px;
+    height: 65px;
+}
+
 /* ---------------------------------------------------------------------------- END APP HOME*/
 
 /* ---------------------------------------------------------------------------- APP FORUM*/

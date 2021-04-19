@@ -1,3 +1,4 @@
+let weatherCodes = ["200", "201", "202", "230", "231", "232", "300", "301", "302", "310", "311", "312", "313", "314", "321", "500", "501", "502", "503", "504", "511", "520", "521", "522", "531"]
 var openWeatherMapKey = $('#id_open_weather_map_key').text().slice(1, -1);
 
 $("#getWeather").click(function(){
@@ -10,14 +11,30 @@ $("#getWeather").click(function(){
         data: {q: city, appid: openWeatherMapKey, units: 'metric'},
 
         success: function(data){
-            let wf = '';
+
             let weatherid = '';
+            let cityname = '';
+            let icon = '';
+            let temp = '';
+            let desc = '';
             $.each(data.weather, function(index, val) {
-                wf += '<p><b>' + data.name + "</b><img src=" + 'https://openweathermap.org/img/w/' + val.icon + ".png></p>"+
-                '<p>' + data.main.temp + '&deg;C ' + ' </p><p> ' + val.main + ", " +
-                val.description + '</p>'
+                weatherid += val.id
+                cityname += data.name
+                icon += "<img src=" + 'https://openweathermap.org/img/w/' + val.icon + ".png>"
+                temp += data.main.temp 
+                temprounded = Math.floor(temp) + '&deg;C '
+                desc += val.description
             });
-            $("#showWeather").html(wf)
+            $("#show-city").html(cityname)
+            $("#show-icon").html(icon)
+            $("#show-temp").html(temprounded)
+            $("#show-desc").html(desc)
+            if (weatherCodes.includes(weatherid)) {
+                $("#isItRaining").html("Yaay, it's raining in")
+            }
+            else {
+                $("#is-it-raining").html("Sorry, it's not raining in")
+            }
         }
     })
 });
