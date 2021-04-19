@@ -180,3 +180,6 @@ STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 DEFAULT_FROM_EMAIL = 'pluviophile@example.com'
+
+# Open weather map
+OPEN_WEATHER_MAP_KEY = os.environ.get('OPEN_WEATHER_MAP_KEY', '')

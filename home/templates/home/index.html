@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container" id="home-page-container">
     <div class="row">
         <div class="col col-md-6 col-lg-4 d-flex align-self-stretch">
             <div class="card">
@@ -32,19 +32,31 @@
                     <p class="card-text">{{ blogpost.body_part_1|truncatewords:30|safe }}</p>
                 </div>
                 <div class="card-footer">
-                    <a href="{% url 'blog_post' blogpost.pk %}" class="btn btn-blue read">Read the latest blog post</a>
+                    <a href="{% url 'blog_post' blogpost.pk %}" class="btn btn-blue">Read the latest blog post</a>
                 </div>
             </div>
         </div>
         <div class="col col-md-6 col-lg-4 d-flex align-self-stretch">
             <div class="card">
                 <div class="card-body">
-                    <h1>Weather forecast</h1>
-                    <h5>This shows when it rains</h5>
-                    <p>If I have time for this...</p>
+                    <h1 class="center">Where is it raining?</h1>
+                    <div class="center">
+                        <input type="text" id="city" class="center">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary center" id="getWeather">Enter city</button>
+                    </div>
+                    <div id="showWeather"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{{ open_weather_map_key|json_script:"id_open_weather_map_key"}}
+<script src="{% static '/js/weather.js' %}"></script>
 {% endblock %}
