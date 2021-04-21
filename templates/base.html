@@ -48,6 +48,9 @@
                         <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
+                        <button class="nav-link" id="wherestherain" data-toggle="modal" data-target="#myModal">Find the rain</button>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'rain' %}">Make it rain!</a>
                     </li>
                     {% if request.user.is_authenticated %}
@@ -131,12 +134,38 @@
             </div>
         </div>
     </footer>
+    <!----------------------------------------MODAL---------------------------------------->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalLabel">Where's it raining?</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                    <h5 class="center"><span id="is-it-raining"></span> <span id="show-city" class="center"></span></h5>
+                    <p id="show-icon" class="center"></p>
+                    <h3 class="center"><strong id="show-temp"></strong></h3>
+                    <p id="show-desc" class="center"></p>
+                    <div class="justify-content-center">
+                        <input type="text" id="city">
+                        <button class="btn btn-blue mx-auto" id="getWeather">Enter city</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------------------------END MODAL---------------------------------------->
 
     {% block postloadjs %}
     <script type="text/javascript">
         $('.toast').toast('show');
     </script>
+    {{ open_weather_map_key|json_script:"id_open_weather_map_key"}}
+    <script src="{% static '/js/weather.js' %}"></script>
     {% endblock %}
-    
 </body>
 </html>

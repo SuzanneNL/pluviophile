@@ -1,17 +1,14 @@
 from django.shortcuts import render
 from blog.models import BlogPost
 from django.shortcuts import get_object_or_404
-from django.conf import settings
 
 
 def index(request):
     """Returns home page"""
     blogpost = get_object_or_404(BlogPost, pk=1)
     template = 'home/index.html'
-    open_weather_map_key = settings.OPEN_WEATHER_MAP_KEY
     context = {
         'blogpost': blogpost,
-        'open_weather_map_key': open_weather_map_key,
     }
     return render(request, template, context)
 

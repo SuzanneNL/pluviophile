@@ -30,11 +30,12 @@ $("#getWeather").click(function(){
             $("#show-temp").html(temprounded)
             $("#show-desc").html(desc)
             if (weatherCodes.includes(weatherid)) {
-                $("#isItRaining").html("Yaay, it's raining in")
+                $("#is-it-raining").html("Yaay, it's raining in")
             }
             else {
-                $("#is-it-raining").html("Sorry, it's not raining in")
+                $("#is-it-raining").html("Sorry, no rain in")
             }
+            console.log
         }
     })
 });

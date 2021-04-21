@@ -99,9 +99,3 @@
 <!--End icon container small screens-->
 
 {% endblock %}
-
-{% block postloadjs %}
-{{ block.super }}
-{{ open_weather_map_key|json_script:"id_open_weather_map_key"}}
-<script src="{% static '/js/weather.js' %}"></script>
-{% endblock %}

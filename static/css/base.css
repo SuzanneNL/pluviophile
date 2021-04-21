@@ -28,6 +28,25 @@ body {
     background-color: #094C72;
 }
 
+#wherestherain { 
+    border:none; 
+    background-color: #094C72;
+}
+
+#wherestherain:active { 
+    border:none; 
+} 
+
+#city,
+#getWeather {
+    display: block;
+    margin : 0 auto;
+}
+
+#getWeather {
+    margin-top: 5px;
+}
+
 /* ------------------------------------------------------ END NAVBAR */
 /* ------------------------------------------------------ FOOTER*/
 
