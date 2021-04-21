@@ -26,6 +26,11 @@ body {
     display: none;
 }
 
+.card-footer a {
+    text-align: center;
+    width: 100%;
+}
+
 /* ------------------------------------------------------ MEDIA QUERIES */
 @media screen and (max-width: 1024px) {
     body {
