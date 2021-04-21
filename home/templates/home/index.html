@@ -8,58 +8,95 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col col-md-6 col-lg-4 d-flex align-self-stretch">
-            <div class="card">
-                <div class="card-body">
-                    <h2>Pluviophile</h2>
-                    <p>noun, plural: 'pluviophiles'</p>
-                    <h4>One who loves rain.</h4>
-                    <p>Do you enjoy the sound of the rain drops against your window? Do you love the sight of dark rainy clouds? Do you prefer rainy days over sunny ones? Then perhaps you are a pluviophile.</p>
-                    <p>You are not alone! Which is why we've created this website. Here you can talk to fellow pluviophiles and exchange ideas. Or you can read blog posts from our pluviophile authors.<br>What are you waiting for?</p>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-blue" href="{% url 'account_signup' %}">Join Now!</a>
-                </div>
-            </div>
-        </div>
+        <div class="col" id="home-page-container">
+            <h1><strong>Welcome to <span id="title">Pluviophile</span></strong></h1>
+            <h4 class="show-sm">Pluviophile:<span class="text-muted"><br>noun<br>plural: 'pluviophiles'</span></h4>
+            <h4 class="show-sm">One who loves rain.</h4>
+            <h4 class="show-md">Pluviophile:<br>
+            <span class="text-muted">noun, plural: 'pluviophiles'</span><br>
+            One who loves rain.</h4>
+            <br>
+            <a class="btn btn-lg btn-blue" href="">Join!</a>
 
-        <div class="col col-md-6 col-lg-4 d-flex align-self-stretch">
+        </div>
+    </div>
+</div>
+<!--Icon container medium screens and up-->
+<div class="container content-container show-md"> 
+    <div class="row">
+        <div class="col col-sm-12 col-md-4">
             <div class="card">
-                <a href="{% url 'blog_post' blogpost.pk %}"><img class="card-img-top" src="{{ blogpost.image_1.url }}" alt="Go to blog post {{ blogpost.title }}"></a>
-                <div class="card-body">
-                    <small class="text-muted">By {{ blogpost.author }} on {{ blogpost.date_created }}</small>
-                    <h5 class="card-title">{{ blogpost.title }} </h5>
-                    <p class="card-text">{{ blogpost.body_part_1|truncatewords:30|safe }}</p>
+                <div class="card-header">
+                    <h2><i class="fa fa-user" aria-hidden="true"></i> Profile</h2>
                 </div>
-                <div class="card-footer">
-                    <a href="{% url 'blog_post' blogpost.pk %}" class="btn btn-blue">Read the latest blog post</a>
+                <div class="card-body">
+                    <p>Create your own profile and visit other people's profiles</p>
                 </div>
             </div>
         </div>
-        <div class="col col-md-6 col-lg-4 d-flex align-self-stretch">
+        <div class="col col-md-4">
             <div class="card">
-                <div class="card-body">
-                    <h2 class="center">Where's it raining?</h2>
-                    <div>
-                        <h5 id="is-it-raining" class="center margintop-20"></h5>
-                    </div>
-                    <div class="margintop-20">
-                        <h3 id="show-city" class="center">
-                            <i class="fa fa-question-circle" aria-hidden="true"></i>
-                        </h3>
-                        <p id="show-icon" class="center"></p>
-                        <h1 class="center"><strong id="show-temp"></strong></h1>
-                        <h5 id="show-desc" class="center"></h5>
-                    </div>
+                <div class="card-header">
+                    <h2><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Forum</h2>
                 </div>
-                <div class="card-footer center">
-                    <input type="text" id="city">
-                    <button class="btn btn-blue" id="getWeather">Enter city</button>
+                <div class="card-body">
+                    <p>Get to know other pluviophiles, share your experiences</p>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fa fa-book" aria-hidden="true"></i> Blog</h2>
+                </div>
+                <div class="card-body">
+                    <p>Read blog posts about rain related topics by different authors</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--End icon container medium screens and up-->
+<!--Icon container small screens-->
+<div class="container content-container show-sm"> 
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fa fa-user" aria-hidden="true"></i> Profile</h2>
+                </div>
+                <div class="card-body">
+                    <p>Create your own profile and visit other people's profiles</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Forum</h2>
+                </div>
+                <div class="card-body">
+                    <p>Get to know other pluviophiles, share your experiences</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fa fa-book" aria-hidden="true"></i> Blog</h2>
+                </div>
+                <div class="card-body">
+                    <p>Read blog posts about rain related topics by different authors</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End icon container small screens-->
 
 {% endblock %}
 

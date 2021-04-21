@@ -1,3 +1,99 @@
+body {
+    background: url('/media/background_images/bg-v1.jpg') no-repeat center center;
+    background-attachment: fixed;
+    width: 100%;
+}
+
+#title,
+.fa-pencil-square-o,
+.fa-book {
+    color: #094C72;
+}
+
+#home-page-container {
+    margin-top: 150px;
+}
+
+.content-container {
+    margin-top: 100px;
+}
+
 .card {
     margin-bottom: 15px;
 }
+
+.show-sm {
+    display: none;
+}
+
+/* ------------------------------------------------------ MEDIA QUERIES */
+@media screen and (max-width: 1024px) {
+    body {
+        background: url('/media/background_images/bg-v2.jpg') no-repeat center center;
+        background-attachment: fixed;
+        width: 100%;
+    }
+
+    @media screen and  (min-height: 1136px)  {
+        .content-container {
+            margin-top: 550px;
+        }
+    }
+}
+
+@media screen and (max-width: 950px) {
+    body {
+        background: url('/media/background_images/bg-v3.jpg') no-repeat center center;
+        background-attachment: fixed;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        background: url('/media/background_images/bg-v3.jpg') no-repeat center center;
+        background-attachment: fixed;
+        width: 100%;
+    }
+
+    @media screen and  (min-height: 1024px)  {
+        #home-page-container {
+            margin-top: 50px;
+        }
+
+        .content-container {
+            margin-top: 400px;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        background: url('/media/background_images/bg-v4.jpg') no-repeat center center;
+        background-attachment: fixed;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    body {
+        background: url('/media/background_images/bg-v5.jpg') no-repeat center center;
+        background-attachment: fixed;
+        width: 100%;
+    }
+
+    #home-page-container {
+    margin-top: 100px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .show-md {
+        display: none;
+    }
+
+    .show-sm {
+    display: block;
+    }
+}
+/* ------------------------------------------------------ END MEDIA QUERIES */
