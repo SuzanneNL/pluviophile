@@ -17,7 +17,6 @@ class ProfileView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         profile = self.get_object()
-        context['donations_by_user'] = Donation.objects.filter(donor=profile.user)
         context['threads_by_user'] = Thread.objects.filter(creator=profile.user)
         context['comments_by_user'] = Comment.objects.filter(creator=profile.user)
         return context
@@ -45,7 +44,7 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
 def account(request):
     template = 'profiles/account.html'
     context = {
-        'donations_by_user': Donation.objects.filter(donor=request.user),
+        'donations_by_user': Donation.objects.filter(donor=request.user).order_by('-date'),
         'blogposts': BlogPost.objects.all()
     }
     return render(request, template, context)

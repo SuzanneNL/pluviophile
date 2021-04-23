@@ -6,7 +6,8 @@ body {
 
 #title,
 .fa-pencil-square-o,
-.fa-book {
+.fa-book,
+.fa-user {
     color: #094C72;
 }
 
