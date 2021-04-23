@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static '/css/back-to-top.css' %}">
+{% endblock %}
+
 {% block extra_title %}
 | Account
 {% endblock %}
@@ -137,6 +141,9 @@
         </div>
     </div>
 </div>
+<!--Back to top button-->
+    <button title="Back to top" onclick="topFunction()" id="backtotop"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
+<!--End back to top button-->
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}
@@ -159,4 +166,6 @@
 
     showDonationAmount();
 </script>
+
+<script src="{% static '/js/back_to_top.js' %}"></script>
 {% endblock %}
