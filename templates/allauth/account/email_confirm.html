@@ -1,4 +1,9 @@
 {% extends "account/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static '/css/umbrella-bg.css' %}">
+{% endblock %}
 
 {% load i18n %}
 {% load account %}
@@ -11,7 +16,9 @@
 
 
 {% block inner_content %}
-<h1>{% trans "Confirm E-mail Address" %}</h1>
+<div class="text-center">
+    <h1>{% trans "Confirm E-mail Address" %}</h1>
+</div>
 
 {% if confirmation %}
 
@@ -22,7 +29,9 @@
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
 {% csrf_token %}
 {{ form|crispy }}
-    <button class="btn btn-blue" type="submit">{% trans 'Confirm' %}</button>
+    <div class="text-center">
+        <button class="btn btn-blue" type="submit">{% trans 'Confirm' %}</button>
+    </div>
 </form>
 
 {% else %}
