@@ -44,6 +44,7 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
 def account(request):
     template = 'profiles/account.html'
     context = {
+        'donations': Donation.objects.all().order_by('-date'),
         'donations_by_user': Donation.objects.filter(donor=request.user).order_by('-date'),
         'blogposts': BlogPost.objects.all()
     }
