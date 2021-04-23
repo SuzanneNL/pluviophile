@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_title %}
+| Error
+{% endblock %}
+
 {% block content %}
 {% include 'includes/base-error.html' %}
 {% endblock %}
