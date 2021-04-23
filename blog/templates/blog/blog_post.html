@@ -65,13 +65,13 @@
                 <form action="{% url 'bookmark_blog_post' blogpost.pk %}" method="POST" class="d-inline-block">
                     {% csrf_token%}
                     <button class="bookmark-unbookmark d-inline-block" type="submit" name="blogpost_id" value="{{ blogpost.id }}">
-                        {% if request.user in blogpost.bookmarks.all %}<i class="fa fa-bookmark" aria-hidden="true"></i>{% else%}<i class="fa fa-bookmark-o" aria-hidden="true"></i>{% endif %}
+                        {% if request.user in blogpost.bookmarks.all %}<i class="fa fa-bookmark" aria-hidden="true" title="Remove bookmark"></i>{% else%}<i class="fa fa-bookmark-o" aria-hidden="true" title="Bookmark"></i>{% endif %}
                     </button>
                 </form>
                 <form action="{% url 'like_blog_post' blogpost.pk %}" method="POST" class="d-inline-block">
                     {% csrf_token%}
                     <button class="bookmark-unbookmark d-inline-block" type="submit" name="blogpost_id" value="{{ blogpost.id }}">
-                        {% if request.user in blogpost.likes.all %}<i class="fa fa-heart like" aria-hidden="true"></i>{% else%}<i class="fa fa-heart-o unlike" aria-hidden="true"></i>{% endif %}
+                        {% if request.user in blogpost.likes.all %}<i class="fa fa-heart like" aria-hidden="true" title="Unlike"></i>{% else%}<i class="fa fa-heart-o unlike" aria-hidden="true" title="Like"></i>{% endif %}
                     </button>
                 </form>
                 {% if blogpost.likes.count == 1 %}
