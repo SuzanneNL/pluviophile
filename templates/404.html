@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %}
+| Error 404
+{% endblock %}
+
+<div class="container margintop-10">
+    <div class="row">
+        <div class="col-12 col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1><i class="fa fa-times" aria-hidden="true"></i></h1>
+                    <h1>Oops! Something went wrong.</h1>
+                    <a href="{% url 'home' %}" class="btn btn-lg btn-blue margintop-10">Go to home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
