@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from blog.models import BlogPost
 from django.shortcuts import get_object_or_404
 
@@ -16,7 +16,10 @@ def index(request):
 def rain(request):
     """Returns rain page. Allows users to go back to previous page"""
     template = 'home/rain.html'
+    goback = request.META.get('HTTP_REFERER')
+    if not goback:
+        return redirect('home')
     context = {
-        'goback': request.META.get('HTTP_REFERER')
+        'goback': goback,
     }
     return render(request, template, context)
