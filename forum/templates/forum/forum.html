@@ -19,31 +19,20 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
                 <p class="d-flex justify-content-center"><a class="btn btn-blue" href="{% url 'start_thread' %} ">Start a new thread</a></p>
             </div>
-        </div>
-        <!--Pagination-->
-        <div class="row">
-            <div class="col d-flex justify-content-end">
-               {% include 'sortable_listview/pagination.html' %} 
+
+        <!--Sorting-->
+            <div class="col md-4 d-flex justify-content-end">
+                {% include 'sortable_listview/sorting.html' %}
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <p class="d-flex justify-content-end">{{ threads_count }} thread{% if threads_count == 0 or threads_count > 1 %}s{% endif %}
-                 - Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
-            </div>
-        </div>
-        <br>
-        <!--End pagination-->
+        <!--End sorting-->
         <!--Treads-->
         <div class="row thread-top">
-            <div class="col-sm-12 col-md-6">
-                <h4>Threads ({{ threads_count }})</h4>
-            </div>
-            <div class="col-md-2 forum-small-hide">
+            <div class="col-md-2 offset-md-6 forum-small-hide">
                 <small>Comments</small>
             </div>
             <div class="col-md-4 forum-small-hide">
@@ -57,7 +46,11 @@
                 <p>By <a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} ">{{ thread.creator }}</a> on {{ thread.date_created }}</p>
             </div>
             <div class="col-md-2">
-                <p>{{ thread.comments.all.count }} <span class="forum-small-show"><i class="fa fa-comment-o" aria-hidden="true"></i></span></p>
+                {% if thread.comments.all.count == 1 %}
+                    <p>1 <span class="forum-small-show"> comment</span></p>
+                {% else %}  
+                    <p>{{ thread.comments.all.count }} <span class="forum-small-show"> comments</span></p>
+                {% endif %}
             </div>
             <div class="col-md-4">
                 {% if thread.comments.all %}
@@ -70,31 +63,16 @@
         {% endfor %}
         <br>
         <!--End threads-->
-         <!--Sorting-->
-        <div class="row">
-            <div class="col d-flex justify-content-end">
-                {% include 'sortable_listview/sorting.html' %}
-            </div>
-        </div>
-        <!--End sorting-->
-        <div class="row">
-            <div class="col-md-3">
-                <p></p> 
-            </div>
-             <div class="col-md-6">
-                <p class="d-flex justify-content-center"><a class="btn btn-blue" href="{% url 'start_thread' %} ">Start a new thread</a></p>
-            </div>
-        </div>
         <!--Pagination-->
-        <div class="row">
-            <div class="col">
-                <p class="d-flex justify-content-end">{{ threads_count }} thread{% if threads_count == 0 or threads_count > 1 %}s{% endif %}
-                 - Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
-            </div>
-        </div>
         <div class="row">
             <div class="col d-flex justify-content-end">
                {% include 'sortable_listview/pagination.html' %} 
+            </div>
+        </div>
+        <div class="row">   
+            <div class="col d-flex justify-content-end">
+                <p class="d-flex justify-content-end">{{ threads_count }} thread{% if threads_count == 0 or threads_count > 1 %}s{% endif %}
+                    - Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
             </div>
         </div>
         <!--End pagination-->

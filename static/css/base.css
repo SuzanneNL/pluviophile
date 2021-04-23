@@ -158,8 +158,19 @@ body {
     margin: 5px;
 }
 
+#thread .col-sm-12 {
+    padding-top: 10px;
+}
+
+#thread .col-md-2,
+#thread .col-md-4 {
+    padding-top: 20px;
+}
+
 #thread:hover {
+    transition: 0.8s;
     border: 1px solid #094C72;
+    background-color: #f2f2f2;
 }
 
 .start-thread {
@@ -222,6 +233,15 @@ body {
 
     .start-thread {
         padding: 0px;
+    }
+
+    #thread .col-sm-12 {
+    padding-top: 5px;
+}
+
+    #thread .col-md-2,
+    #thread .col-md-4 {
+        padding-top: 5px;
     }
 }
 
