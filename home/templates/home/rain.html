@@ -10,7 +10,11 @@
     <center>
     <canvas id="canvas"></canvas>
     </center>
-    <a class="btn-close" href="{{ goback }}">Close</a>
+    {% if goback %}
+        <a class="btn-close" href="{{ goback }}">Close</a>
+    {% else %}
+        <a class="btn-close" href="{% url 'home' %}">Close</a>
+    {% endif %}
 </body>
 
 
