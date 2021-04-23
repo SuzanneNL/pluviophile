@@ -40,7 +40,8 @@ class ThreadView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(ThreadView, self).get_context_data(**kwargs)
         page = self.request.GET.get('page')
-        comments = Paginator(self.object.comments.all(), 5)
+        comments = Paginator(self.object.comments.all().order_by(
+                             'date_created'), 5)
         context['all_threads_on_forum'] = Thread.objects.all()
         context['all_comments_on_forum'] = Comment.objects.all()
         context['comments'] = comments.get_page(page)
