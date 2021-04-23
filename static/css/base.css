@@ -462,14 +462,29 @@ body {
 
 
 /* ------------------------------------------------------ ACCOUNT PAGE*/
+.account-container {
+    border: 1px solid #E0E1DD;
+    padding: 0;
+}
+
+.grey-col {
+    background-color: #f2f2f2;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.grey-col h4 {
+    padding: 4px;
+    color: #094C72;
+}
+
 
 #donation-details-account-sm {
     display: none;
 }
 
-.fa-lock,
-.fa-user, 
-.fa-eur {
+.fa-lock {
     color: #094C72;
 }
 
@@ -481,6 +496,36 @@ body {
 .bookmark a,
 .blue-text {
     color: #094C72;
+}
+
+#donation-details-account-lg {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 20px 0 20px;
+}
+
+#donation-details-account-lg th {
+    background-color: #094C72;
+    color: white;
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+#donation-details-account-lg td {
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+#donation-details-account-lg tr {
+    border-bottom: 1px solid #E0E1DD;
+}
+
+.mobile-donations {
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 /* ------------------------------------------------------ END ACCOUNT PAGE*/

@@ -15,73 +15,88 @@
     </div>
     <div class="container margintop-10 marginbottom-20">
         <div class="row">
-            <div class="col-md-10 offset-md-1">
-                <h4><i class="fa fa-user" aria-hidden="true"></i> Account details</h4>
-                <table style="width:100%">
-                    <tr>
-                        <td><strong>Username:</strong></td>
-                        <td>{{ request.user.username }}</td> 
-                    </tr>
-                    <tr>
-                        <td><strong>E-mail address:</strong></td>
-                        <td>{{ request.user.email}} <a class="blue-text" href="{% url 'account_change_password' %}">(update password)</a></td> 
-                    </tr>
-                </table>
-                <br>
-                <h4><i class="fa fa-bookmark" aria-hidden="true"></i> Your bookmarks</h4>
-                <p id="no-bookmarks" class="hide">You haven't bookmarked any blog posts yet.</p>
-                <ul id="bookmarks-list">
-                {% for blogpost in blogposts %}
-                    {% if blogpost.bookmarks.all %}
-                        {% for user in blogpost.bookmarks.all %}
-                            {% if user == request.user %}
-                                <li class="bookmark"><a href="{% url 'blog_post' blogpost.pk %}"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ blogpost.title }}</a></li>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                {% endfor %}
-                </ul>
-                <br>
-                {% if donations_by_user %}
-                    <h4><i class="fa fa-eur" aria-hidden="true"></i> Donation details </h4>
-                    <table id="donation-details-account-lg" style="width: 100%">
+            <div class="col-md-10 offset-md-1 account-container">
+                <div class="col grey-col">
+                    <h4>Account details</h4>
+                </div>
+                <div class="col">
+                    <table style="width:100%">
                         <tr>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Credit card holder</th>
-                            <th>Confirmation mail sent to:</th>
-                            <th>Donation number</th>
+                            <td><strong>Username:</strong></td>
+                            <td>{{ request.user.username }}</td> 
                         </tr>
-                        {% for donation in donations_by_user %}
                         <tr>
-                            <td>{{ donation.date }}</td>
-                            <td>€ 05,00</td>
-                            <td>{{ donation.donor_full_name }}</td>
-                            <td>{{ donation.email }}</td>
-                            <td>{{ donation.donation_number }}</td>
+                            <td><strong>E-mail address:</strong></td>
+                            <td>{{ request.user.email}} <a class="blue-text" href="{% url 'account_change_password' %}">(update password)</a></td> 
                         </tr>
-                        {% endfor %}
                     </table>
-                    <div id="donation-details-account-sm">
-                        {% for donation in donations_by_user %}
-                        <span><strong>Date:</strong></span><br>
-                        <span><em>{{ donation.date }}</em></span><br>
-
-                        <span><strong>Amount:</strong></span><br>
-                        <span><em>€ 5,00</em></span><br>
-                        
-                        <span><strong>Credit card holder:</strong></span><br>
-                        <span><em>{{ donation.donor_full_name }}</em></span><br>
-                        
-                        <span><strong>Confirmation mail sent to:</strong></span><br>
-                        <span><em>{{ donation.email }}</em></span><br>
-                        
-                        <span><strong>Donation number:</strong></span><br>
-                        <span><em>{{ donation.donation_number }}</em></span><br>
-                        <hr>
-                        {% endfor %}
+                    <br>
+                </div>
+                <div class="col grey-col">
+                    <h4>Your bookmarks</h4>
+                </div>
+                <div class="col">
+                    <p id="no-bookmarks" class="hide">You haven't bookmarked any blog posts yet.</p>
+                    <ul id="bookmarks-list">
+                    {% for blogpost in blogposts %}
+                        {% if blogpost.bookmarks.all %}
+                            {% for user in blogpost.bookmarks.all %}
+                                {% if user == request.user %}
+                                    <li class="bookmark"><a href="{% url 'blog_post' blogpost.pk %}"><i class="fa fa-bookmark" aria-hidden="true"></i> {{ blogpost.title }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                    <br>
+                </div>
+                    {% if donations_by_user %}
+                    <div class="col grey-col">
+                        <h4>Donation details </h4>
                     </div>
-                {% endif %}
+                    <div class="col">
+                        <!--Donation table on large screens-->
+                        <table id="donation-details-account-lg" style="width: 100%">
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Credit card holder</th>
+                                <th>Confirmation mail sent to:</th>
+                                <th>Donation number</th>
+                            </tr>
+                            {% for donation in donations_by_user %}
+                            <tr>
+                                <td>{{ donation.date.date }}</td>
+                                <td>€ 05,00</td>
+                                <td>{{ donation.donor_full_name }}</td>
+                                <td>{{ donation.email }}</td>
+                                <td>{{ donation.donation_number }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        <!--Donation table on small screens-->
+                        <div id="donation-details-account-sm">
+                            {% for donation in donations_by_user %}
+                            <div class="mobile-donations">
+                                <span><strong>Date:</strong></span><br>
+                                <span><em>{{ donation.date }}</em></span><br>
+
+                                <span><strong>Amount:</strong></span><br>
+                                <span><em>€ 5,00</em></span><br>
+                                
+                                <span><strong>Credit card holder:</strong></span><br>
+                                <span><em>{{ donation.donor_full_name }}</em></span><br>
+                                
+                                <span><strong>Confirmation mail sent to:</strong></span><br>
+                                <span><em>{{ donation.email }}</em></span><br>
+                                
+                                <span><strong>Donation number:</strong></span><br>
+                                <span><em>{{ donation.donation_number }}</em></span><br>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
