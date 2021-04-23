@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_meta %}
+<meta name="robots" content="noindex">
+{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static '/css/back-to-top.css' %}">
 {% endblock %}
