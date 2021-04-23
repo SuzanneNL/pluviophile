@@ -11,14 +11,20 @@
             <div class="col col-sm-12 col-lg-8 mx-auto margintop-20">
                 <h3>{{ blogpost.title }}</h3>
                 <p class="text-muted">by {{ blogpost.author }} on {{ blogpost.date_created }}</p>
-                <img class="blog-img" src="{{ blogpost.image_1.url }}" alt="Blog image">
+                {% if request.user.is_superuser %}
+                <div class="mb-2">
+                    <a href="{% url 'edit_blog_post' blogpost.pk %}" class="btn btn-secondary">Edit blog post</a>
+                    <a href="{% url 'delete_blog_post' blogpost.pk %}" class="btn btn-danger">Delete blog post</a>
+                </div>
+                {% endif %}
+                <img class="blog-img" src="{{ blogpost.image_1.url }}" width=100% alt="Blog image">
                 {% if blogpost.image_1_description %}
                 <br>
                     <em>{{ blogpost.image_1_description }}</em>
                 {% endif %}
                 <p class="blog-post-section">{{ blogpost.body_part_1|safe }}</p>
                 {% if blogpost.image_2 %}
-                    <img class="blog-img" src="{{ blogpost.image_2.url }}" alt="Blog image">
+                    <img class="blog-img" src="{{ blogpost.image_2.url }}" width=100% alt="Blog image">
                     {% if blogpost.image_2_description %}
                     <br>
                         <em>{{ blogpost.image_2_description }}</em>
@@ -28,7 +34,7 @@
                 <p class="blog-post-section">{{ blogpost.body_part_2|safe }}</p>
                 {% endif %}
                 {% if blogpost.image_3 %}
-                    <img class="blog-img" src="{{ blogpost.image_3.url }}" alt="Blog image">
+                    <img class="blog-img" src="{{ blogpost.image_3.url }}" width=100% alt="Blog image">
                     {% if blogpost.image_3_description %}
                     <br>
                         <em>{{ blogpost.image_3_description }}</em>
@@ -36,10 +42,6 @@
                 {% endif %}
                 {% if blogpost.body_part_3 %}
                     <p class="blog-post-section">{{ blogpost.body_part_3|safe }}</p>
-                {% endif %}
-                {% if request.user.is_superuser %}
-                <a href="{% url 'edit_blog_post' blogpost.pk %}" class="btn btn-secondary">Edit blog post</a>
-                <a href="{% url 'delete_blog_post' blogpost.pk %}" class="btn btn-danger">Delete blog post</a>
                 {% endif %}
                 <hr>
                 <br>
