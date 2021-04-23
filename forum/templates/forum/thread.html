@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_title %}
-| Forum
+| Thread
 {% endblock %}
 
 {% block extra_css %}
@@ -10,34 +10,14 @@
 {% endblock %}
 
 {% block content %}
-    <!--Pagination-->
-    <div class="container margintop-20">
-        <div class="row">
-            <div class="col d-flex justify-content-end">
-                {% if comments.has_previous %}
-                    <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
-                    <a class="btn btn-paginate" href="?page={{ comments.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
-                {% endif %}
-                {% if comments.has_previous or comments.has_next %}
-                <a class="btn btn-paginate-current" href="?page={{ comments.number }}">{{ comments.number }}</a>
-                {% endif %}
-                {% if comments.has_next %}
-                    <a class="btn btn-paginate" href="?page={{ comments.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
-                    <a class="btn btn-paginate" href="?page={{ comments.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
-                {% endif %}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p class="d-flex justify-content-end">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
-                 - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
-            </div>
-        </div>
-    </div>
-    <!--End pagination-->
     <!--Desktop thread title and description-->
     <div class="container forum-small-hide">
-        <div class="row start-thread">
+        <div class="row">
+            <div class="col goback">
+                <a href="{% url 'forum' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to forum</a>
+            </div>
+        </div>
+        <div class="row start-thread margintop-20">
             <div class="col-sm-10">
                 <h3>{{ thread.title }}</h3>
                 <small>by <strong><a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} ">{{ thread.creator }}</a></strong> posted on {{ thread.date_created }}
@@ -94,6 +74,11 @@
     <!--Start mobile thread title and description-->
     <div class="container forum-small-show">
         <div class="row">
+            <div class="col goback">
+                <a href="{% url 'forum' %}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to forum</a>
+            </div>
+        </div>
+        <div class="row">
             <div class="col d-flex justify-content-center">
                 <div class="card start-thread" style="width: 36rem;">
                     <div class="card-body">
@@ -120,19 +105,38 @@
     <div class="container">
         {% if comments %}
         <div class="row">
-            <div class="col">
+            <div class="col col-md-2">
                 <a href="{% url 'add_comment' thread.pk %}?next={{ request.path }}" class="btn btn-blue">Drop a comment</a>
             </div>
-        </div>
-        <br>
-        {% else %}
-        <div class="row">
-            <div class="col">
-                <p>There are no comments yet</p>
+            <br>
+            <!--Pagination-->
+            <div class="col col-md-10 d-flex justify-content-end">
+                {% if comments.has_previous %}
+                    <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                    <a class="btn btn-paginate" href="?page={{ comments.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                {% endif %}
+                {% if comments.has_previous or comments.has_next %}
+                <a class="btn btn-paginate-current" href="?page={{ comments.number }}">{{ comments.number }}</a>
+                {% endif %}
+                {% if comments.has_next %}
+                    <a class="btn btn-paginate" href="?page={{ comments.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
+                    <a class="btn btn-paginate" href="?page={{ comments.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                {% endif %}
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <p class="d-flex justify-content-end comment-count-pag">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
+                 - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
+            </div>
+        </div>
+        {% else %}
+            <div class="col col-md-3">
+                <p>There are no comments yet</p>
+            </div>
         {% endif %}
     </div>
+    <!--End pagination-->
     {% if comments %}
         <!--Desktop comment section-->
         <div class="container forum-small-hide">
@@ -222,33 +226,28 @@
     {% endif %}
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col col-md-2">
                 <a href="{% url 'add_comment' thread.pk %}?next={{ request.path }}" class="btn btn-blue">Drop a comment</a>
             </div>
-        </div>
-    </div>
-   
-    <!--Pagination-->
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <p class="d-flex justify-content-end">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
-                 - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col d-flex justify-content-end">
+            <!--Pagination-->
+            <div class="col col-md-10 d-flex justify-content-end">
                 {% if comments.has_previous %}
                     <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
                     <a class="btn btn-paginate" href="?page={{ comments.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
                 {% endif %}
                 {% if comments.has_previous or comments.has_next %}
-                    <a class="btn btn-paginate-current" href="?page={{ comments.number }}">{{ comments.number }}</a>
+                <a class="btn btn-paginate-current" href="?page={{ comments.number }}">{{ comments.number }}</a>
                 {% endif %}
                 {% if comments.has_next %}
                     <a class="btn btn-paginate" href="?page={{ comments.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
                     <a class="btn btn-paginate" href="?page={{ comments.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
                 {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="d-flex justify-content-end comment-count-pag">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
+                 - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
             </div>
         </div>
     </div>

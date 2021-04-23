@@ -192,6 +192,10 @@ body {
 /* ------------------------------------------------------ END FORUM PAGE*/
 /* ------------------------------------------------------ THREAD PAGE*/
 
+.goback a { 
+    color: #094C72;
+}
+
 .comment {
     border: 1px solid #E0E1DD;
     border-radius: 3px;
@@ -237,11 +241,15 @@ body {
 
     #thread .col-sm-12 {
     padding-top: 5px;
-}
+    }
 
     #thread .col-md-2,
     #thread .col-md-4 {
         padding-top: 5px;
+    }
+
+    .comment-count-pag {
+        font-size: 0.9rem;
     }
 }
 
