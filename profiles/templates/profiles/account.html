@@ -56,7 +56,7 @@
             </div>
             {% if donations_by_user %}
             <div class="col grey-col">
-                <h4>Donation details {% if request.user.is_superuser %} - your donations{% endif %}</h4>
+                <h4>Donation details {% if request.user.is_superuser %} - your donations{% endif %} | Total amount donated: € <span id="your-amount-donated"></span>,- </h4>
             </div>
             <div class="col">
                 <!--Donation table on large screens-->
@@ -71,7 +71,7 @@
                     {% for donation in donations_by_user %}
                     <tr>
                         <td>{{ donation.date.date }}</td>
-                        <td>€ 05,00</td>
+                        <td class="your-donation-amount">€ 05,00</td>
                         <td>{{ donation.donor_full_name }}</td>
                         <td>{{ donation.email }}</td>
                         <td>{{ donation.donation_number }}</td>
@@ -100,7 +100,7 @@
             {% if donations %}
             {% if request.user.is_superuser %}
             <div class="col grey-col">
-                <h4>Donation details - all users | Current amount: € <span id="amount-donated"></span>,- </h4>
+                <h4>Donation details - all users | Total amount donated: € <span id="amount-donated"></span>,- </h4>
             </div>
             <div class="col">
                 <!--Donation table on large screens-->
@@ -160,11 +160,24 @@
     let donationCount = document.getElementsByClassName("donation-amount").length
     let donationAmount = donationCount * 5;
 
+    if (donationCount > 1) {
+    showDonationAmount();
+    }
+
     function showDonationAmount() {
         document.getElementById("amount-donated").innerHTML = donationAmount;
     }
 
-    showDonationAmount();
+    let yourDonationCount = document.getElementsByClassName("your-donation-amount").length
+    let yourDonationAmount = yourDonationCount * 5;
+
+    if (yourDonationCount > 1) {
+        showYourDonationAmount();
+    }
+
+    function showYourDonationAmount() {
+        document.getElementById("your-amount-donated").innerHTML = yourDonationAmount;
+    }
 </script>
 
 <script src="{% static '/js/back_to_top.js' %}"></script>
