@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_countries',
     'sortable_listview',
+    'storages',
 
     # Built apps
     'home',
@@ -181,6 +182,15 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if 'USE_AWS' in os.environ:
+    # Bucket configuration
+    AWS_STORAGE_BUCKET_NAME = 'pluviophile'
+    AWS_S3_REGION_NAME = 'eu-central-1'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
 
 # Stripe
 STRIPE_CURRENCY = 'eur'
