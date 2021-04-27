@@ -1,6 +1,7 @@
 // The section below calculates the number of bookmarks.
 // If there are none, a 'no bookmarks' message is visible.
 let bookmarkscount = document.getElementsByClassName("bookmark").length;
+
 if(bookmarkscount == 0) {
 	showNoBookmarksMessage();
 }
@@ -14,11 +15,13 @@ function showNoBookmarksMessage() {
 let yourDonationCount = document.getElementsByClassName("your-donation-amount").length;
 let yourDonationAmount = yourDonationCount * 5;
 
+if (yourDonationCount) {
+    showYourDonationAmount();
+}
+
 function showYourDonationAmount() {
 	document.getElementById("your-amount-donated").innerHTML = yourDonationAmount;
 }
-
-showYourDonationAmount();
 
 // The section below calculates the amount donated by all users.
 // And displays the amount on the account page.
@@ -29,4 +32,6 @@ function showDonationAmount() {
 	document.getElementById("amount-donated").innerHTML = donationAmount;
 }
 
-showDonationAmount();
+if (donationCount) {
+    showDonationAmount();
+}
