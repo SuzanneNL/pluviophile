@@ -570,6 +570,16 @@ body {
     }
 }  
 
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    #activity-table td {
+        font-size: 0.6rem;
+    }
+
+    #avatar {
+        width: 150px;
+        height: 150px;
+    }
+}
     
 /* ------------------------------------------------------ END MEDIA QUERIES */
 /* ---------------------------------------------------------------------------- END APP PROFILE*/
