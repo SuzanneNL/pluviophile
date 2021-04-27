@@ -7,7 +7,6 @@ from django.urls import reverse_lazy, reverse
 from sortable_listview import SortableListView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
-    ListView,
     DetailView,
     CreateView,
     UpdateView,
