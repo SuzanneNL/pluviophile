@@ -1,14 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/back-to-top.css' %}">
 {% endblock %}
-
 {% block extra_title %}
 | Account
 {% endblock %}
-
 {% block content %}
 <div class="container">
     <div class="row">
@@ -20,6 +17,7 @@
 <div class="container margintop-10 marginbottom-20">
     <div class="row">
         <div class="col-md-10 offset-md-1 account-container">
+            <!--Account details-->
             <div class="col grey-col">
                 <h4>Account details</h4>
             </div>
@@ -36,6 +34,8 @@
                 </table>
                 <br>
             </div>
+            <!--End account details-->
+            <!--Bookmarks-->
             <div class="col grey-col">
                 <h4>Your bookmarks</h4>
             </div>
@@ -54,13 +54,15 @@
                 </ul>
                 <br>
             </div>
+            <!--End bookmarks-->
+            <!--Donation table if user has made donations-->
             {% if donations_by_user %}
             <div class="col grey-col">
                 <h4>Donation details {% if request.user.is_superuser %} - your donations{% endif %} | Total amount donated: € <span id="your-amount-donated"></span>,- </h4>
             </div>
             <div class="col">
                 <!--Donation table on large screens-->
-                <table id="donation-details-account-lg" style="width: 100%">
+                <table class="donation-details-account-lg" style="width: 100%">
                     <tr>
                         <th>Date</th>
                         <th>Amount</th>
@@ -79,7 +81,7 @@
                     {% endfor %}
                 </table>
                 <!--Donation table on small screens-->
-                <div id="donation-details-account-sm">
+                <div class="donation-details-account-sm">
                     {% for donation in donations_by_user %}
                     <div class="mobile-donations">
                         <span><strong>Date:</strong></span><br>
@@ -95,8 +97,10 @@
                     </div>
                     {% endfor %}
                 </div>
-            {% endif %}
             </div>
+            {% endif %}
+            <!--End donation table if user has made donations-->
+            <!--Donation table (of all users) for admin-->
             {% if donations %}
             {% if request.user.is_superuser %}
             <div class="col grey-col">
@@ -104,7 +108,7 @@
             </div>
             <div class="col">
                 <!--Donation table on large screens-->
-                <table id="donation-details-account-lg" style="width: 100%">
+                <table class="donation-details-account-lg" style="width: 100%">
                     <tr>
                         <th>Date</th>
                         <th>Amount</th>
@@ -121,7 +125,7 @@
                     {% endfor %}
                 </table>
                 <!--Donation table on small screens-->
-                <div id="donation-details-account-sm">
+                <div class="donation-details-account-sm">
                     {% for donation in donations_by_user %}
                     <div class="mobile-donations">
                         <span><strong>Date:</strong></span><br>
@@ -135,14 +139,15 @@
                     </div>
                     {% endfor %}
                 </div>
-            {% endif %}
-            {% endif %}
             </div>
+            {% endif %}
+            {% endif %}
+            <!--End donation table (of all users) for admin-->
         </div>
     </div>
 </div>
 <!--Back to top button-->
-    <button title="Back to top" onclick="topFunction()" id="backtotop"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
+<button title="Back to top" onclick="topFunction()" id="backtotop"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
 <!--End back to top button-->
 {% endblock %}
 {% block postloadjs %}

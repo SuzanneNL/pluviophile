@@ -507,7 +507,7 @@ body {
 }
 
 
-#donation-details-account-sm {
+.donation-details-account-sm {
     display: none;
 }
 
@@ -525,25 +525,25 @@ body {
     color: #094C72;
 }
 
-#donation-details-account-lg {
+.donation-details-account-lg {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin: 20px 0 20px;
 }
 
-#donation-details-account-lg th {
+.donation-details-account-lg th {
     background-color: #094C72;
     color: white;
     font-size: 0.9rem;
     padding: 10px;
 }
 
-#donation-details-account-lg td {
+.donation-details-account-lg td {
     font-size: 0.9rem;
     padding: 10px;
 }
 
-#donation-details-account-lg tr {
+.donation-details-account-lg tr {
     border-bottom: 1px solid #E0E1DD;
 }
 
@@ -560,11 +560,11 @@ body {
 /* ------------------------------------------------------ END PROFILE PAGE*/
 /* ------------------------------------------------------ MEDIA QUERIES */
 @media screen and (max-width: 1200px) {
-    #donation-details-account-lg {
+    .donation-details-account-lg {
         display: none;
     }
 
-    #donation-details-account-sm {
+    .donation-details-account-sm {
         display: block;
     }
 }  

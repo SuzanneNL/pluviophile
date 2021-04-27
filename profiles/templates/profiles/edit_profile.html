@@ -1,26 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block extra_title %}
 | Profile
 {% endblock %}
-
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Edit Profile</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <a class="btn btn-secondary" href="{% url 'profile' profile.slug %}">Cancel</a>
-                    <button class="btn btn-blue" type="submit">Edit Profile</button>
-                </form>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Edit Profile</h1>
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <a class="btn btn-secondary" href="{% url 'profile' profile.slug %}">Cancel</a>
+                <button class="btn btn-blue" type="submit">Edit Profile</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
