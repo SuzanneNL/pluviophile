@@ -1,26 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block extra_title %}
 | Forum
 {% endblock %}
-
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Add comment</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <a class="btn btn-secondary" href="{{ view.get_success_url }}">Cancel</a>
-                    <button class="btn btn-blue" type="submit">Add comment</button>
-                </form>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Add comment</h1>
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <a class="btn btn-secondary" href="{{ view.get_success_url }}">Cancel</a>
+                <button class="btn btn-blue" type="submit">Add comment</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

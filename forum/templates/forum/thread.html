@@ -1,262 +1,257 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block extra_title %}
 | Thread
 {% endblock %}
-
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/back-to-top.css' %}">
 {% endblock %}
-
 {% block content %}
-    <!--Desktop thread title and description-->
-    <div class="container forum-small-hide">
-        <div class="row">
-            <div class="col goback">
-                <a href="{% url 'forum' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to forum</a>
-            </div>
+<!--Desktop thread title and description-->
+<div class="container forum-small-hide">
+    <div class="row">
+        <div class="col goback">
+            <a href="{% url 'forum' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to forum</a>
         </div>
-        <div class="row start-thread margintop-20">
-            <div class="col-sm-10">
-                <h3>{{ thread.title }}</h3>
-                <small>by <strong><a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} ">{{ thread.creator }}</a></strong> posted on {{ thread.date_created }}
-                {% if thread.date_created|date:"D, d M, Y, H:i s" != thread.date_edited|date:"D, d M, Y, H:i s" %}
-                    (Edited on: {{ thread.date_edited }})
-                {% endif %}
-                </small>
-                <br>
-                <br>
-                <p>{{ thread.description }}</p>
-                {% if request.user == thread.creator or request.user.is_superuser %}
-                <a href="{% url 'edit_thread' thread.pk %} " class="btn btn-secondary btn-sm">Edit</a>
-                <a href="{% url 'delete_thread' thread.pk %} " class="btn btn-danger btn-sm">Delete</a>
-                {% endif %}
+    </div>
+    <div class="row start-thread margintop-20">
+        <div class="col-sm-10">
+            <h3>{{ thread.title }}</h3>
+            <small>by <strong><a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} ">{{ thread.creator }}</a></strong> posted on {{ thread.date_created }}
+            {% if thread.date_created|date:"D, d M, Y, H:i s" != thread.date_edited|date:"D, d M, Y, H:i s" %}
+            (Edited on: {{ thread.date_edited }})
+            {% endif %}
+            </small>
+            <br>
+            <br>
+            <p>{{ thread.description }}</p>
+            {% if request.user == thread.creator or request.user.is_superuser %}
+            <a href="{% url 'edit_thread' thread.pk %} " class="btn btn-secondary btn-sm">Edit</a>
+            <a href="{% url 'delete_thread' thread.pk %} " class="btn btn-danger btn-sm">Delete</a>
+            {% endif %}
+        </div>
+        <div class="col-sm-2 text-center">
+            <small><strong><a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} ">{{ thread.creator }}</a></strong></small>
+            {% if thread.creator.profile.country.flag %}
+            <img class="threadpage-flag" src="{{ thread.creator.profile.country.flag }}" alt="Flag">
+            {% endif %}
+            <br>
+            <img class="rounded-circle avatar-forum" height=50 width=50 src="{{ thread.creator.profile.avatar.url }}" alt="User avatar"><br>
+            {% if thread.creator.profile.user.is_superuser %}
+            <div class="d-flex justify-content-center">
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i><br>
             </div>
-            <div class="col-sm-2 text-center">  
-                <small><strong><a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} ">{{ thread.creator }}</a></strong></small>
-                {% if thread.creator.profile.country.flag %}
+            {% else %}
+            <div class="elements">
+                <div class="hide">
+                    {% for obj in all_threads_on_forum %}
+                    {% if obj.creator == thread.creator %}
+                    <span class="count-this">{{ obj.creator }}</span>
+                    {% endif %}
+                    {% endfor %}
+                    {% for obj in all_comments_on_forum %}
+                    {% if obj.creator == thread.creator %}
+                    <span class="count-this">{{ obj.creator }}</span>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="count"></div>
+            </div>
+            {% endif %}
+            <small>Joined: {{ thread.creator.profile.member_since.date }}</small>
+        </div>
+    </div>
+</div>
+<!--End desktop thread title and description-->
+<!--Mobile thread title and description-->
+<div class="container forum-small-show">
+    <div class="row">
+        <div class="col goback">
+            <a href="{% url 'forum' %}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to forum</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <div class="card start-thread" style="width: 36rem;">
+                <div class="card-body">
+                    <img class="rounded-circle" height=18 width=18 src="{{ thread.creator.profile.avatar.url }}" alt="User avatar">
+                    <span class="text-capitalize"> <a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} "><strong>{{ thread.creator }}</strong></a>
+                    {% if thread.creator.profile.country.flag %}
                     <img class="threadpage-flag" src="{{ thread.creator.profile.country.flag }}" alt="Flag">
-                {% endif %}
-                <br>
-                <img class="rounded-circle avatar-forum" height=50 width=50 src="{{ thread.creator.profile.avatar.url }}" alt="User avatar"><br>
-                {% if thread.creator.profile.user.is_superuser %}
-                    <div class="d-flex justify-content-center">
-                        <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
-                        <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
-                        <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
-                        <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
-                        <i class="fa fa-tint gold-drop" aria-hidden="true"></i><br>
-                    </div>
-                    {% else %}
-                    <div class="elements">
-                        <div class="hide">
-                            {% for obj in all_threads_on_forum %}
-                            {% if obj.creator == thread.creator %}
-                                <span class="count-this">{{ obj.creator }}</span>
-                            {% endif %}
-                            {% endfor %}
-                            {% for obj in all_comments_on_forum %}
-                            {% if obj.creator == thread.creator %}
-                                <span class="count-this">{{ obj.creator }}</span>
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                        <div class="count"></div>
-                    </div>
-                {% endif %}
-                <small>Joined: {{ thread.creator.profile.member_since.date }}</small>
-                
+                    {% endif %}</span>
+                    <p class="card-text text-muted"><small>started this thread on {{ thread.date_created }}:</small></p>
+                    <h3 class="card-text">{{ thread.title }}</h3>
+                    <p class="card-text">{{ thread.description }}</p>
+                    {% if request.user == thread.creator or request.user.is_superuser %}
+                    <a href="{% url 'edit_thread' thread.pk %} " class="btn btn-secondary btn-sm">Edit</a>
+                    <a href="{% url 'delete_thread' thread.pk %} " class="btn btn-danger btn-sm">Delete</a>
+                    {% endif %}    
+                </div>
             </div>
         </div>
     </div>
-    <!--End desktop thread title and description-->
-    <!--Start mobile thread title and description-->
-    <div class="container forum-small-show">
-        <div class="row">
-            <div class="col goback">
-                <a href="{% url 'forum' %}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to forum</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col d-flex justify-content-center">
-                <div class="card start-thread" style="width: 36rem;">
-                    <div class="card-body">
-                        <img class="rounded-circle" height=18 width=18 src="{{ thread.creator.profile.avatar.url }}" alt="User avatar">
-                        <span class="text-capitalize"> <a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} "><strong>{{ thread.creator }}</strong></a>
-                            {% if thread.creator.profile.country.flag %}
-                                <img class="threadpage-flag" src="{{ thread.creator.profile.country.flag }}" alt="Flag">
-                            {% endif %}</span>
-                        <p class="card-text text-muted"><small>started this thread on {{ thread.date_created }}:</small></p>
-                        <h3 class="card-text">{{ thread.title }}</h3>
-                        <p class="card-text">{{ thread.description }}</p>
-                        {% if request.user == thread.creator or request.user.is_superuser %}
-                        <a href="{% url 'edit_thread' thread.pk %} " class="btn btn-secondary btn-sm">Edit</a>
-                        <a href="{% url 'delete_thread' thread.pk %} " class="btn btn-danger btn-sm">Delete</a>
-                        {% endif %}    
-                    </div>
-                </div> 
-            </div>
-        </div>
-        
-        <br>
-    </div>
-    <!--End mobile thread title and description-->
-    <div class="container">
-        {% if comments %}
-        <div class="row">
-            <div class="col col-md-2">
-                <a href="{% url 'add_comment' thread.pk %}?next={{ request.path }}" class="btn btn-blue">Drop a comment</a>
-            </div>
-            <br>
-            <!--Pagination-->
-            <div class="col col-md-10 d-flex justify-content-end">
-                {% if comments.has_previous %}
-                    <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
-                    <a class="btn btn-paginate" href="?page={{ comments.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
-                {% endif %}
-                {% if comments.has_previous or comments.has_next %}
-                <a class="btn btn-paginate-current" href="?page={{ comments.number }}">{{ comments.number }}</a>
-                {% endif %}
-                {% if comments.has_next %}
-                    <a class="btn btn-paginate" href="?page={{ comments.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
-                    <a class="btn btn-paginate" href="?page={{ comments.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
-                {% endif %}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p class="d-flex justify-content-end comment-count-pag">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
-                 - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
-            </div>
-        </div>
-        {% else %}
-            <div class="col col-md-3">
-                <p>There are no comments yet</p>
-            </div>
-        {% endif %}
-    </div>
-    <!--End pagination-->
+    <br>
+</div>
+<!--End mobile thread title and description-->
+<div class="container">
     {% if comments %}
-        <!--Desktop comment section-->
-        <div class="container forum-small-hide">
-            {% for comment in comments %}
-                <div class="row comment">
-                    <div class="col-sm-10">
-                        <small>Comment by <strong><a class="go-to-profile" href="{% url 'profile' comment.creator.profile.slug %} ">{{ comment.creator }}</a></strong> posted on {{ comment.date_created }}                           
-                        {% if comment.date_created|date:"D, d M, Y, H:i s" != comment.date_edited|date:"D, d M, Y, H:i s" %}
-                            (edited on: {{ comment.date_edited }})
-                        {% endif %}
-                        </small>
-                        <br>
-                        <br> 
-                        <p>{{ comment.post }}</p>
-                        {% if request.user == comment.creator or request.user.is_superuser %}
-                        <br>
-                        <a href="{% url 'edit_comment' comment.pk %}?next={{ request.path }}" class="btn btn-secondary btn-sm">Edit</a>
-                        <a href="{% url 'delete_comment' comment.pk %}?next={{ request.path }}" class="btn btn-danger btn-sm">Delete</a>
-                        {% endif %}
-                    </div>
-                    <div class="col-sm-2 text-center">  
-                        <small><strong><a class="go-to-profile" href="{% url 'profile' comment.creator.profile.slug %} ">{{ comment.creator }}</a></strong></small>
-                        {% if comment.creator.profile.country.flag %}
-                        <img class="threadpage-flag" src="{{ comment.creator.profile.country.flag }}" alt="Flag">
-                        {% endif %}
-                        <br>
-                        <img class="rounded-circle avatar-forum" height=50 width=50 src="{{ comment.creator.profile.avatar.url }}" alt="User avatar"><br>
-                        {% if comment.creator.profile.user.is_superuser %}
-                        <div class="d-flex justify-content-center">
-                            <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
-                            <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
-                            <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
-                            <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
-                            <i class="fa fa-tint gold-drop" aria-hidden="true"></i><br>
-                        </div>
-                        {% else %}
-                        <div class="elements">
-                            <div class="hide">
-                                {% for obj in all_threads_on_forum %}
-                                {% if obj.creator == comment.creator %}
-                                    <span class="count-this">{{ obj.creator }}</span>
-                                {% endif %}
-                                {% endfor %}
-                                {% for obj in all_comments_on_forum %}
-                                {% if obj.creator == comment.creator %}
-                                    <span class="count-this">{{ obj.creator }}</span>
-                                {% endif %}
-                                {% endfor %}
-                            </div>
-                            <div class="count"></div>
-                        </div>
-                        {% endif %}
-                        <small>Joined: {{ comment.creator.profile.member_since.date }}</small>
-                    </div>
-                </div>
-            {% endfor %}
+    <div class="row">
+        <div class="col col-md-2">
+            <a href="{% url 'add_comment' thread.pk %}?next={{ request.path }}" class="btn btn-blue">Drop a comment</a>
         </div>
-        <!--End desktop comment section-->
-        <!--Start mobile comment section-->
-        <div class="container forum-small-show">
-            <!--Begin small screens-->
-            {% for comment in comments %}
-            <div class="row">
-                <div class="col d-flex justify-content-center ">
-                    <div class="card" style="width: 36rem;">
-                        <div class="card-body">
-                            <img class="rounded-circle" height=18 width=18 src="{{ comment.creator.profile.avatar.url }}" alt="User avatar">
-                            <span class="text-capitalize"> <a class="go-to-profile" href="{% url 'profile' comment.creator.profile.slug %} "><strong>{{ comment.creator }}</strong></a>
-                                {% if comment.creator.profile.country.flag %}
-                                    <img class="threadpage-flag" src="{{ comment.creator.profile.country.flag }}" alt="Flag">
-                                {% endif %}</span>
-                            <p class="card-text text-muted"><small>wrote on {{ comment.date_created }}:</small></p>
-                            <p class="card-text">{{ comment.post }}</p>
-                            {% if request.user == comment.creator or request.user.is_superuser %}
-                            <br>
-                            <a href="{% url 'edit_comment' comment.pk %}?next={{ request.path }}" class="btn btn-secondary btn-sm">Edit</a>
-                            <a href="{% url 'delete_comment' comment.pk %}?next={{ request.path }}" class="btn btn-danger btn-sm">Delete</a>
-                            {% endif %}    
-                        </div>
-                    </div> 
-                </div>
-            </div>
-            <br>
-            {% endfor %}
+        <br>
+        <!--Pagination-->
+        <div class="col col-md-10 d-flex justify-content-end">
+            {% if comments.has_previous %}
+            <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+            <a class="btn btn-paginate" href="?page={{ comments.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+            {% endif %}
+            {% if comments.has_previous or comments.has_next %}
+            <a class="btn btn-paginate-current" href="?page={{ comments.number }}">{{ comments.number }}</a>
+            {% endif %}
+            {% if comments.has_next %}
+            <a class="btn btn-paginate" href="?page={{ comments.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
+            <a class="btn btn-paginate" href="?page={{ comments.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+            {% endif %}
         </div>
-        <!--End mobile comment section-->
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="d-flex justify-content-end comment-count-pag">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
+                - Page {{ comments.number}} of {{ comments.paginator.num_pages }}
+            </p>
+        </div>
+    </div>
+    {% else %}
+    <div class="col col-md-3">
+        <p>There are no comments yet</p>
+    </div>
     {% endif %}
-    <div class="container">
-        <div class="row">
-            <div class="col col-md-2">
-                <a href="{% url 'add_comment' thread.pk %}?next={{ request.path }}" class="btn btn-blue">Drop a comment</a>
-            </div>
-            <!--Pagination-->
-            <div class="col col-md-10 d-flex justify-content-end">
-                {% if comments.has_previous %}
-                    <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
-                    <a class="btn btn-paginate" href="?page={{ comments.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
-                {% endif %}
-                {% if comments.has_previous or comments.has_next %}
-                <a class="btn btn-paginate-current" href="?page={{ comments.number }}">{{ comments.number }}</a>
-                {% endif %}
-                {% if comments.has_next %}
-                    <a class="btn btn-paginate" href="?page={{ comments.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
-                    <a class="btn btn-paginate" href="?page={{ comments.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
-                {% endif %}
-            </div>
+</div>
+<!--End pagination-->
+{% if comments %}
+<!--Desktop comment section-->
+<div class="container forum-small-hide">
+    {% for comment in comments %}
+    <div class="row comment">
+        <div class="col-sm-10">
+            <small>Comment by <strong><a class="go-to-profile" href="{% url 'profile' comment.creator.profile.slug %} ">{{ comment.creator }}</a></strong> posted on {{ comment.date_created }}                           
+            {% if comment.date_created|date:"D, d M, Y, H:i s" != comment.date_edited|date:"D, d M, Y, H:i s" %}
+            (edited on: {{ comment.date_edited }})
+            {% endif %}
+            </small>
+            <br>
+            <br> 
+            <p>{{ comment.post }}</p>
+            {% if request.user == comment.creator or request.user.is_superuser %}
+            <br>
+            <a href="{% url 'edit_comment' comment.pk %}?next={{ request.path }}" class="btn btn-secondary btn-sm">Edit</a>
+            <a href="{% url 'delete_comment' comment.pk %}?next={{ request.path }}" class="btn btn-danger btn-sm">Delete</a>
+            {% endif %}
         </div>
-        <div class="row">
-            <div class="col">
-                <p class="d-flex justify-content-end comment-count-pag">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
-                 - Page {{ comments.number}} of {{ comments.paginator.num_pages }}</p>
+        <div class="col-sm-2 text-center">
+            <small><strong><a class="go-to-profile" href="{% url 'profile' comment.creator.profile.slug %} ">{{ comment.creator }}</a></strong></small>
+            {% if comment.creator.profile.country.flag %}
+            <img class="threadpage-flag" src="{{ comment.creator.profile.country.flag }}" alt="Flag">
+            {% endif %}
+            <br>
+            <img class="rounded-circle avatar-forum" height=50 width=50 src="{{ comment.creator.profile.avatar.url }}" alt="User avatar"><br>
+            {% if comment.creator.profile.user.is_superuser %}
+            <div class="d-flex justify-content-center">
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i>
+                <i class="fa fa-tint gold-drop" aria-hidden="true"></i><br>
+            </div>
+            {% else %}
+            <div class="elements">
+                <div class="hide">
+                    {% for obj in all_threads_on_forum %}
+                    {% if obj.creator == comment.creator %}
+                    <span class="count-this">{{ obj.creator }}</span>
+                    {% endif %}
+                    {% endfor %}
+                    {% for obj in all_comments_on_forum %}
+                    {% if obj.creator == comment.creator %}
+                    <span class="count-this">{{ obj.creator }}</span>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="count"></div>
+            </div>
+            {% endif %}
+            <small>Joined: {{ comment.creator.profile.member_since.date }}</small>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!--End desktop comment section-->
+<!--Mobile comment section-->
+<div class="container forum-small-show">
+    {% for comment in comments %}
+    <div class="row">
+        <div class="col d-flex justify-content-center ">
+            <div class="card" style="width: 36rem;">
+                <div class="card-body">
+                    <img class="rounded-circle" height=18 width=18 src="{{ comment.creator.profile.avatar.url }}" alt="User avatar">
+                    <span class="text-capitalize"> <a class="go-to-profile" href="{% url 'profile' comment.creator.profile.slug %} "><strong>{{ comment.creator }}</strong></a>
+                    {% if comment.creator.profile.country.flag %}
+                    <img class="threadpage-flag" src="{{ comment.creator.profile.country.flag }}" alt="Flag">
+                    {% endif %}</span>
+                    <p class="card-text text-muted"><small>wrote on {{ comment.date_created }}:</small></p>
+                    <p class="card-text">{{ comment.post }}</p>
+                    {% if request.user == comment.creator or request.user.is_superuser %}
+                    <br>
+                    <a href="{% url 'edit_comment' comment.pk %}?next={{ request.path }}" class="btn btn-secondary btn-sm">Edit</a>
+                    <a href="{% url 'delete_comment' comment.pk %}?next={{ request.path }}" class="btn btn-danger btn-sm">Delete</a>
+                    {% endif %}    
+                </div>
             </div>
         </div>
     </div>
-    <!--End pagination-->
-    <!--Back to top button-->
-    <button title="Back to top" onclick="topFunction()" id="backtotop"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
-    <!--End back to top button-->
+    <br>
+    {% endfor %}
+</div>
+<!--End mobile comment section-->
+{% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col col-md-2">
+            <a href="{% url 'add_comment' thread.pk %}?next={{ request.path }}" class="btn btn-blue">Drop a comment</a>
+        </div>
+        <!--Pagination-->
+        <div class="col col-md-10 d-flex justify-content-end">
+            {% if comments.has_previous %}
+            <a class="btn btn-paginate" href="?page=1"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+            <a class="btn btn-paginate" href="?page={{ comments.previous_page_number }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+            {% endif %}
+            {% if comments.has_previous or comments.has_next %}
+            <a class="btn btn-paginate-current" href="?page={{ comments.number }}">{{ comments.number }}</a>
+            {% endif %}
+            {% if comments.has_next %}
+            <a class="btn btn-paginate" href="?page={{ comments.next_page_number }}"><i class="fa fa-forward" aria-hidden="true"></i></a>
+            <a class="btn btn-paginate" href="?page={{ comments.paginator.num_pages }}"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="d-flex justify-content-end comment-count-pag">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
+                - Page {{ comments.number}} of {{ comments.paginator.num_pages }}
+            </p>
+        </div>
+    </div>
+</div>
+<!--End pagination-->
+<!--Back to top button-->
+<button title="Back to top" onclick="topFunction()" id="backtotop"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
+<!--End back to top button-->
 {% endblock %}
-
 {% block postloadjs %}
 {{ block.super }}
 <script src="{% static 'js/user_status.js' %}"></script>
