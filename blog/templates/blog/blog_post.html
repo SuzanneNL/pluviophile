@@ -102,18 +102,19 @@
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#show-likes").click(function(){
+    $(document).ready(function() {
+        $("#show-likes").click(function() {
             $("#list-of-likes").slideToggle(200);
             ChangeButtonText();
         });
     });
-    
+
     function ChangeButtonText() {
-    if ($("#show-likes").html() === "Show likes") {
-        $("#show-likes").html("Hide likes")}
-    else {
-        $("#show-likes").html("Show likes")}
+        if($("#show-likes").html() === "Show likes") {
+            $("#show-likes").html("Hide likes");
+        } else {
+            $("#show-likes").html("Show likes");
+        }
     }
 </script>
 <script src="{% static 'js/back_to_top.js' %}"></script>
