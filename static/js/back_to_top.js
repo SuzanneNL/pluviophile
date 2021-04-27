@@ -1,4 +1,5 @@
 //Source: W3Schools, see README file under 'Sources'.
+
 //This gets the button:
 var backToTopButton = document.getElementById("backtotop");
 

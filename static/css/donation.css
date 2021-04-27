@@ -1,3 +1,6 @@
+/* Part of CSS code comes from Stripe documentation: 
+https://stripe.com/docs/stripe-js */
+
 .StripeElement,
 .stripe-style-input {
     -webkit-box-sizing: border-box;
