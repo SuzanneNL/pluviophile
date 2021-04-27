@@ -1,76 +1,77 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block extra_meta %}
 <meta name="robots" content="noindex">
 {% endblock %}
-
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/back-to-top.css' %}">
 {% endblock %}
-
 {% block extra_title %}
 | Blog
 {% endblock %}
-
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col col-md-6 offset-md3 mx-auto d-flex justify-content-center">
-                <h1 class="brand page-title"><i class="fa fa-umbrella" aria-hidden="true"></i> Pluviophile Blog</h1>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col col-md-6 offset-md3 mx-auto d-flex justify-content-center">
+            <h1 class="brand page-title"><i class="fa fa-umbrella" aria-hidden="true"></i> Pluviophile Blog</h1>
         </div>
-        {% if request.user.is_superuser %}
-        <div class="row">
-            <div class="col col-md-6 offset-md3 mx-auto d-flex justify-content-center">
-                <a href="{% url 'add_blog_post' %} " class="btn btn-blue">Add Blog Post</a>
-            </div>
+    </div>
+    {% if request.user.is_superuser %}
+    <div class="row">
+        <div class="col col-md-6 offset-md3 mx-auto d-flex justify-content-center">
+            <a href="{% url 'add_blog_post' %} " class="btn btn-blue">Add Blog Post</a>
         </div>
-        <br>
-        {% endif %}
-        <div class="row">
-            <div class="col col-md-2 offset-md-8 d-flex justify-content-end">
-                {% include 'sortable_listview/pagination.html' %}
-            </div>
+    </div>
+    <br>
+    {% endif %}
+    <!--Pagination-->
+    <div class="row">
+        <div class="col col-md-2 offset-md-8 d-flex justify-content-end">
+            {% include 'sortable_listview/pagination.html' %}
         </div>
-        <!--Sorting-->
-        <div class="row margintop-10">
-            <div class="col col-md-6 offset-md3 mx-auto d-flex justify-content-center">
-                {% include 'sortable_listview/sorting.html' %}
-            </div>
+    </div>
+    <!--End pagination-->
+    <!--Sorting-->
+    <div class="row margintop-10">
+        <div class="col col-md-6 offset-md3 mx-auto d-flex justify-content-center">
+            {% include 'sortable_listview/sorting.html' %}
         </div>
-        <!--End sorting-->
-        {% for blogpost in object_list %}
-        <div class="row">
-            <div class="col d-flex justify-content-center">
-                <div class="card" style="width: 36rem;">
-                    <a href="{% url 'blog_post' blogpost.pk %}"><img class="card-img-top" src="{{ blogpost.image_1.url }}" alt="Go to blog post {{ blogpost.title }}"></a>
-                    <div class="card-body">
-                        <p class="text-muted">By {{ blogpost.author }} on {{ blogpost.date_created }}</p>
-                        <h5 class="card-title">{{ blogpost.title }} </h5>
-                        <p class="card-text">{{ blogpost.body_part_1|truncatewords:30|safe }}</p>
-                        <div class="d-flex justify-content-end">
-                            <a href="{% url 'blog_post' blogpost.pk %}" class="btn btn-blue">Read blog post</a>
-                        </div>
+    </div>
+    <!--End sorting-->
+    <!--Blog posts-->
+    {% for blogpost in object_list %}
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <div class="card" style="width: 36rem;">
+                <a href="{% url 'blog_post' blogpost.pk %}"><img class="card-img-top" src="{{ blogpost.image_1.url }}" alt="Go to blog post {{ blogpost.title }}"></a>
+                <div class="card-body">
+                    <p class="text-muted">By {{ blogpost.author }} on {{ blogpost.date_created }}</p>
+                    <h5 class="card-title">{{ blogpost.title }} </h5>
+                    <p class="card-text">{{ blogpost.body_part_1|truncatewords:30|safe }}</p>
+                    <div class="d-flex justify-content-end">
+                        <a href="{% url 'blog_post' blogpost.pk %}" class="btn btn-blue">Read blog post</a>
                     </div>
-                </div> 
-            </div>
-        </div>
-        <br>
-        {% endfor %}
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col col-md-2 offset-md-8 d-flex justify-content-end">
-                {% include 'sortable_listview/pagination.html' %}
+                </div>
             </div>
         </div>
     </div>
-    <!--Back to top button-->
-    <button title="Back to top" onclick="topFunction()" id="backtotop"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
-    <!--End back to top button-->
+    <br>
+    {% endfor %}
+    <!--End blog posts-->
+</div>
+<!--Pagination-->
+<div class="container">
+    <div class="row">
+        <div class="col col-md-2 offset-md-8 d-flex justify-content-end">
+            {% include 'sortable_listview/pagination.html' %}
+        </div>
+    </div>
+</div>
+<!--End pagination-->
+<!--Back to top button-->
+<button title="Back to top" onclick="topFunction()" id="backtotop"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
+<!--End back to top button-->
 {% endblock %}  
-
 {% block postloadjs %}
 {{ block.super }}
 <script src="{% static 'js/back_to_top.js' %}"></script>

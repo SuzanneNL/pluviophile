@@ -314,8 +314,7 @@ body {
 }
 
 .blog-img {
-    max-width: 100%;
-    max-height: 800px;
+    width: 100%;
     height: auto;
 }
 

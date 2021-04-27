@@ -1,128 +1,120 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block extra_meta %}
 <meta name="robots" content="noindex">
 {% endblock %}
-
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/back-to-top.css' %}">
 {% endblock %}
-
 {% block extra_title %}
 | Blog
 {% endblock %}
-
 {% block content %}
-    <div class="container">
-         <div class="row">
-            <div class="col col-sm-12 col-lg-8 mx-auto margintop-20 goback">
-                <a href="{% url 'blog' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to blog</a>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col col-sm-12 col-lg-8 mx-auto margintop-20 goback">
+            <a href="{% url 'blog' %}"><i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to blog</a>
         </div>
-        <div class="row">
-            <div class="col col-sm-12 col-lg-8 mx-auto margintop-20">
-                {% if blogpost.source_comment %}
-                <div class="mb-3">
-                    <small >{{ blogpost.source_comment|safe }}</small>
-                </div>
-                {% endif %}
-                <h3>{{ blogpost.title }}</h3>
-                <p class="text-muted">by {{ blogpost.author }} on {{ blogpost.date_created }}</p>
-                {% if request.user.is_superuser %}
-                <div class="mb-2">
-                    <a href="{% url 'edit_blog_post' blogpost.pk %}" class="btn btn-secondary">Edit blog post</a>
-                    <a href="{% url 'delete_blog_post' blogpost.pk %}" class="btn btn-danger">Delete blog post</a>
-                </div>
-                {% endif %}
-                <img class="blog-img" src="{{ blogpost.image_1.url }}" width=100% alt="Blog image">
-                {% if blogpost.image_1_description %}
-                <br>
-                    <em>{{ blogpost.image_1_description }}</em>
-                {% endif %}
-                <p class="blog-post-section">{{ blogpost.body_part_1|safe }}</p>
-                {% if blogpost.image_2 %}
-                    <img class="blog-img" src="{{ blogpost.image_2.url }}" width=100% alt="Blog image">
-                    {% if blogpost.image_2_description %}
-                    <br>
-                        <em>{{ blogpost.image_2_description }}</em>
-                    {% endif %}
-                {% endif %}
-                {% if blogpost.body_part_2 %}
-                <p class="blog-post-section">{{ blogpost.body_part_2|safe }}</p>
-                {% endif %}
-                {% if blogpost.image_3 %}
-                    <img class="blog-img" src="{{ blogpost.image_3.url }}" width=100% alt="Blog image">
-                    {% if blogpost.image_3_description %}
-                    <br>
-                        <em>{{ blogpost.image_3_description }}</em>
-                    {% endif %}
-                {% endif %}
-                {% if blogpost.body_part_3 %}
-                    <p class="blog-post-section">{{ blogpost.body_part_3|safe }}</p>
-                {% endif %}
-                <hr>
-                <br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col col-sm-12 col-lg-8 mx-auto">
-                <form action="{% url 'bookmark_blog_post' blogpost.pk %}" method="POST" class="d-inline-block">
-                    {% csrf_token%}
-                    <button class="bookmark-unbookmark d-inline-block" type="submit" name="blogpost_id" value="{{ blogpost.id }}">
-                        {% if request.user in blogpost.bookmarks.all %}<i class="fa fa-bookmark" aria-hidden="true" title="Remove bookmark"></i>{% else%}<i class="fa fa-bookmark-o" aria-hidden="true" title="Bookmark"></i>{% endif %}
-                    </button>
-                </form>
-                <form action="{% url 'like_blog_post' blogpost.pk %}" method="POST" class="d-inline-block">
-                    {% csrf_token%}
-                    <button class="bookmark-unbookmark d-inline-block" type="submit" name="blogpost_id" value="{{ blogpost.id }}">
-                        {% if request.user in blogpost.likes.all %}<i class="fa fa-heart like" aria-hidden="true" title="Unlike"></i>{% else%}<i class="fa fa-heart-o unlike" aria-hidden="true" title="Like"></i>{% endif %}
-                    </button>
-                </form>
-                {% if blogpost.likes.count == 1 %}
-                <span class="d-inline-block">This article has {{ blogpost.likes.count}} like</span>
-                {% else %}
-                <span class="d-inline-block">This article has {{ blogpost.likes.count}} likes</span>
-                {% endif %}
-            </div>
-        </div>
-        {% if blogpost.likes.all %}
-        <div class="row" id="likes-section" >
-            <div class="col col-sm-12 col-lg-8 mx-auto"> 
-                <button class="btn btn-sm btn-blue" id="show-likes">Show likes</button>
-                <ul id="list-of-likes">
-                    {% for user in blogpost.likes.all %}
-                    <li><small>{{ user.username }}</small></li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-        {% endif %}
     </div>
-    <!--Back to top button-->
-    <button title="Back to top" onclick="topFunction()" id="backtotop"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
-    <!--End back to top button-->
+    <div class="row">
+        <div class="col col-sm-12 col-lg-8 mx-auto margintop-20">
+            {% if blogpost.source_comment %}
+            <div class="mb-5">
+                <small class="text-muted">{{ blogpost.source_comment|safe }}</small>
+            </div>
+            {% endif %}
+            <h3>{{ blogpost.title }}</h3>
+            <p class="text-muted">by {{ blogpost.author }} on {{ blogpost.date_created }}</p>
+            {% if request.user.is_superuser %}
+            <div class="mb-2">
+                <a href="{% url 'edit_blog_post' blogpost.pk %}" class="btn btn-secondary">Edit blog post</a>
+                <a href="{% url 'delete_blog_post' blogpost.pk %}" class="btn btn-danger">Delete blog post</a>
+            </div>
+            {% endif %}
+            <img class="blog-img" src="{{ blogpost.image_1.url }}" alt="Blog image">
+            {% if blogpost.image_1_description %}
+            <br>
+            <em>{{ blogpost.image_1_description }}</em>
+            {% endif %}
+            <p class="blog-post-section">{{ blogpost.body_part_1|safe }}</p>
+            {% if blogpost.image_2 %}
+            <img class="blog-img" src="{{ blogpost.image_2.url }}" alt="Blog image">
+            {% if blogpost.image_2_description %}
+            <br>
+            <em>{{ blogpost.image_2_description }}</em>
+            {% endif %}
+            {% endif %}
+            {% if blogpost.body_part_2 %}
+            <p class="blog-post-section">{{ blogpost.body_part_2|safe }}</p>
+            {% endif %}
+            {% if blogpost.image_3 %}
+            <img class="blog-img" src="{{ blogpost.image_3.url }}" alt="Blog image">
+            {% if blogpost.image_3_description %}
+            <br>
+            <em>{{ blogpost.image_3_description }}</em>
+            {% endif %}
+            {% endif %}
+            {% if blogpost.body_part_3 %}
+            <p class="blog-post-section">{{ blogpost.body_part_3|safe }}</p>
+            {% endif %}
+            <hr>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-12 col-lg-8 mx-auto">
+            <form action="{% url 'bookmark_blog_post' blogpost.pk %}" method="POST" class="d-inline-block">
+                {% csrf_token%}
+                <button class="bookmark-unbookmark d-inline-block" type="submit" name="blogpost_id" value="{{ blogpost.id }}">
+                {% if request.user in blogpost.bookmarks.all %}<i class="fa fa-bookmark" aria-hidden="true" title="Remove bookmark"></i>{% else%}<i class="fa fa-bookmark-o" aria-hidden="true" title="Bookmark"></i>{% endif %}
+                </button>
+            </form>
+            <form action="{% url 'like_blog_post' blogpost.pk %}" method="POST" class="d-inline-block">
+                {% csrf_token%}
+                <button class="bookmark-unbookmark d-inline-block" type="submit" name="blogpost_id" value="{{ blogpost.id }}">
+                {% if request.user in blogpost.likes.all %}<i class="fa fa-heart like" aria-hidden="true" title="Unlike"></i>{% else%}<i class="fa fa-heart-o unlike" aria-hidden="true" title="Like"></i>{% endif %}
+                </button>
+            </form>
+            {% if blogpost.likes.count == 1 %}
+            <span class="d-inline-block">This article has {{ blogpost.likes.count}} like</span>
+            {% else %}
+            <span class="d-inline-block">This article has {{ blogpost.likes.count}} likes</span>
+            {% endif %}
+        </div>
+    </div>
+    {% if blogpost.likes.all %}
+    <div class="row" id="likes-section" >
+        <div class="col col-sm-12 col-lg-8 mx-auto">
+            <button class="btn btn-sm btn-blue" id="show-likes">Show likes</button>
+            <ul id="list-of-likes">
+                {% for user in blogpost.likes.all %}
+                <li><small>{{ user.username }}</small></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<!--Back to top button-->
+<button title="Back to top" onclick="topFunction()" id="backtotop"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
+<!--End back to top button-->
 {% endblock %}
-
-
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
-$(document).ready(function(){
-    $("#show-likes").click(function(){
-        $("#list-of-likes").slideToggle(200);
-        ChangeButtonText();
+    $(document).ready(function(){
+        $("#show-likes").click(function(){
+            $("#list-of-likes").slideToggle(200);
+            ChangeButtonText();
+        });
     });
-});
-
-function ChangeButtonText() {
-if ($("#show-likes").html() === "Show likes") {
-    $("#show-likes").html("Hide likes")}
-else {
-    $("#show-likes").html("Show likes")}
-}
+    
+    function ChangeButtonText() {
+    if ($("#show-likes").html() === "Show likes") {
+        $("#show-likes").html("Hide likes")}
+    else {
+        $("#show-likes").html("Show likes")}
+    }
 </script>
-
 <script src="{% static 'js/back_to_top.js' %}"></script>
-
 {% endblock %}

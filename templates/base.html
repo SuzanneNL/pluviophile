@@ -1,171 +1,161 @@
 {% load static %}
-
 <!doctype html>
 <html lang="en">
     <head>
         {% block meta %}
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         {% endblock %}
-
         {% block extra_meta %}
         {% endblock %}
-
         {% block corecss %}
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
-            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
         {% endblock %}
-
         {% block extra_css %}
         {% endblock %}
-
         {% block corejs %}
-            <script src="https://kit.fontawesome.com/e9c73d7092.js" crossorigin="anonymous"></script>
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-            <!--Stripe-->
-            <script src="https://js.stripe.com/v3/"></script>
+        <script src="https://kit.fontawesome.com/e9c73d7092.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <!--Stripe-->
+        <script src="https://js.stripe.com/v3/"></script>
+        <!--End Stripe-->
         {% endblock %}
-
         {% block extra_js %}
         {% endblock %}
-        
         <title>Pluviophile {% block extra_title %}{% endblock %}</title>
     </head>
-<body>
-    <header class="fixed-top">
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <a href="{% url 'home' %}" class="navbar-brand"><i class="fa fa-umbrella" aria-hidden="true"></i> Pluviophile</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+    <body>
+        <header class="fixed-top">
+            <nav class="navbar navbar-expand-md navbar-dark">
+                <a href="{% url 'home' %}" class="navbar-brand"><i class="fa fa-umbrella" aria-hidden="true"></i> Pluviophile</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse justify-content-stretch" id="navbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link" id="wherestherain" data-toggle="modal" data-target="#myModal">Find The Rain</button>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'rain' %}">Make It Rain!</a>
-                    </li>
-                    {% if request.user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'forum' %}">Forum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog' %}">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'donate' %}">Donate</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <img id="avatarnav" class="rounded-circle" height=20 width=20 src="{{ request.user.profile.avatar.url }}" alt="User avatar"><span class="text-capitalize"> {{ request.user }}</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'profile' user.profile.slug %}">Your Profile</a>
-                        <a class="dropdown-item" href="{% url 'account' %}">Your Account</a>
-                        <a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a>
-                        </div>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    {% if messages %}
-        <div class="message-container">
-            {% for message in messages %}
-                {% with message.level as level %}
-                    {% if level == 40 %}
-                        {% include 'includes/toasts/toast_error.html' %}
-                    {% elif level == 30 %}
-                        {% include 'includes/toasts/toast_warning.html' %}
-                    {% elif level == 25 %}
-                        {% include 'includes/toasts/toast_success.html' %}
-                    {% else %}
-                        {% include 'includes/toasts/toast_info.html' %}
-                    {% endif %}
-                {% endwith %}
-            {% endfor %}
-        </div>
-    {% endif %}
-    
-    {% block page_header %}
-    {% endblock %}
-
-    {% block content %}
-    {% endblock %}
-
-    <br>
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col col-lg-6 col-sm-12">
-                    <h5 class="brand"><i class="fa fa-umbrella" aria-hidden="true"></i> Pluviophile</h5>
-                    <p>This website was created to connect people who love rain.</p>
-                </div>
-                <div class="col col-lg-3 offset-lg-3">
-                    <ul>
-                        <li><h5>Connect</h5></li>
-                        <li><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter social-icon" aria-hidden="true"></i> Twitter</a></li>
-                        <li><a target="_blank" href="https://www.facebook.com/"> <i class="fa fa-facebook social-icon" aria-hidden="true"></i> Facebook</a></li>
-                        <li><a target="_blank" href="https://www.instagram.com/"><i class="fa fa-instagram social-icon" aria-hidden="true"></i> Instagram</a></li>
+                </button>
+                <div class="navbar-collapse collapse justify-content-stretch" id="navbar">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="wherestherain" data-toggle="modal" data-target="#myModal">Find The Rain</button>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'rain' %}">Make It Rain!</a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'forum' %}">Forum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'donate' %}">Donate</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img id="avatarnav" class="rounded-circle" height=20 width=20 src="{{ request.user.profile.avatar.url }}" alt="User avatar"><span class="text-capitalize"> {{ request.user }}</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'profile' user.profile.slug %}">Your Profile</a>
+                                <a class="dropdown-item" href="{% url 'account' %}">Your Account</a>
+                                <a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a>
+                            </div>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
-            </div>
+            </nav>
+        </header>
+        {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+            {% with message.level as level %}
+            {% if level == 40 %}
+            {% include 'includes/toasts/toast_error.html' %}
+            {% elif level == 30 %}
+            {% include 'includes/toasts/toast_warning.html' %}
+            {% elif level == 25 %}
+            {% include 'includes/toasts/toast_success.html' %}
+            {% else %}
+            {% include 'includes/toasts/toast_info.html' %}
+            {% endif %}
+            {% endwith %}
+            {% endfor %}
         </div>
-        <div class="footer-copyright">
-            <div class="container d-flex justify-content-center">
-                <p>© 2021 <a href="https://github.com/suzannenl/">SuzanneNL</a> - All rights reserved</p>
-            </div>
-        </div>
-    </footer>
-    <!----------------------------------------MODAL---------------------------------------->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="modalLabel">Where's it raining?</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
+        {% endif %}
+        {% block page_header %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+        <br>
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-6 col-sm-12">
+                        <h5 class="brand"><i class="fa fa-umbrella" aria-hidden="true"></i> Pluviophile</h5>
+                        <p>This website was created to connect people who love rain.</p>
+                    </div>
+                    <div class="col col-lg-3 offset-lg-3">
+                        <ul>
+                            <li>
+                                <h5>Connect</h5>
+                            </li>
+                            <li><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter social-icon" aria-hidden="true"></i> Twitter</a></li>
+                            <li><a target="_blank" href="https://www.facebook.com/"> <i class="fa fa-facebook social-icon" aria-hidden="true"></i> Facebook</a></li>
+                            <li><a target="_blank" href="https://www.instagram.com/"><i class="fa fa-instagram social-icon" aria-hidden="true"></i> Instagram</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    
-                    <h5 class="center"><span id="is-it-raining"></span> <span id="show-city" class="center"></span></h5>
-                    <p id="show-icon" class="center"></p>
-                    <h3 class="center"><strong id="show-temp"></strong></h3>
-                    <p id="show-desc" class="center"></p>
-                    <div class="justify-content-center">
-                        <input type="text" id="city">
-                        <button class="btn btn-blue mx-auto" id="getWeather">Enter city</button>
+            </div>
+            <div class="footer-copyright">
+                <div class="container d-flex justify-content-center">
+                    <p>© 2021 <a href="https://github.com/suzannenl/">SuzanneNL</a> - All rights reserved</p>
+                </div>
+            </div>
+        </footer>
+        <!--Modal-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="modalLabel">Where's it raining?</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="center"><span id="is-it-raining"></span> <span id="show-city" class="center"></span></h5>
+                        <p id="show-icon" class="center"></p>
+                        <h3 class="center"><strong id="show-temp"></strong></h3>
+                        <p id="show-desc" class="center"></p>
+                        <div class="justify-content-center">
+                            <input type="text" id="city">
+                            <button class="btn btn-blue mx-auto" id="getWeather">Enter city</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!----------------------------------------END MODAL---------------------------------------->
-
-    {% block postloadjs %}
-    <script type="text/javascript">
-        $('.toast').toast('show');
-    </script>
-    {{ open_weather_map_key|json_script:"id_open_weather_map_key"}}
-    <script src="{% static 'js/weather.js' %}"></script>
-    {% endblock %}
-</body>
+        <!--End modal-->
+        {% block postloadjs %}
+        <script type="text/javascript">
+            $('.toast').toast('show');
+        </script>
+        {{ open_weather_map_key|json_script:"id_open_weather_map_key"}}
+        <script src="{% static 'js/weather.js' %}"></script>
+        {% endblock %}
+    </body>
 </html>
