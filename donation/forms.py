@@ -7,9 +7,12 @@ class DonationForm(forms.ModelForm):
         model = Donation
         fields = ('donor_full_name', 'donor', 'email')
 
-        widgets = {
-            'donor': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'donor', 'type': 'hidden'})
-        }
+        widgets = {'donor': forms.TextInput(attrs={
+            'class': 'form-control',
+            'value': '',
+            'id': 'donor',
+            'type': 'hidden',
+            })}
 
     def __init__(self, *args, **kwargs):
         """

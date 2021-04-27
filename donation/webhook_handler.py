@@ -23,7 +23,8 @@ class StripeWH_Handler:
             {'donation': donation})
         body = render_to_string(
             'donation/confirmation_emails/confirmation_email_body.txt',
-            {'donation': donation, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+            {'donation': donation,
+             'contact_email': settings.DEFAULT_FROM_EMAIL})
 
         send_mail(
             subject,
@@ -76,7 +77,8 @@ class StripeWH_Handler:
         if donation_exists:
             self._send_confirmation_email(donation)
             return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Verified donation already in database',
+                content=f'Webhook received: {event["type"]} | \
+                SUCCESS: Verified donation already in database',
                 status=200)
         else:
             donation = None
@@ -95,7 +97,8 @@ class StripeWH_Handler:
                     status=500)
         self._send_confirmation_email(donation)
         return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Created donation in webhook',
+            content=f'Webhook received: {event["type"]} | \
+            SUCCESS: Created donation in webhook',
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):

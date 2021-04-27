@@ -29,7 +29,8 @@ def charge(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             donation.stripe_pid = pid
             donation.save()
-            return redirect(reverse('donation_success', args=[donation.donation_number]))
+            return redirect(reverse('donation_success',
+                                    args=[donation.donation_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
