@@ -5,6 +5,7 @@ body {
 }
 
 .card {
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -37,14 +38,14 @@ body {
 }
 
 /* ------------------------------------------------------ MEDIA QUERIES */
+
 @media screen and (max-width: 1024px) {
     body {
         background: url('/media/background_images/bg-v2.jpg') no-repeat center center;
         background-attachment: fixed;
         width: 100%;
     }
-
-    @media screen and  (min-height: 1136px)  {
+    @media screen and (min-height: 1136px) {
         .content-container {
             margin-top: 550px;
         }
@@ -65,12 +66,10 @@ body {
         background-attachment: fixed;
         width: 100%;
     }
-
-    @media screen and  (min-height: 1024px)  {
+    @media screen and (min-height: 1024px) {
         #home-page-container {
             margin-top: 50px;
         }
-
         .content-container {
             margin-top: 400px;
         }
@@ -91,9 +90,8 @@ body {
         background-attachment: fixed;
         width: 100%;
     }
-
     #home-page-container {
-    margin-top: 100px;
+        margin-top: 100px;
     }
 }
 
@@ -101,13 +99,12 @@ body {
     .show-md {
         display: none;
     }
-
     .content-container {
         margin-top: 220px;
     }
-
     .show-sm {
-    display: block;
+        display: block;
     }
 }
+
 /* ------------------------------------------------------ END MEDIA QUERIES */

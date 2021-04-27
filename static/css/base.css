@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Raleway:wght@300&display=swap');
-
 body {
     padding-top: 70px;
     min-height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     background-color: #fafafa;
     font-family: 'Lato', sans-serif;
@@ -21,26 +25,26 @@ body {
 /* ------------------------------------------------------ NAVBAR */
 
 .navbar {
-	background-color: #094C72;
-}
-
-.dropdown-item:active{
     background-color: #094C72;
 }
 
-#wherestherain { 
-    border:none; 
+.dropdown-item:active {
     background-color: #094C72;
 }
 
-#wherestherain:active { 
-    border:none; 
-} 
+#wherestherain {
+    border: none;
+    background-color: #094C72;
+}
+
+#wherestherain:active {
+    border: none;
+}
 
 #city,
 #getWeather {
     display: block;
-    margin : 0 auto;
+    margin: 0 auto;
 }
 
 #getWeather {
@@ -51,20 +55,20 @@ body {
 /* ------------------------------------------------------ FOOTER*/
 
 .social-icon {
-	width: 15px;
+    width: 15px;
 }
 
 .page-footer {
     width: 100%;
     margin-top: auto;
-	padding-top: 10px;
-	background-color: #094C72;
+    padding-top: 10px;
+    background-color: #094C72;
 }
 
 .page-footer h5,
-.page-footer p, 
+.page-footer p,
 .page-footer a {
-    color: rgba(255,255,255,.5);
+    color: rgba(255, 255, 255, .5);
 }
 
 .page-footer a:hover {
@@ -73,7 +77,7 @@ body {
 }
 
 .footer-copyright {
-	background-color: #0c3953;
+    background-color: #0c3953;
 }
 
 .page-footer ul li {
@@ -97,7 +101,8 @@ body {
 
 .custom-toast {
     overflow: visible;
-    border: 1px solid #E0E1DD;;
+    border: 1px solid #E0E1DD;
+    ;
 }
 
 .toast-header,
@@ -108,21 +113,23 @@ body {
 .toast-capper {
     height: 2px;
 }
+
 /* ------------------------------------------------------ END TOASTS*/
 /* ------------------------------------------------------ MEDIA QUERIES */
+
 @media screen and (max-width: 767px) {
     #avatarnav {
         display: none;
     }
-
     .dropdown-menu {
         background-color: #094C72;
     }
-
     .dropdown-item {
-        color: rgba(255,255,255,.5);
+        color: rgba(255, 255, 255, .5);
     }
 }
+
+
 /* ------------------------------------------------------ END MEDIA QUERIES */
 /* ---------------------------------------------------------------------------- END BASE TEMPLATE*/
 
@@ -168,6 +175,8 @@ body {
 }
 
 .thread:hover {
+    -webkit-transition: 0.8s;
+    -o-transition: 0.8s;
     transition: 0.8s;
     border: 1px solid #094C72;
     background-color: #f2f2f2;
@@ -177,11 +186,13 @@ body {
     border: 1px solid #E0E1DD;
     border-radius: 3px;
     padding: 20px;
-    background-color: #f2f2f2;;
+    background-color: #f2f2f2;
+    ;
     margin-bottom: 20px;
 }
 
-.go-to-profile, .go-to-thread {
+.go-to-profile,
+.go-to-thread {
     color: #094C72;
 }
 
@@ -192,7 +203,7 @@ body {
 /* ------------------------------------------------------ END FORUM PAGE*/
 /* ------------------------------------------------------ THREAD PAGE*/
 
-.goback a { 
+.goback a {
     color: #094C72;
 }
 
@@ -230,24 +241,19 @@ body {
     .forum-small-hide {
         display: none;
     }
-
     .forum-small-show {
         display: inline-block;
     }
-
     .start-thread {
         padding: 0px;
     }
-
     .thread .col-sm-12 {
-    padding-top: 5px;
+        padding-top: 5px;
     }
-
     .thread .col-md-2,
     .thread .col-md-4 {
         padding-top: 5px;
     }
-
     .comment-count-pag {
         font-size: 0.9rem;
     }
@@ -304,7 +310,7 @@ body {
     background-color: #0c3953;
     border: solid 1px #0c3953;
     color: #fff;
-}   
+}
 
 /* ------------------------------------------------------ END BLOG POSTS LIST PAGE */
 /* ------------------------------------------------------ BLOG POST PAGE */
@@ -319,10 +325,10 @@ body {
 }
 
 .like-unlike {
-	background: none;
-	color: inherit;
-	border: none;
-	font: inherit;
+    background: none;
+    color: inherit;
+    border: none;
+    font: inherit;
     cursor: pointer;
     outline: none;
 }
@@ -338,7 +344,7 @@ body {
 
 .unlike {
     font-size: 20px;
-    color:  #e31b23;
+    color: #e31b23;
 }
 
 #list-of-likes {
@@ -351,15 +357,16 @@ body {
 #show-likes {
     margin-top: 5px;
 }
+
 #likes-section {
     margin-bottom: 40px;
 }
 
 .bookmark-unbookmark {
-	background: none;
-	color: inherit;
-	border: none;
-	font: inherit;
+    background: none;
+    color: inherit;
+    border: none;
+    font: inherit;
     cursor: pointer;
     outline: none;
 }
@@ -375,7 +382,7 @@ body {
 
 .fa-bookmark-o {
     font-size: 20px;
-    color:  #094C72;
+    color: #094C72;
 }
 
 /* ------------------------------------------------------ END BLOG POST PAGE */
@@ -416,11 +423,9 @@ body {
     .blog-img {
         width: 290px;
     }
-
     .page-title {
         font-size: 1.5rem;
     }
-    
 }
 
 @media screen and (max-width: 295px) {
@@ -431,8 +436,10 @@ body {
 
 /* ------------------------------------------------------ END MEDIA QUERIES */
 /* ---------------------------------------------------------------------------- END APP BLOG*/
+
 /* ---------------------------------------------------------------------------- APP PROFILE*/
 /* ------------------------------------------------------ PROFILE PAGE*/
+
 #profile-flag {
     padding-bottom: 5px;
 }
@@ -487,8 +494,9 @@ body {
     margin-bottom: 20px;
 }
 
-
+/* ------------------------------------------------------ END PROFILE PAGE*/
 /* ------------------------------------------------------ ACCOUNT PAGE*/
+
 .account-container {
     border: 1px solid #E0E1DD;
     padding: 0;
@@ -505,7 +513,6 @@ body {
     padding: 4px;
     color: #094C72;
 }
-
 
 .donation-details-account-sm {
     display: none;
@@ -526,6 +533,7 @@ body {
 }
 
 .donation-details-account-lg {
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin: 20px 0 20px;
@@ -552,34 +560,33 @@ body {
     padding: 5px;
     margin-bottom: 5px;
     font-size: 0.9rem;
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 /* ------------------------------------------------------ END ACCOUNT PAGE*/
-
-/* ------------------------------------------------------ END PROFILE PAGE*/
 /* ------------------------------------------------------ MEDIA QUERIES */
+
 @media screen and (max-width: 1200px) {
     .donation-details-account-lg {
         display: none;
     }
-
     .donation-details-account-sm {
         display: block;
     }
-}  
+}
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
     #activity-table td {
         font-size: 0.6rem;
     }
-
     #avatar {
         width: 150px;
         height: 150px;
     }
 }
-    
+
+
 /* ------------------------------------------------------ END MEDIA QUERIES */
 /* ---------------------------------------------------------------------------- END APP PROFILE*/
 
@@ -596,16 +603,15 @@ body {
 
 /* ------------------------------------------------------ END DONATION SUCCESS PAGE */
 /* ------------------------------------------------------ MEDIA QUERIES */
+
 @media screen and (max-width: 991px) {
     #donation-details-lg {
         display: none;
     }
-
     #donation-details-sm {
         display: block;
     }
-}  
-    
+}
+
 /* ------------------------------------------------------ END MEDIA QUERIES */
 /* ---------------------------------------------------------------------------- END APP DONATION*/
-

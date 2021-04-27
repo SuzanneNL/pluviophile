@@ -1,18 +1,18 @@
 body {
-    background-color: black;    
+    background-color: black;
 }
 
 .btn-close {
-    text-decoration: none; 
-    font-family: 'Lato', sans-serif; 
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
     border: 1px solid #fff;
     border-radius: 4px;
     padding: 5px;
     font-size: 1.5rem;
     background-color: #094C72;
     color: #fff;
-    position:absolute; 
-    top: 5%; 
+    position: absolute;
+    top: 5%;
     right: 5%;
 }
 
