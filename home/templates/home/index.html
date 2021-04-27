@@ -1,14 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/umbrella-bg.css' %}">
+<link rel="stylesheet" href="{% static 'css/umbrella-bg.css' %}">
 {% endblock %}
-
 {% block extra_title %}
 | Home
 {% endblock %}
-
 {% block content %}
 <div class="container">
     <div class="row">
@@ -17,18 +14,18 @@
             <h4 class="show-sm">Pluviophile:<span class="text-muted"><br>noun<br>plural: 'pluviophiles'</span></h4>
             <h4 class="show-sm">One who loves rain.</h4>
             <h4 class="show-md">Pluviophile:<br>
-            <span class="text-muted">noun, plural: 'pluviophiles'</span><br>
-            One who loves rain.</h4>
+                <span class="text-muted">noun, plural: 'pluviophiles'</span><br>
+                One who loves rain.
+            </h4>
             <br>
             {% if not request.user.is_authenticated %}
             <a class="btn btn-lg btn-blue" href="{% url 'account_signup' %}">Join now!</a>
             {% endif %}
-
         </div>
     </div>
 </div>
-<!--Icon container medium screens and up-->
-<div class="container content-container show-md"> 
+<!--Card container medium screens and up-->
+<div class="container content-container show-md">
     <div class="row">
         <div class="col col-sm-12 col-md-4">
             <div class="card">
@@ -54,9 +51,9 @@
                     <p>Get to know other pluviophiles, share your experiences.</p>
                 </div>
                 {% if request.user.is_authenticated %}
-                    <div class="card-footer">
-                        <a class="btn btn-blue" href="{% url 'forum' %}">What people are talking about?</a>
-                    </div>
+                <div class="card-footer">
+                    <a class="btn btn-blue" href="{% url 'forum' %}">What people are talking about?</a>
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -69,17 +66,17 @@
                     <p>Read blog posts about rain related topics by different authors.</p>
                 </div>
                 {% if request.user.is_authenticated %}
-                    <div class="card-footer">
-                        <a class="btn btn-blue mx-auto" href="{% url 'blog' %}">Check out the latest blog posts!</a>
-                    </div>
+                <div class="card-footer">
+                    <a class="btn btn-blue mx-auto" href="{% url 'blog' %}">Check out the latest blog posts!</a>
+                </div>
                 {% endif %}
             </div>
         </div>
     </div>
 </div>
-<!--End icon container medium screens and up-->
-<!--Icon container small screens-->
-<div class="container content-container show-sm"> 
+<!--End card container medium screens and up-->
+<!--Card container small screens-->
+<div class="container content-container show-sm">
     <div class="row">
         <div class="col">
             <div class="card">
@@ -107,9 +104,9 @@
                     <p>Get to know other pluviophiles, share your experiences</p>
                 </div>
                 {% if request.user.is_authenticated %}
-                    <div class="card-footer">
-                        <a class="btn btn-blue" href="{% url 'forum' %}">What people are talking about?</a>
-                    </div>
+                <div class="card-footer">
+                    <a class="btn btn-blue" href="{% url 'forum' %}">What people are talking about?</a>
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -124,14 +121,13 @@
                     <p>Read blog posts about rain related topics by different authors</p>
                 </div>
                 {% if request.user.is_authenticated %}
-                    <div class="card-footer">
-                        <a class="btn btn-blue mx-auto" href="{% url 'blog' %}">Check out the latest blog posts!</a>
-                    </div>
+                <div class="card-footer">
+                    <a class="btn btn-blue mx-auto" href="{% url 'blog' %}">Check out the latest blog posts!</a>
+                </div>
                 {% endif %}
             </div>
         </div>
     </div>
 </div>
-<!--End icon container small screens-->
-
+<!--End card container small screens-->
 {% endblock %}

@@ -1,23 +1,21 @@
 {% load static %}
-
-{% block extra_css %}
-<meta content="width=device-width, initial-scale=1" name="viewport" />
-<link rel="stylesheet" href="{% static 'css/rain.css' %}">
-{% endblock %}
-
-
-<body onload="setup();">
-    <center>
-    <canvas id="canvas"></canvas>
-    </center>
-    {% if goback %}
+<!doctype html>
+<html lang="en">
+    <head>
+        {% block extra_css %}
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link rel="stylesheet" href="{% static 'css/rain.css' %}">
+        {% endblock %}
+        <title>Pluviophile | It's raining!</title>
+    </head>
+    <body onload="setup();">
+        <canvas id="canvas"></canvas>
+        {% if goback %}
         <a class="btn-close" href="{{ goback }}">Close</a>
-    {% else %}
+        {% else %}
         <a class="btn-close" href="{% url 'home' %}">Close</a>
-    {% endif %}
-</body>
-
-
-{% block postloadjs %}
-<script src="{% static 'js/rain.js' %}"></script>
-{% endblock %}
+        {% endif %}
+        {% block postloadjs %}
+        <script src="{% static 'js/rain.js' %}"></script>
+        {% endblock %}
+    </body>
