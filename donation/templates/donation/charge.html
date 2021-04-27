@@ -1,60 +1,56 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/donation.css' %}">
-    <link rel="stylesheet" href="{% static 'css/umbrella-bg.css' %}">
+<link rel="stylesheet" href="{% static 'css/donation.css' %}">
+<link rel="stylesheet" href="{% static 'css/umbrella-bg.css' %}">
 {% endblock %}
-
 {% block extra_title %}
 | Donation
 {% endblock %}
-
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col col-md-6 offset-md3 mx-auto">
-                <h1>Donate € 5,-</h1>
-                <div class="card">
-                    <div class="card-body">
-                        <form action="{% url 'charge' %}" method="POST" id="payment-form">
-                            {% csrf_token %}
-                            <fieldset>{{ donation_form.donor|as_crispy_field }}</fieldset>
-                            <fieldset>{{ donation_form.donor_full_name|as_crispy_field }}</fieldset>
-                            <fieldset>{{ donation_form.email|as_crispy_field }}</fieldset>
-                            <fieldset>
-                                <label class="requiredField">Card Details<span class="asteriskField">*</span></label>
-                                <!-- A Stripe card element will go here -->
-                                <div class="mb-3" id="card-element"></div>
-                                <!-- Used to display form errors -->
-                                <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
-                                <!-- Pass the client secret to the view to get the payment intent id -->
-                                <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                            </fieldset>
-                            <a class="btn btn-secondary" href="{% url 'donate' %}">Cancel</a>
-                            <button class="btn btn-blue" id="submit-button" type="submit">Donate</button>
-                        </form>
-                    </div>
+<div class="container">
+    <div class="row">
+        <div class="col col-md-6 offset-md3 mx-auto">
+            <h1>Donate € 5,-</h1>
+            <div class="card">
+                <div class="card-body">
+                    <form action="{% url 'charge' %}" method="POST" id="payment-form">
+                        {% csrf_token %}
+                        <fieldset>{{ donation_form.donor|as_crispy_field }}</fieldset>
+                        <fieldset>{{ donation_form.donor_full_name|as_crispy_field }}</fieldset>
+                        <fieldset>{{ donation_form.email|as_crispy_field }}</fieldset>
+                        <fieldset>
+                            <label class="requiredField">Card Details<span class="asteriskField">*</span></label>
+                            <!-- A Stripe card element will go here -->
+                            <div class="mb-3" id="card-element"></div>
+                            <!-- Used to display form errors -->
+                            <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                            <!-- Pass the client secret to the view to get the payment intent id -->
+                            <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                        </fieldset>
+                        <a class="btn btn-secondary" href="{% url 'donate' %}">Cancel</a>
+                        <button class="btn btn-blue" id="submit-button" type="submit">Donate</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <div id="loading-overlay">
-        <h1 class="text-light logo-font loading-spinner">
-            <span class="icon">
-                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
-            </span>
-        </h1>
-    </div>
+</div>
+<div id="loading-overlay">
+    <h1 class="text-light logo-font loading-spinner">
+        <span class="icon">
+        <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+        </span>
+    </h1>
+</div>
 {% endblock %}
-
 {% block postloadjs %}
-    {{ block.super }}
-    {{ stripe_public_key|json_script:"id_stripe_public_key"}}
-    {{ client_secret|json_script:"id_client_secret"}}
-    <script src="{% static 'js/stripe_elements.js' %}"></script>
-    <script>
-        let donor = "{{ user.id }}";
-        document.getElementById("donor").value = donor;
-    </script>
+{{ block.super }}
+{{ stripe_public_key|json_script:"id_stripe_public_key"}}
+{{ client_secret|json_script:"id_client_secret"}}
+<script src="{% static 'js/stripe_elements.js' %}"></script>
+<script>
+    let donor = "{{ user.id }}";
+    document.getElementById("donor").value = donor;
+</script>
 {% endblock %}

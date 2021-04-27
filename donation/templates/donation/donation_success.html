@@ -1,49 +1,46 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/umbrella-bg.css' %}">
+<link rel="stylesheet" href="{% static 'css/umbrella-bg.css' %}">
 {% endblock %}
-
 {% block extra_title %}
 | Donation
 {% endblock %}
-
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col col-md-8 offset-md2 mx-auto">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h1>Thank you for your donation <i class="fa fa-heart thanks" aria-hidden="true"></i></h1>
-                        <p>We appreciate the support!</p>
-                        <p>Your donation information is below. A confirmation email will be sent to <strong>{{ donation.email }}</strong>.</p>
-                        <h4>Donation details</h4>
-                        <table id="donation-details-account-lg" style="width: 100%">
-                            <tr>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Donation number</th>
-                            </tr>
-                            <tr>
-                                <td>{{ donation.date }}</td>
-                                <td>€ 05,00</td>
-                                <td>{{ donation.donation_number }}</td>
-                            </tr>
-                        </table>
-                        <div id="donation-details-account-sm">
-                            <span><strong>Date:</strong></span><br>
-                            <span><em>{{ donation.date }}</em></span><br>
-                            <br>
-                            <span><strong>Amount:</strong></span><br>
-                            <span><em>€ 5,00</em></span><br>
-                            <br>
-                            <span><strong>Donation number:</strong></span><br>
-                            <span><em>{{ donation.donation_number }}</em></span><br>
-                        </div>
+<div class="container">
+    <div class="row">
+        <div class="col col-md-8 offset-md2 mx-auto">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1>Thank you for your donation <i class="fa fa-heart thanks" aria-hidden="true"></i></h1>
+                    <p>We appreciate the support!</p>
+                    <p>Your donation information is below. A confirmation email will be sent to <strong>{{ donation.email }}</strong>.</p>
+                    <h4>Donation details</h4>
+                    <table id="donation-details-account-lg" style="width: 100%">
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Donation number</th>
+                        </tr>
+                        <tr>
+                            <td>{{ donation.date }}</td>
+                            <td>€ 05,00</td>
+                            <td>{{ donation.donation_number }}</td>
+                        </tr>
+                    </table>
+                    <div id="donation-details-account-sm">
+                        <span><strong>Date:</strong></span><br>
+                        <span><em>{{ donation.date }}</em></span><br>
+                        <br>
+                        <span><strong>Amount:</strong></span><br>
+                        <span><em>€ 5,00</em></span><br>
+                        <br>
+                        <span><strong>Donation number:</strong></span><br>
+                        <span><em>{{ donation.donation_number }}</em></span><br>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
