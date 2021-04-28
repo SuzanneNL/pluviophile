@@ -30,7 +30,8 @@ $("#getWeather").click(function() {
 				temp += data.main.temp;
 				temprounded = Math.floor(temp) + '&deg;C ';
 				desc += val.description;
-			});
+            });
+            $("#error").html("");
 			$("#show-city").html(cityname);
 			$("#show-icon").html(icon);
 			$("#show-temp").html(temprounded);
@@ -40,6 +41,14 @@ $("#getWeather").click(function() {
 			} else {
 				$("#is-it-raining").html("Sorry, no rain in");
 			}
-		}
+        },
+        error: function(){
+            $("#is-it-raining").html("");
+            $("#show-city").html("");
+            $("#show-icon").html("");
+            $("#show-temp").html("");
+            $("#show-desc").html("");
+            $("#error").html("Oops, something went wrong.<br><br>Did you spell the city name correctly? If so, perhaps the service is unavailable. Please, try again later.")
+        }
 	});
 });
