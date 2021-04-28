@@ -48,7 +48,7 @@ $("#getWeather").click(function() {
             $("#show-icon").html("");
             $("#show-temp").html("");
             $("#show-desc").html("");
-            $("#error").html("Oops, something went wrong.<br><br>Did you spell the city name correctly? If so, perhaps the service is unavailable. Please, try again later.")
+            $("#error").html("Oops, something went wrong.<br><br>Did you spell the city name correctly? If so, perhaps the service is unavailable. Please, try again later.");
         }
 	});
 });
