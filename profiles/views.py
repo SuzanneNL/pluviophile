@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, UpdateView
@@ -17,12 +17,15 @@ class ProfileView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         profile = self.get_object()
-        context['threads_by_user'] = Thread.objects.filter(creator=profile.user)
-        context['comments_by_user'] = Comment.objects.filter(creator=profile.user)
+        context['threads_by_user'] = \
+            Thread.objects.filter(creator=profile.user)
+        context['comments_by_user'] = \
+            Comment.objects.filter(creator=profile.user)
         return context
 
 
-class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+class EditProfileView(LoginRequiredMixin, UserPassesTestMixin,
+                      SuccessMessageMixin, UpdateView):
     model = Profile
     form_class = ProfileForm
     success_message = "Your profile was updated successfully"
@@ -43,9 +46,12 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
 @login_required
 def account(request):
     template = 'profiles/account.html'
+    donations = Donation.objects.all().order_by('-date')
+    donations_by_user = \
+        Donation.objects.filter(donor=request.user).order_by('-date')
     context = {
-        'donations': Donation.objects.all().order_by('-date'),
-        'donations_by_user': Donation.objects.filter(donor=request.user).order_by('-date'),
+        'donations': donations,
+        'donations_by_user': donations_by_user,
         'blogposts': BlogPost.objects.all()
     }
     return render(request, template, context)
