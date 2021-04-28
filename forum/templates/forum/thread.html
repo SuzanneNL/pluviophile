@@ -119,9 +119,10 @@
             {% endif %}
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-1">
         <div class="col">
             <p class="d-flex justify-content-end comment-count-pag">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
+                (new to old)
                 - Page {{ comments.number}} of {{ comments.paginator.num_pages }}
             </p>
         </div>
@@ -239,9 +240,10 @@
             {% endif %}
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-1">
         <div class="col">
             <p class="d-flex justify-content-end comment-count-pag">{{ comments_count }} comment{% if comments_count == 0 or comments_count > 1 %}s{% endif %}
+                (new to old)
                 - Page {{ comments.number}} of {{ comments.paginator.num_pages }}
             </p>
         </div>
