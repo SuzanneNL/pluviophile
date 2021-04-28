@@ -60,7 +60,8 @@ class StartThreadView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class EditThreadView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+class EditThreadView(LoginRequiredMixin, UserPassesTestMixin,
+                     SuccessMessageMixin, UpdateView):
     model = Thread
     form_class = ThreadForm
     success_message = "Thread '%(title)s' was updated successfully"
@@ -78,7 +79,8 @@ class EditThreadView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
         return redirect('error')
 
 
-class DeleteThreadView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+class DeleteThreadView(LoginRequiredMixin, UserPassesTestMixin,
+                       SuccessMessageMixin, DeleteView):
     model = Thread
     template_name = "forum/delete_thread.html"
     success_message = "Your thread was deleted successfully"
@@ -115,7 +117,8 @@ class AddCommentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+class EditCommentView(LoginRequiredMixin, UserPassesTestMixin,
+                      SuccessMessageMixin, UpdateView):
     model = Comment
     template_name = "forum/edit_comment.html"
     success_message = "Your comment was updated successfully"
@@ -136,7 +139,8 @@ class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
         return redirect('error')
 
 
-class DeleteCommentView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+class DeleteCommentView(LoginRequiredMixin, UserPassesTestMixin,
+                        SuccessMessageMixin, DeleteView):
     model = Comment
     success_message = "Your comment was deleted successfully"
     template_name = "forum/delete_comment.html"
