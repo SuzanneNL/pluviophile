@@ -13,6 +13,8 @@ class ProfileForm(forms.ModelForm):
         fields = ('date_of_birth', 'country', 'biography', 'avatar')
         widgets = {'date_of_birth': DatePicker}
 
+    # Source for forbidding dates in future: StackOverFlow.
+    # See README file under 'Sources'.
     def clean_date_of_birth(self):
         date_of_birth = self.cleaned_data['date_of_birth']
         if date_of_birth:

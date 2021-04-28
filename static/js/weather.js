@@ -1,4 +1,4 @@
-// Source: YouTube tutorial by 'The Basics of Web Tech', see README file under 'Sources'. 
+// Source use Open Weather Map: YouTube tutorial by 'The Basics of Web Tech'. see README file under 'Sources'. 
 
 /* A user enters a city and after submitting, he sees the current weather situation for that city, provided by openweathermap.
 Also, based on the weather code for that situation, the user sees a small message about whether or not it's raining */

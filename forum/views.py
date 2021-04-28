@@ -1,3 +1,6 @@
+# Source: This app was largely influenced by tutorials
+# from CoreyMS and John Elder. See README file under 'Sources'.
+
 from django.shortcuts import render, redirect
 from sortable_listview import SortableListView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -15,6 +18,8 @@ from django.views.generic import (
 from .models import Thread, Comment
 
 
+# Source SortableListView: django-sortable-listview documentation
+# See README file under 'Sources'
 class ForumView(LoginRequiredMixin, SortableListView):
     model = Thread
     template_name = "forum/forum.html"
@@ -37,6 +42,7 @@ class ThreadView(LoginRequiredMixin, DetailView):
     template_name = "forum/thread.html"
     ordering = ['date_created']
 
+    # Source for pagination: StackOverFlow. See README file under 'Sources'
     def get_context_data(self, **kwargs):
         context = super(ThreadView, self).get_context_data(**kwargs)
         page = self.request.GET.get('page')
@@ -75,6 +81,7 @@ class EditThreadView(LoginRequiredMixin, UserPassesTestMixin,
             return True
         return False
 
+    # Source for redirecting: StackOverFlow. See README file under 'Sources'.
     def handle_no_permission(self):
         return redirect('error')
 
@@ -97,6 +104,7 @@ class DeleteThreadView(LoginRequiredMixin, UserPassesTestMixin,
     def handle_no_permission(self):
         return redirect('error')
 
+    # Source success message: StackOverFlow. See README file under 'Sources'.
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(DeleteThreadView, self).delete(request, *args, **kwargs)

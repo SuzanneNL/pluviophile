@@ -23,6 +23,8 @@ class Profile(models.Model):
     def __str__(self):
         return "%s's profile" % (self.user)
 
+    # Source use slug: YouTube tutorial by Skolo Online.
+    # See README file under 'Sources'.
     def save(self, *args, **kwargs):
         if self.slug is None:
             self.slug = slugify(self.user)

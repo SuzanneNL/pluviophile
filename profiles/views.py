@@ -39,6 +39,7 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin,
             return True
         return False
 
+    # Source for redirecting: StackOverFlow. See README file under 'Sources'.
     def handle_no_permission(self):
         return redirect('error')
 

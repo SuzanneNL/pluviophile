@@ -1,3 +1,6 @@
+# Source: This app was largely influenced by tutorials
+# from CoreyMS and John Elder. See README file under 'Sources'.
+
 from django.shortcuts import render, redirect
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
@@ -16,6 +19,8 @@ from .models import BlogPost
 from .forms import BlogPostForm
 
 
+# Source SortableListView: django-sortable-listview documentation
+# See README file under 'Sources'
 class BlogPostsListView(LoginRequiredMixin, SortableListView):
     model = BlogPost
     template_name = "blog/blog_posts_list.html"
@@ -33,10 +38,12 @@ class BlogPostView(LoginRequiredMixin, DetailView):
     template_name = "blog/blog_post.html"
 
 
+# Source for custom Mixin: StackOverFlow. See README file under 'Sources'.
 class AdminRequiredMixin (LoginRequiredMixin, UserPassesTestMixin):
     def test_func(self):
         return self.request.user.is_superuser
 
+    # Source for redirecting: StackOverFlow. See README file under 'Sources'.
     def handle_no_permission(self):
         return redirect('error')
 
@@ -65,6 +72,7 @@ class DeleteBlogPostView(AdminRequiredMixin, SuccessMessageMixin, DeleteView):
     success_message = "Your blog post was deleted successfully"
     success_url = reverse_lazy('blog')
 
+    # Source success message: StackOverFlow. See README file under 'Sources'.
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(DeleteBlogPostView, self).delete(request, *args, **kwargs)

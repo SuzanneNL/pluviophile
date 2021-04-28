@@ -1,4 +1,4 @@
-// Source: YouTube tutorial by Punto & Virgola, see README file under 'Sources'.
+// Source animation: YouTube tutorial by Punto & Virgola, see README file under 'Sources'.
 
 // Global variables
 var c, ctx, vRain;

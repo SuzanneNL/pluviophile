@@ -1,3 +1,5 @@
+// Source counting in repeating div: StackOverFlow. See README file under 'Sources'.
+
 /* This counts the number of posts(threads/comments - on the entire forum) created by a user
 Based on that number, an activity status is created in the form of blue and grey drops */
 $(".elements").each(function(ind, val) {

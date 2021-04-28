@@ -18,6 +18,7 @@
         <div class="col-sm-10">
             <h3>{{ thread.title }}</h3>
             <small>by <strong><a class="go-to-profile" href="{% url 'profile' thread.creator.profile.slug %} ">{{ thread.creator }}</a></strong> posted on {{ thread.date_created }}
+            <!-- Source for Date template filter: https://simpleisbetterthancomplex.com/references/2016/06/21/date-filter.html -->
             {% if thread.date_created|date:"D, d M, Y, H:i s" != thread.date_edited|date:"D, d M, Y, H:i s" %}
             (Edited on: {{ thread.date_edited }})
             {% endif %}
@@ -101,6 +102,7 @@
     {% if comments %}
     <div class="row">
         <div class="col col-md-2">
+            <!--Source for redirecting: StackOverFlow. See README file under 'Sources'.-->
             <a href="{% url 'add_comment' thread.pk %}?next={{ request.path }}" class="btn btn-blue">Drop a comment</a>
         </div>
         <br>
