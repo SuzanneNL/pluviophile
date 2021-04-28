@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 body {
     background-color: black;
 }
@@ -7,8 +8,8 @@ body {
     font-family: 'Lato', sans-serif;
     border: 1px solid #fff;
     border-radius: 4px;
-    padding: 5px;
-    font-size: 1.5rem;
+    padding: 8px 10px 8px;
+    font-size: 1.4rem;
     background-color: #094C72;
     color: #fff;
     position: absolute;
