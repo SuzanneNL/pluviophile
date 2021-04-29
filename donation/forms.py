@@ -3,7 +3,13 @@ from .models import Donation
 
 
 class DonationForm(forms.ModelForm):
+    """
+    Form for creation of a donation.
+    """
     class Meta:
+        """
+        The donor is the logged in user. That field is hidden.
+        """
         model = Donation
         fields = ('donor_full_name', 'donor', 'email')
 
@@ -16,8 +22,8 @@ class DonationForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         """
-        Add placeholders and classes, remove auto-generated
-        labels and set autofocus on first field
+        Add classes, remove auto-generated labels and set autofocus
+        on first field.
         """
         super().__init__(*args, **kwargs)
 

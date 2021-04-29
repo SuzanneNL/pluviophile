@@ -4,6 +4,9 @@ from django.urls import reverse
 
 
 class Thread(models.Model):
+    """
+    Model for threads.
+    """
     title = models.CharField(max_length=60)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.CharField(max_length=2000)
@@ -18,6 +21,9 @@ class Thread(models.Model):
 
 
 class Comment(models.Model):
+    """
+    Model for comments. Each comment 'belongs to' a thread.
+    """
     thread = models.ForeignKey(Thread, related_name="comments",
                                on_delete=models.CASCADE)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -25,5 +25,8 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
+    """
+    This stores images to the repository, when DEBUG is True
+    """
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)

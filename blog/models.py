@@ -4,6 +4,10 @@ from django.urls import reverse
 
 
 class BlogPost(models.Model):
+    """
+    Model for blog posts. Please see README file under 'Features left
+    to implement' for planned changes.
+    """
     title = models.CharField(max_length=90)
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
     author = models.CharField(max_length=90, default="Author unknown")

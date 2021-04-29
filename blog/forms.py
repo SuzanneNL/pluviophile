@@ -3,6 +3,10 @@ from .models import BlogPost
 
 
 class BlogPostForm(forms.ModelForm):
+    """
+    Form for creating/editing blog posts. Please see README file under
+    'Features left to implement' for planned changes.
+    """
     class Meta:
         model = BlogPost
         fields = (

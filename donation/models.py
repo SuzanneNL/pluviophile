@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 
 
 class Donation(models.Model):
+    """
+    Model for donations.
+    """
     donation_number = models.CharField(max_length=32, null=False,
                                        editable=False)
     donor = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -15,7 +18,7 @@ class Donation(models.Model):
 
     def _generate_donation_number(self):
         """
-        Generates random and unique donation number, using UUID
+        Generates random and unique donation number, using UUID.
         """
         return uuid.uuid4().hex.upper()
 

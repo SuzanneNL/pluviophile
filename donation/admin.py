@@ -3,6 +3,10 @@ from .models import Donation
 
 
 class DonationAdmin(admin.ModelAdmin):
+    """
+    This makes the fields uneditable in the admin panel. Donations are
+    ordered from new to old.
+    """
     readonly_fields = (
                 'donation_number',
                 'date',

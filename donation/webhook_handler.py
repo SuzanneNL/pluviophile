@@ -10,7 +10,9 @@ import time
 
 
 class StripeWH_Handler:
-    """Handle Stripe webhooks"""
+    """
+    Handles Stripe webhooks.
+    """
 
     def __init__(self, request):
         self.request = request
@@ -54,6 +56,7 @@ class StripeWH_Handler:
             if value == "":
                 billing_details.address[field] = None
 
+        # Uses user email to identify donor
         user_email = intent.charges.data[0].billing_details.email
         if self.request.user != 'AnonymousUser':
             user = User.objects.get(email=user_email)

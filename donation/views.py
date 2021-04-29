@@ -9,11 +9,17 @@ import stripe
 
 @login_required
 def donate(request):
+    """
+    Renders donation page. Login is required.
+    """
     return render(request, 'donation/donate.html')
 
 
 @login_required
 def charge(request):
+    """
+    Renders charge page. Processes the payment/donation.
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -59,6 +65,11 @@ def charge(request):
 
 @login_required
 def donation_success(request, donation_number):
+    """
+    Renders a success page with success message after successfully processing
+    the donation. If a user tries to access a success page for a donation that
+    wasn't his, he will be redirected to the error page.
+    """
     donation = get_object_or_404(Donation, donation_number=donation_number)
     if request.user == donation.donor:
         messages.success(request, 'Your donation was successfully processed!')
@@ -73,4 +84,7 @@ def donation_success(request, donation_number):
 
 
 def error(request):
+    """
+    This renders an error page.
+    """
     return render(request, 'donation/error.html')

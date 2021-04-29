@@ -9,6 +9,9 @@ from django_countries.fields import CountryField
 
 
 class Profile(models.Model):
+    """
+    Model for profiles.
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     biography = models.CharField(max_length=2000, blank=True,
                                  default='')
@@ -26,6 +29,10 @@ class Profile(models.Model):
     # Source use slug: YouTube tutorial by Skolo Online.
     # See README file under 'Sources'.
     def save(self, *args, **kwargs):
+        """
+        Slug is used in the profile URL. If the slug is not unique, an id gets
+        attached, ensuring a unique URL for the profile.
+        """
         if self.slug is None:
             self.slug = slugify(self.user)
             if Profile.objects.filter(slug=self.slug).exists():
@@ -39,6 +46,10 @@ class Profile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
+    """
+    When a user gets created, a profile also automatically gets created for
+    this user.
+    """
     if created:
         Profile.objects.create(user=instance)
 

@@ -47,6 +47,7 @@
                 <i class="fa fa-tint gold-drop" aria-hidden="true"></i><br>
             </div>
             {% else %}
+            <!--This section below is hidden and used to create the users activity status-->
             <div class="elements">
                 <div class="hide">
                     {% for obj in all_threads_on_forum %}
@@ -60,7 +61,7 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-                <div class="count"></div>
+                <div class="status"></div>
             </div>
             {% endif %}
             <small>Joined: {{ thread.creator.profile.member_since.date }}</small>
@@ -185,7 +186,7 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-                <div class="count"></div>
+                <div class="status"></div>
             </div>
             {% endif %}
             <small>Joined: {{ comment.creator.profile.member_since.date }}</small>
