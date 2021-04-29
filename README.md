@@ -247,7 +247,7 @@ However, I did not follow my wireframe for the homepage. I did not feel confiden
 
 #### Thread
 - **CRUD-functionality for comments** - Users can write comments under the thread and its description. Users can be redirected to the edit and delete comment pages via the buttons under their comments. 
-**Thread and comment details** - Users can see details for the thread and comments: who posted it, when it was posted (date and time), and if the thread or comment was edited and, if that is the case, when it was edited.
+- **Thread and comment details** - Users can see details for the thread and comments: who posted it, when it was posted (date and time), and if the thread or comment was edited and, if that is the case, when it was edited.
 - **User details** - Next to the thread description and next to the comments, a bit of information is displayed about the user who has created that thread or posted that comment. It shows a username, a flag (if the user has selected his country on the profile page), an avatar, the date on which the user joined the website and a status, consisting of a number of drops. Superusers get 5 golden drops. Other users get 1, 2, 3, 4 or 5 blue drops, based on the number of threads and comments they have created/posted on the website. 
 - **Visit profiles** - By clicking on a username next to a comment or the thread description, users get redirected to that user's profile page. 
 - **Pagination** - Each thread page is paginated per 5 comments. 
