@@ -51,23 +51,27 @@ class ThreadView(LoginRequiredMixin, DetailView):
     """
     model = Thread
     template_name = "forum/thread.html"
-    ordering = ['date_created']
 
     # Source for pagination: StackOverFlow. See README file under 'Sources'
     def get_context_data(self, **kwargs):
         """
         This is where pagination for comments is arranged. It also passes
         the number of threads and comments on the forum as context, which is
-        needed on the template.
+        needed on the template. 
         """
+        import math
         context = super(ThreadView, self).get_context_data(**kwargs)
         page = self.request.GET.get('page')
         comments = Paginator(self.object.comments.all().order_by(
-                             '-date_created'), 5)
+                             'date_created'), 5)
+        comments_count = self.object.comments.count()
+        calc = (comments_count + 1) / 5
+        next_page = math.ceil(calc)
         context['all_threads_on_forum'] = Thread.objects.all()
         context['all_comments_on_forum'] = Comment.objects.all()
         context['comments'] = comments.get_page(page)
-        context['comments_count'] = self.object.comments.count()
+        context['comments_count'] = comments_count
+        context['next_page'] = next_page
         return context
 
 
@@ -177,7 +181,7 @@ class AddCommentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = CommentForm
 
     def get_success_url(self):
-        return reverse_lazy('thread', kwargs={'pk': self.kwargs['pk']})
+        return self.request.GET.get('next', reverse_lazy('forum'))
 
     def form_valid(self, form):
         """
