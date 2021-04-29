@@ -214,6 +214,9 @@ I used the following font-family:
 
 ### Wireframes
 Wireframes for this website were created using Balsamiq. You can find the wireframes in a PDF file [HERE](https://github.com/SuzanneNL/pluviophile/blob/master/documentation/wireframes/balsamiq-wireframes.pdf).
+I didn't have much of a vision for the website, I was more focused on getting the backend to work. But I knew I wanted to use blue and I knew the layout, but I didn't have ideas for the background. 
+I had created the wireframes for the most important pages and updated them from time to time, trying to see if the updated version would work better. In the end, I didn't change too much. And I then usually stuck to the wireframes.
+However, I did not follow my wireframe for the homepage. I did not feel confident about the layout I had designed, which is also why I hadn't created a design for tablets and mobile devices. During development, it was empty for a long time. In the end, I chose a simpler layout, with three small cards and a definition. I then also chose a background, which is the image of the old man with an umbrella on a rainy day. I tried a fair amount of images, but not many were suited. A close up of drops, for example, was quite chaotic. I like the idea of the photograph that I'm using and how it's positioned on different devices, but I'm still disappointed that the colors turn out quite dark on certain devices. I would like to look into a new background image and choose different colors. But at this stage, right before submitting, I don't have any time left to experiment with this.
 
 ## FEATURES
 ### Existing features (per page)
@@ -304,7 +307,7 @@ A number of the features left to implement, have unfortunately been left out due
 - **Quote comments (comment in comment)** - On a forum, users can usually respond specifically to someone else's comment. The original comment is then displayed between quotation marks, and the new user's comment is underneath, all inside one comment div. I would like to have this functionality on my forum. 
 - **Widget for images** - like in the Boutique Ado project, this would be more user friendly.
 - **DM's between users** - I would like to implement direct message functionality, where users can send private messages to each other. 
-- **Rich text editor... maybe!** - The steps a superuser has to follow in order to upload a blog post are not very user friendly for several reasons, for example:
+- **Rich text editor** - The steps a superuser has to follow in order to upload a blog post are not very user friendly for several reasons, for example:
 	- It is not immediately clear how the user can upload the blog post, there are instructions to read first. I can only hope that he does.
 	- He has to cut his text into different parts.
 	- He is limited to three images.
@@ -314,12 +317,13 @@ I have looked into using a rich text editor, I know that there are several and I
 	- The text editor uses icons and looks a bit like a Word text editor, so it's easier to use without reading instructions.
 	- There is no need to know html.
 	- There is no limit on how many images can be used, or where and how they're positioned in the text.
+	- I can simplify my model by removing the fields for second and third body/image/description.
 
 Had my goal been to allow every user to write blog posts and for his own audience, then I would have given my users the ease and freedom that comes with a rich text editor.
-But I want this website to have a consistent design. Only superusers are allowed to upload blog posts, and they can be schooled in basic html. Also, I want images to be stored in my database, instead of relying on URL's of other websites. On top of that, I had limited time for this project and wasn't sure if I was able to resize the text editor for mobile screens. 
+But I wanted this website to have a consistent design. Only superusers are allowed to upload blog posts, and they can be schooled in basic html. And currently, there's just me. Also, I want images to be stored in my database, instead of relying on URL's of other websites. On top of that, I had limited time for this project and wasn't sure if I was able to resize the text editor for mobile screens. 
 Therefore this is not so much an unresolved issue, it's more me making a decision after considering the options. I might change my mind later in time though, and switch to the rich text editor because I still think it is more user friendly.
 
-(Comment added not too long submission: As I was filling my Postgres database with blog posts, I realized that I can still add images to a textarea because it processes html. I've done that for one of the blog posts. I even added youtube videos. I'm not going to remove the image and blog fields at this moment, but I probably will, after the project has been assessed.)
+(Comment added not too long before submission: As I was filling my Postgres database with blog posts, I realized that I can still add images to a textarea because it processes html. I've done that for one of the blog posts. I even added YouTube videos. I'm not going to remove the image and blog fields at this moment, but I probably will, after the project has been assessed.)
 - **Separate admin page** - It might be nice to have a separate admin page where all the donation information can be found (instead of on the account page), and also where he can maybe delete users. This last thing has to be done on the admin panel for now. 
 
 ## TECHNOLOGIES USED
