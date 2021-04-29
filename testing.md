@@ -38,7 +38,7 @@ There are still a few warnings, like lines that are too long in settings.py and 
     - Links in content on pages also redirect users to other pages, such as being redirected to the Sign Up page from the Sign In page is a user hasn't got an account yet, or going to user profiles via the forum and thread pages.
 2. **I want my website to give feedback to users, so that it is easy to navigate.**
     - Forms give feedback when a user doesn't correctly fill in a fields.
-    - Django messages (Bootstrap toasts) give feedback after user actions with color and text (like red for error, green for success). For example, after signing in, the user sees a green success message notifying the user that he has signed in successfully.
+    - Django messages (Bootstrap toasts) give feedback after user actions with color and text (like red for error, green for success). For example, after signing in, the user sees a green success message notifying the user that he has signed in successfully. I decided to automatically close success/info toasts with a bit of a delay, because they hang over the dropdown menu when a user clicks on his username (for going to his profile or account or for signing out). Error/warning messages are more important, so users have to close those themselves.
     - Hover effects such as a pointer or changing colors of/in a button also give feedback to the user, about whether or not something can be clicked.
 3. **I want my website to inform and entertain users with blog posts about rain.**
     - In the blog part of the website, users will find several blog posts with rain related topics. Users can like these blog posts with the like button, or bookmark them so that they can read them again later.
