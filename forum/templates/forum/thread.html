@@ -152,7 +152,7 @@
             <p>{{ comment.post }}</p>
             {% if request.user == comment.creator or request.user.is_superuser %}
             <br>
-            <a href="{% url 'edit_comment' comment.pk %}?next={{ request.path }}" class="btn btn-secondary btn-sm">Edit</a>
+            <a href="{% url 'edit_comment' comment.pk %}?next={{ request.path }}?page={{ comments.number }}" class="btn btn-secondary btn-sm">Edit</a>
             <a href="{% url 'delete_comment' comment.pk %}?next={{ request.path }}" class="btn btn-danger btn-sm">Delete</a>
             {% endif %}
         </div>
@@ -210,7 +210,7 @@
                     <p class="card-text">{{ comment.post }}</p>
                     {% if request.user == comment.creator or request.user.is_superuser %}
                     <br>
-                    <a href="{% url 'edit_comment' comment.pk %}?next={{ request.path }}" class="btn btn-secondary btn-sm">Edit</a>
+                    <a href="{% url 'edit_comment' comment.pk %}?next={{ request.path }}?page={{ comments.number }}" class="btn btn-secondary btn-sm">Edit</a>
                     <a href="{% url 'delete_comment' comment.pk %}?next={{ request.path }}" class="btn btn-danger btn-sm">Delete</a>
                     {% endif %}    
                 </div>
