@@ -95,7 +95,7 @@ The user model is the core of the project. It is connected to every other model.
 
 Below you will find the custom models I have created. A side note: I'm not happy with my BlogPost model, which I will explain later.
 
-Blog app - BlogPost model
+**Blog app - BlogPost model**
 **Database key**|**Field Type**|**Validation**
 :-----|:----- |:-----
 title | CharField | max_length=90
@@ -114,7 +114,7 @@ date_created | DateTimeField | auto_now_add=True
 likes | ManyToManyField (User) | related_name='blog_posts'
 bookmarks | ManyToManyField (User) | related_name='blog_posts_bookmarks'
 
-Donation app - Donation model
+**Donation app - Donation model**
 **Database key**|**Field Type**|**Validation**
 :-----|:----- |:-----
 donation_number | CharField | max_length=32, null=False, editable=False
@@ -124,7 +124,7 @@ email | EmailField | max_length=254, null=False, blank=False
 date | DateTimeField | auto_now_add=True
 stripe_pid | CharField | max_length=254, null=False, blank=False, default=''
 
-Forum app - Thread model
+**Forum app - Thread model**
 **Database key**|**Field Type**|**Validation**
 :-----|:----- |:-----
 title | CharField | max_length=60
@@ -133,7 +133,7 @@ description | CharField | max_length=2000
 date_created | DateTimeField | auto_now_add=True
 date_edited | DateTimeField | auto_now=True
 
-Forum app - Comment model
+**Forum app - Comment model**
 **Database key**|**Field Type**|**Validation**
 :-----|:----- |:-----
 thread | ForeignKey (Thread) | related_name="comments", on_delete=models.CASCADE
@@ -142,7 +142,7 @@ post | TextField | max_length=2000
 date_created | DateTimeField | auto_now_add=True
 date_edited | DateTimeField | auto_now=True
 
-Profiles app - Profile model
+**Profiles app - Profile model**
 **Database key**|**Field Type**|**Validation**
 :-----|:----- |:-----
 user | OneToOneField (User) | on_delete=models.CASCADE
@@ -302,7 +302,7 @@ A number of the features left to implement, have unfortunately been left out due
 - **Comments under blog posts** - I initially planned on adding this feature. I have already shown however, that I know how to connect comments to a thread on the forum. I could use the same technique to add comments to a blog post, which would be even more simple. But since I'm working with a deadline and already showed how I could do this, I left it out for now. 
 - **SLUG for forum and blog** - I have shown that I can implement slug fields for the profile pages. If I had time, I would have also added slugs for the forum and blog posts. 
 - **Choose donation amount** - Currently, users can only donate € 5,- per donation. I would like to give users the option to either select an amount (for example with buttons for 2, 5 and 10 euros), or let them type the amount themselves. But I chose to focus on getting the payment and webhooks in order, which took a lot of time to get working. I therefore didn't work out the 'select amount' option yet. 
-- **Share on social media** - This would allow a user to share a blog post on his personal social media page. It would give publicity to both my website and the authors.  
+- **Share on social media** - This would allow a user to share a blog post on his personal social media page, if I decided to make the blog app available for all users. It would give publicity to both my website and the authors.  
 - **Search functionality** - This could be added to both the forum and the blog app.
 - **Quote comments (comment in comment)** - On a forum, users can usually respond specifically to someone else's comment. The original comment is then displayed between quotation marks, and the new user's comment is underneath, all inside one comment div. I would like to have this functionality on my forum. 
 - **Widget for images** - like in the Boutique Ado project, this would be more user friendly.
